@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   Lock, Key, LogIn, LogOut, Save, RotateCcw, Download, Plus, Trash2, 
   Edit3, CheckCircle2, User, Sparkles, Layers, Clock, ArrowLeft, ShieldCheck, AlertCircle,
-  Eye, EyeOff
+  Eye, EyeOff, GitCommit, Globe, RefreshCw, Github
 } from 'lucide-react';
 import { initialPortfolioData, savePortfolioDataToStorage, resetPortfolioDataToStorage } from '../data/portfolioData';
 
@@ -18,9 +18,13 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
   const [loginForm, setLoginForm] = useState({ username: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState('');
-  const [activeTab, setActiveTab] = useState('info'); // info, skills, projects, timeline
+  const [activeTab, setActiveTab] = useState('info'); // info, skills, projects, timeline, github
   const [data, setData] = useState(portfolioData);
   const [toastMessage, setToastMessage] = useState('');
+
+  // GitHub Auto-sync States
+  const [ghToken, setGhToken] = useState(() => localStorage.getItem('nvdquang_gh_token') || '');
+  const [isSyncing, setIsSyncing] = useState(false);
 
   useEffect(() => {
     setData(portfolioData);
@@ -28,7 +32,7 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
 
   const showToast = (msg) => {
     setToastMessage(msg);
-    setTimeout(() => setToastMessage(''), 3000);
+    setTimeout(() => setToastMessage(''), 4000);
   };
 
   const handleLogin = (e) => {
@@ -51,7 +55,79 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
   const handleSave = () => {
     savePortfolioDataToStorage(data);
     onUpdateData(data);
-    showToast('Đã lưu và cập nhật dữ liệu thành công!');
+    showToast('Đã lưu và cập nhật dữ liệu trên trình duyệt thành công!');
+  };
+
+  // Auto-Commit to GitHub via REST API
+  const handleSyncGitHub = async () => {
+    let token = ghToken || localStorage.getItem('nvdquang_gh_token');
+    if (!token) {
+      token = prompt("Vui lòng nhập GitHub Personal Access Token (PAT) để kết nối tự động:");
+      if (!token) return;
+      setGhToken(token);
+      localStorage.setItem('nvdquang_gh_token', token);
+    }
+
+    setIsSyncing(true);
+    try {
+      const owner = "nvdquang";
+      const repo = "portfolio";
+      const path = "src/data/portfolioData.js";
+
+      // 1. Get current SHA of src/data/portfolioData.js
+      const getRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+        headers: {
+          Authorization: `token ${token}`,
+          Accept: 'application/vnd.github.v3+json'
+        }
+      });
+
+      if (!getRes.ok) {
+        throw new Error(`Không thể lấy file từ GitHub (${getRes.status}). Kiểm tra Token hoặc tên Repo.`);
+      }
+
+      const fileMeta = await getRes.json();
+      const sha = fileMeta.sha;
+
+      // 2. Generate updated portfolioData.js code string
+      const codeContent = `export const initialPortfolioData = ${JSON.stringify(data, null, 2)};\n\nconst STORAGE_KEY = 'nvdquang_portfolio_data_v1';\n\nexport const getStoredPortfolioData = () => {\n  try {\n    const dataStr = localStorage.getItem(STORAGE_KEY);\n    if (dataStr) {\n      return JSON.parse(dataStr);\n    }\n  } catch (e) {\n    console.error("Failed to load custom data from localStorage", e);\n  }\n  return initialPortfolioData;\n};\n\nexport const savePortfolioDataToStorage = (data) => {\n  try {\n    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));\n  } catch (e) {\n    console.error("Failed to save data to localStorage", e);\n  }\n};\n\nexport const resetPortfolioDataToStorage = () => {\n  try {\n    localStorage.removeItem(STORAGE_KEY);\n  } catch (e) {\n    console.error("Failed to reset localStorage data", e);\n  }\n  return initialPortfolioData;\n};\n\nexport const portfolioData = getStoredPortfolioData();\n`;
+
+      // 3. UTF-8 Base64 encoding
+      const utf8Bytes = new TextEncoder().encode(codeContent);
+      let binary = '';
+      utf8Bytes.forEach((b) => (binary += String.fromCharCode(b)));
+      const base64Content = btoa(binary);
+
+      // 4. Send PUT request to GitHub API to commit changes
+      const putRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `token ${token}`,
+          Accept: 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: 'Update portfolio data via Dashboard [Auto Sync]',
+          content: base64Content,
+          sha: sha,
+          branch: 'main'
+        })
+      });
+
+      if (!putRes.ok) {
+        const errJson = await putRes.json();
+        throw new Error(errJson.message || `Lỗi Commit lên GitHub (${putRes.status})`);
+      }
+
+      // Save to local storage as well
+      savePortfolioDataToStorage(data);
+      onUpdateData(data);
+      showToast('🚀 Đã Commit thành công lên GitHub! Vercel đang tự động Re-build online...');
+    } catch (err) {
+      alert(`Lỗi kết nối GitHub API: ${err.message}`);
+    } finally {
+      setIsSyncing(false);
+    }
   };
 
   const handleReset = () => {
@@ -529,9 +605,14 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
               <span>Xem trang Portfolio</span>
             </button>
 
-            <button onClick={handleSave} className="btn btn-primary btn-sm">
+            <button onClick={handleSyncGitHub} disabled={isSyncing} className="btn btn-primary btn-sm gh-sync-btn">
+              {isSyncing ? <RefreshCw size={16} className="spin-icon" /> : <GitCommit size={16} />}
+              <span>{isSyncing ? 'Đang Commit...' : 'Commit lên GitHub (Auto Vercel)'}</span>
+            </button>
+
+            <button onClick={handleSave} className="btn btn-secondary btn-sm">
               <Save size={16} />
-              <span>Lưu thay đổi</span>
+              <span>Lưu trình duyệt</span>
             </button>
 
             <button onClick={handleExportJSON} className="btn btn-secondary btn-sm" title="Tải file cấu hình JSON">
@@ -586,6 +667,14 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           >
             <Clock size={16} />
             <span>Kinh nghiệm & Đào tạo ({data.timeline.length})</span>
+          </button>
+
+          <button
+            className={`dash-tab ${activeTab === 'github' ? 'active' : ''}`}
+            onClick={() => setActiveTab('github')}
+          >
+            <Github size={16} />
+            <span>Cấu hình GitHub API</span>
           </button>
         </div>
 
@@ -926,6 +1015,62 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
             </div>
           </div>
         )}
+
+        {/* Tab 5: GitHub API Sync Config */}
+        {activeTab === 'github' && (
+          <div className="dash-panel glass-card">
+            <h3 className="panel-title">Cấu hình Tự động Kết nối GitHub API & Vercel Auto-Deploy</h3>
+            
+            <div className="gh-config-info-box">
+              <h4>🚀 Tính năng Đồng bộ 1-Click:</h4>
+              <p>
+                Khi bạn bấm nút <strong>"Commit lên GitHub (Auto Vercel)"</strong>, hệ thống sẽ tự động gọi GitHub REST API để cập nhật dữ liệu trực tiếp vào file <code>src/data/portfolioData.js</code> trên GitHub repository <strong>nvdquang/portfolio</strong>.
+              </p>
+              <p style={{ marginTop: '0.5rem' }}>
+                Ngay lập tức, <strong>Vercel sẽ tự động phát hiện commit mới và re-build trang web online</strong> trong ~15 giây cho tất cả người xem trên thế giới.
+              </p>
+            </div>
+
+            <div className="form-group" style={{ marginTop: '1.5rem', maxWidth: '600px' }}>
+              <label className="form-label">GitHub Personal Access Token (PAT)</label>
+              <div className="input-field-wrapper">
+                <input
+                  type="password"
+                  className="form-input"
+                  placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                  value={ghToken}
+                  onChange={(e) => {
+                    setGhToken(e.target.value);
+                    localStorage.setItem('nvdquang_gh_token', e.target.value);
+                  }}
+                />
+              </div>
+              <small className="help-text">Token sẽ được lưu an toàn trong trình duyệt của bạn.</small>
+            </div>
+
+            <div className="pat-guide-box">
+              <h4>Cách tạo Token GitHub miễn phí (chỉ mất 1 phút):</h4>
+              <ol className="guide-steps">
+                <li>Mở trình duyệt và truy cập: <a href="https://github.com/settings/tokens/new" target="_blank" rel="noopener noreferrer">https://github.com/settings/tokens/new</a></li>
+                <li>Đặt tên **Note**: <code>Portfolio-Dashboard-Sync</code></li>
+                <li>Tích chọn quyền **<code>repo</code>** (Full control of private/public repositories).</li>
+                <li>Kéo xuống cuối trang và bấm **Generate token**.</li>
+                <li>Copy đoạn mã Token (bắt đầu bằng <code>ghp_...</code>) và dán vào ô bên trên.</li>
+              </ol>
+            </div>
+
+            <div style={{ marginTop: '2rem' }}>
+              <button
+                onClick={handleSyncGitHub}
+                disabled={isSyncing}
+                className="btn btn-primary"
+              >
+                {isSyncing ? <RefreshCw size={18} className="spin-icon" /> : <GitCommit size={18} />}
+                <span>{isSyncing ? 'Đang Commit lên GitHub...' : 'Thử nghiệm Commit ngay bây giờ'}</span>
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       <style>{`
@@ -1143,6 +1288,76 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           font-weight: 600;
           color: #0f172a;
           cursor: pointer;
+        }
+
+        .gh-sync-btn {
+          background: linear-gradient(135deg, #15803d 0%, #059669 100%);
+          border-color: #15803d;
+        }
+
+        .gh-sync-btn:hover {
+          background: linear-gradient(135deg, #166534 0%, #047857 100%);
+        }
+
+        .spin-icon {
+          animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+          100% { transform: rotate(360deg); }
+        }
+
+        .gh-config-info-box {
+          padding: 1.2rem 1.5rem;
+          background: rgba(0, 56, 130, 0.04);
+          border: 1px solid rgba(0, 56, 130, 0.15);
+          border-radius: var(--radius-md);
+          margin-bottom: 1.5rem;
+        }
+
+        .gh-config-info-box h4 {
+          color: var(--color-primary);
+          font-size: 1.05rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .gh-config-info-box p {
+          font-size: 0.93rem;
+          color: var(--text-muted);
+          line-height: 1.6;
+        }
+
+        .help-text {
+          font-size: 0.78rem;
+          color: var(--text-dim);
+          margin-top: 0.3rem;
+          display: block;
+        }
+
+        .pat-guide-box {
+          margin-top: 1.8rem;
+          padding: 1.4rem 1.6rem;
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-radius: var(--radius-md);
+        }
+
+        .pat-guide-box h4 {
+          font-size: 0.98rem;
+          color: #0f172a;
+          margin-bottom: 0.8rem;
+        }
+
+        .guide-steps {
+          padding-left: 1.2rem;
+          font-size: 0.9rem;
+          color: #475569;
+          line-height: 1.7;
+        }
+
+        .guide-steps a {
+          color: var(--color-primary);
+          font-weight: 600;
         }
 
         @media (max-width: 800px) {
