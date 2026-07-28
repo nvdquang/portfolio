@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Lock, Key, LogIn, LogOut, Save, RotateCcw, Download, Plus, Trash2, 
   Edit3, CheckCircle2, User, Sparkles, Layers, Clock, ArrowLeft, ShieldCheck, AlertCircle,
-  Eye, EyeOff, GitCommit, Globe, RefreshCw, Github, Image, Upload, Link2, Camera
+  Eye, EyeOff, GitCommit, Globe, RefreshCw, Github, Image, Upload, Link2, Camera,
+  Award, Briefcase, Building, GraduationCap, Mail, MapPin, Calendar, FileText, FolderPlus
 } from 'lucide-react';
 import { initialPortfolioData, savePortfolioDataToStorage, resetPortfolioDataToStorage } from '../data/portfolioData';
 
@@ -22,6 +23,9 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
   const [data, setData] = useState(portfolioData);
   const [toastMessage, setToastMessage] = useState('');
 
+  // File Input References
+  const avatarInputRef = useRef(null);
+
   // GitHub Auto-sync States
   const [ghToken, setGhToken] = useState(() => localStorage.getItem('nvdquang_gh_token') || '');
   const [isSyncing, setIsSyncing] = useState(false);
@@ -33,6 +37,39 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
   const showToast = (msg) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(''), 4000);
+  };
+
+  // Direct File Upload Handlers (FileReader base64)
+  const handleAvatarFileUpload = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      if (file.size > 3 * 1024 * 1024) {
+        alert("File ảnh quá lớn (Vui lòng chọn file hình ảnh < 3MB).");
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        handleInfoChange('avatarUrl', event.target.result);
+        showToast('📷 Đã tải và cập nhật ảnh đại diện mới thành công!');
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleProjectFileUpload = (index, e) => {
+    const file = e.target.files && e.target.files[0];
+    if (file) {
+      if (file.size > 3 * 1024 * 1024) {
+        alert("File ảnh quá lớn (Vui lòng chọn file hình ảnh < 3MB).");
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        handleUpdateProject(index, 'image', event.target.result);
+        showToast(`🖼️ Đã tải ảnh bìa mới cho Dự án #${index + 1}!`);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleLogin = (e) => {
@@ -694,21 +731,42 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
               </div>
               <div className="avatar-inputs-box">
                 <label className="modern-label">
-                  <span>Hình đại diện (Avatar Image URL)</span>
-                  <span className="label-badge">Image Link</span>
+                  <span>Hình đại diện (Upload từ thiết bị hoặc Dán Link)</span>
+                  <span className="label-badge">Image Avatar</span>
                 </label>
-                <div className="input-field-wrapper">
-                  <div className="field-icon-box">
-                    <Camera size={18} className="field-icon" />
+
+                <input
+                  type="file"
+                  ref={avatarInputRef}
+                  style={{ display: 'none' }}
+                  accept="image/*"
+                  onChange={handleAvatarFileUpload}
+                />
+
+                <div className="avatar-action-row">
+                  <button
+                    type="button"
+                    className="btn btn-secondary btn-sm upload-device-btn"
+                    onClick={() => avatarInputRef.current && avatarInputRef.current.click()}
+                  >
+                    <Upload size={16} />
+                    <span>Tải ảnh từ máy tính</span>
+                  </button>
+
+                  <div className="input-field-wrapper flex-grow-input">
+                    <div className="field-icon-box">
+                      <Camera size={18} className="field-icon" />
+                    </div>
+                    <input
+                      type="text"
+                      className="modern-input"
+                      placeholder="Hoặc dán URL hình ảnh (https://...)"
+                      value={data.personalInfo.avatarUrl || ''}
+                      onChange={(e) => handleInfoChange('avatarUrl', e.target.value)}
+                    />
                   </div>
-                  <input
-                    type="text"
-                    className="modern-input"
-                    placeholder="Dán đường dẫn hình ảnh (https://...)"
-                    value={data.personalInfo.avatarUrl || ''}
-                    onChange={(e) => handleInfoChange('avatarUrl', e.target.value)}
-                  />
                 </div>
+
                 <div className="avatar-presets-bar">
                   <span className="preset-label">Mẫu nhanh:</span>
                   <button
@@ -740,82 +798,122 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
             <div className="symmetric-form-grid">
               <div className="modern-form-group">
                 <label className="modern-label">Họ và tên đầy đủ *</label>
-                <input
-                  type="text"
-                  className="modern-input"
-                  value={data.personalInfo.fullName}
-                  onChange={(e) => handleInfoChange('fullName', e.target.value)}
-                />
+                <div className="input-field-wrapper">
+                  <div className="field-icon-box">
+                    <User size={18} className="field-icon" />
+                  </div>
+                  <input
+                    type="text"
+                    className="modern-input"
+                    value={data.personalInfo.fullName}
+                    onChange={(e) => handleInfoChange('fullName', e.target.value)}
+                  />
+                </div>
               </div>
 
               <div className="modern-form-group">
                 <label className="modern-label">Học vị / Học hàm *</label>
-                <input
-                  type="text"
-                  className="modern-input"
-                  value={data.personalInfo.degreeTitle}
-                  onChange={(e) => handleInfoChange('degreeTitle', e.target.value)}
-                />
+                <div className="input-field-wrapper">
+                  <div className="field-icon-box">
+                    <Award size={18} className="field-icon" />
+                  </div>
+                  <input
+                    type="text"
+                    className="modern-input"
+                    value={data.personalInfo.degreeTitle}
+                    onChange={(e) => handleInfoChange('degreeTitle', e.target.value)}
+                  />
+                </div>
               </div>
 
               <div className="modern-form-group">
                 <label className="modern-label">Chức danh công tác</label>
-                <input
-                  type="text"
-                  className="modern-input"
-                  value={data.personalInfo.role}
-                  onChange={(e) => handleInfoChange('role', e.target.value)}
-                />
+                <div className="input-field-wrapper">
+                  <div className="field-icon-box">
+                    <Briefcase size={18} className="field-icon" />
+                  </div>
+                  <input
+                    type="text"
+                    className="modern-input"
+                    value={data.personalInfo.role}
+                    onChange={(e) => handleInfoChange('role', e.target.value)}
+                  />
+                </div>
               </div>
 
               <div className="modern-form-group">
                 <label className="modern-label">Trường / Đơn vị chủ quản</label>
-                <input
-                  type="text"
-                  className="modern-input"
-                  value={data.personalInfo.institution}
-                  onChange={(e) => handleInfoChange('institution', e.target.value)}
-                />
+                <div className="input-field-wrapper">
+                  <div className="field-icon-box">
+                    <Building size={18} className="field-icon" />
+                  </div>
+                  <input
+                    type="text"
+                    className="modern-input"
+                    value={data.personalInfo.institution}
+                    onChange={(e) => handleInfoChange('institution', e.target.value)}
+                  />
+                </div>
               </div>
 
               <div className="modern-form-group">
                 <label className="modern-label">Khoa / Phòng ban</label>
-                <input
-                  type="text"
-                  className="modern-input"
-                  value={data.personalInfo.department}
-                  onChange={(e) => handleInfoChange('department', e.target.value)}
-                />
+                <div className="input-field-wrapper">
+                  <div className="field-icon-box">
+                    <GraduationCap size={18} className="field-icon" />
+                  </div>
+                  <input
+                    type="text"
+                    className="modern-input"
+                    value={data.personalInfo.department}
+                    onChange={(e) => handleInfoChange('department', e.target.value)}
+                  />
+                </div>
               </div>
 
               <div className="modern-form-group">
                 <label className="modern-label">Email làm việc chính thức</label>
-                <input
-                  type="email"
-                  className="modern-input"
-                  value={data.personalInfo.email}
-                  onChange={(e) => handleInfoChange('email', e.target.value)}
-                />
+                <div className="input-field-wrapper">
+                  <div className="field-icon-box">
+                    <Mail size={18} className="field-icon" />
+                  </div>
+                  <input
+                    type="email"
+                    className="modern-input"
+                    value={data.personalInfo.email}
+                    onChange={(e) => handleInfoChange('email', e.target.value)}
+                  />
+                </div>
               </div>
 
               <div className="modern-form-group">
                 <label className="modern-label">Đường dẫn GitHub Profile</label>
-                <input
-                  type="text"
-                  className="modern-input"
-                  value={data.personalInfo.github}
-                  onChange={(e) => handleInfoChange('github', e.target.value)}
-                />
+                <div className="input-field-wrapper">
+                  <div className="field-icon-box">
+                    <Github size={18} className="field-icon" />
+                  </div>
+                  <input
+                    type="text"
+                    className="modern-input"
+                    value={data.personalInfo.github}
+                    onChange={(e) => handleInfoChange('github', e.target.value)}
+                  />
+                </div>
               </div>
 
               <div className="modern-form-group">
                 <label className="modern-label">Địa chỉ làm việc</label>
-                <input
-                  type="text"
-                  className="modern-input"
-                  value={data.personalInfo.location}
-                  onChange={(e) => handleInfoChange('location', e.target.value)}
-                />
+                <div className="input-field-wrapper">
+                  <div className="field-icon-box">
+                    <MapPin size={18} className="field-icon" />
+                  </div>
+                  <input
+                    type="text"
+                    className="modern-input"
+                    value={data.personalInfo.location}
+                    onChange={(e) => handleInfoChange('location', e.target.value)}
+                  />
+                </div>
               </div>
             </div>
 
@@ -859,26 +957,36 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
                   <div className="symmetric-form-grid">
                     <div className="modern-form-group">
                       <label className="modern-label">Tên Kỹ năng</label>
-                      <input
-                        type="text"
-                        className="modern-input"
-                        value={skill.name}
-                        onChange={(e) => handleUpdateSkill(idx, 'name', e.target.value)}
-                      />
+                      <div className="input-field-wrapper">
+                        <div className="field-icon-box">
+                          <Sparkles size={18} className="field-icon" />
+                        </div>
+                        <input
+                          type="text"
+                          className="modern-input"
+                          value={skill.name}
+                          onChange={(e) => handleUpdateSkill(idx, 'name', e.target.value)}
+                        />
+                      </div>
                     </div>
 
                     <div className="modern-form-group">
                       <label className="modern-label">Nhóm Kỹ năng</label>
-                      <select
-                        className="modern-input"
-                        value={skill.category}
-                        onChange={(e) => handleUpdateSkill(idx, 'category', e.target.value)}
-                      >
-                        <option value="software">Phát triển Phần mềm & Web</option>
-                        <option value="ai">Trí tuệ nhân tạo & Data</option>
-                        <option value="architecture">Kiến trúc & DevOps</option>
-                        <option value="academic">Giảng dạy & Nghiên cứu</option>
-                      </select>
+                      <div className="input-field-wrapper">
+                        <div className="field-icon-box">
+                          <Layers size={18} className="field-icon" />
+                        </div>
+                        <select
+                          className="modern-input"
+                          value={skill.category}
+                          onChange={(e) => handleUpdateSkill(idx, 'category', e.target.value)}
+                        >
+                          <option value="software">Phát triển Phần mềm & Web</option>
+                          <option value="ai">Trí tuệ nhân tạo & Data</option>
+                          <option value="architecture">Kiến trúc & DevOps</option>
+                          <option value="academic">Giảng dạy & Nghiên cứu</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
 
@@ -923,24 +1031,40 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
                     </button>
                   </div>
 
-                  {/* Project Image Preview & URL Edit */}
+                  {/* Project Image Preview & File Upload */}
                   <div className="project-img-edit-box">
                     <div className="project-cover-preview">
                       <img src={proj.image} alt={proj.title} className="cover-img" />
                     </div>
                     <div className="project-img-input-box">
-                      <label className="modern-label">Hình ảnh bìa dự án (URL Image Link)</label>
-                      <div className="input-field-wrapper">
-                        <div className="field-icon-box">
-                          <Image size={18} className="field-icon" />
+                      <label className="modern-label">Hình ảnh bìa dự án (Upload từ máy hoặc Link URL)</label>
+                      
+                      <input
+                        type="file"
+                        id={`project-file-${idx}`}
+                        style={{ display: 'none' }}
+                        accept="image/*"
+                        onChange={(e) => handleProjectFileUpload(idx, e)}
+                      />
+
+                      <div className="avatar-action-row">
+                        <label htmlFor={`project-file-${idx}`} className="btn btn-secondary btn-sm upload-device-btn">
+                          <Upload size={16} />
+                          <span>Tải ảnh từ máy tính</span>
+                        </label>
+
+                        <div className="input-field-wrapper flex-grow-input">
+                          <div className="field-icon-box">
+                            <Image size={18} className="field-icon" />
+                          </div>
+                          <input
+                            type="text"
+                            className="modern-input"
+                            placeholder="Hoặc dán URL hình ảnh..."
+                            value={proj.image}
+                            onChange={(e) => handleUpdateProject(idx, 'image', e.target.value)}
+                          />
                         </div>
-                        <input
-                          type="text"
-                          className="modern-input"
-                          placeholder="Dán URL hình ảnh..."
-                          value={proj.image}
-                          onChange={(e) => handleUpdateProject(idx, 'image', e.target.value)}
-                        />
                       </div>
                     </div>
                   </div>
@@ -948,46 +1072,66 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
                   <div className="symmetric-form-grid" style={{ marginTop: '1.2rem' }}>
                     <div className="modern-form-group">
                       <label className="modern-label">Tên Dự án *</label>
-                      <input
-                        type="text"
-                        className="modern-input"
-                        value={proj.title}
-                        onChange={(e) => handleUpdateProject(idx, 'title', e.target.value)}
-                      />
+                      <div className="input-field-wrapper">
+                        <div className="field-icon-box">
+                          <FolderPlus size={18} className="field-icon" />
+                        </div>
+                        <input
+                          type="text"
+                          className="modern-input"
+                          value={proj.title}
+                          onChange={(e) => handleUpdateProject(idx, 'title', e.target.value)}
+                        />
+                      </div>
                     </div>
 
                     <div className="modern-form-group">
                       <label className="modern-label">Danh mục Loại dự án</label>
-                      <select
-                        className="modern-input"
-                        value={proj.category}
-                        onChange={(e) => handleUpdateProject(idx, 'category', e.target.value)}
-                      >
-                        <option value="software">Phần mềm & Web</option>
-                        <option value="ai">Trí tuệ nhân tạo (AI)</option>
-                        <option value="architecture">Kiến trúc & Hạ tầng</option>
-                        <option value="academic">Hệ thống Đào tạo LHU</option>
-                      </select>
+                      <div className="input-field-wrapper">
+                        <div className="field-icon-box">
+                          <Layers size={18} className="field-icon" />
+                        </div>
+                        <select
+                          className="modern-input"
+                          value={proj.category}
+                          onChange={(e) => handleUpdateProject(idx, 'category', e.target.value)}
+                        >
+                          <option value="software">Phần mềm & Web</option>
+                          <option value="ai">Trí tuệ nhân tạo (AI)</option>
+                          <option value="architecture">Kiến trúc & Hạ tầng</option>
+                          <option value="academic">Hệ thống Đào tạo LHU</option>
+                        </select>
+                      </div>
                     </div>
 
                     <div className="modern-form-group">
                       <label className="modern-label">Đường dẫn GitHub Code</label>
-                      <input
-                        type="text"
-                        className="modern-input"
-                        value={proj.githubUrl}
-                        onChange={(e) => handleUpdateProject(idx, 'githubUrl', e.target.value)}
-                      />
+                      <div className="input-field-wrapper">
+                        <div className="field-icon-box">
+                          <Github size={18} className="field-icon" />
+                        </div>
+                        <input
+                          type="text"
+                          className="modern-input"
+                          value={proj.githubUrl}
+                          onChange={(e) => handleUpdateProject(idx, 'githubUrl', e.target.value)}
+                        />
+                      </div>
                     </div>
 
                     <div className="modern-form-group">
                       <label className="modern-label">Đường dẫn Trải nghiệm Demo</label>
-                      <input
-                        type="text"
-                        className="modern-input"
-                        value={proj.demoUrl}
-                        onChange={(e) => handleUpdateProject(idx, 'demoUrl', e.target.value)}
-                      />
+                      <div className="input-field-wrapper">
+                        <div className="field-icon-box">
+                          <Globe size={18} className="field-icon" />
+                        </div>
+                        <input
+                          type="text"
+                          className="modern-input"
+                          value={proj.demoUrl}
+                          onChange={(e) => handleUpdateProject(idx, 'demoUrl', e.target.value)}
+                        />
+                      </div>
                     </div>
                   </div>
 
@@ -1041,44 +1185,64 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
                   <div className="symmetric-form-grid">
                     <div className="modern-form-group">
                       <label className="modern-label">Giai đoạn Thời gian (Ví dụ: 2018 - Hiện tại)</label>
-                      <input
-                        type="text"
-                        className="modern-input"
-                        value={item.year}
-                        onChange={(e) => handleUpdateTimeline(idx, 'year', e.target.value)}
-                      />
+                      <div className="input-field-wrapper">
+                        <div className="field-icon-box">
+                          <Calendar size={18} className="field-icon" />
+                        </div>
+                        <input
+                          type="text"
+                          className="modern-input"
+                          value={item.year}
+                          onChange={(e) => handleUpdateTimeline(idx, 'year', e.target.value)}
+                        />
+                      </div>
                     </div>
 
                     <div className="modern-form-group">
                       <label className="modern-label">Tên vị trí / Cột mốc</label>
-                      <input
-                        type="text"
-                        className="modern-input"
-                        value={item.title}
-                        onChange={(e) => handleUpdateTimeline(idx, 'title', e.target.value)}
-                      />
+                      <div className="input-field-wrapper">
+                        <div className="field-icon-box">
+                          <Award size={18} className="field-icon" />
+                        </div>
+                        <input
+                          type="text"
+                          className="modern-input"
+                          value={item.title}
+                          onChange={(e) => handleUpdateTimeline(idx, 'title', e.target.value)}
+                        />
+                      </div>
                     </div>
 
                     <div className="modern-form-group">
                       <label className="modern-label">Tên Đơn vị / Trường học</label>
-                      <input
-                        type="text"
-                        className="modern-input"
-                        value={item.organization}
-                        onChange={(e) => handleUpdateTimeline(idx, 'organization', e.target.value)}
-                      />
+                      <div className="input-field-wrapper">
+                        <div className="field-icon-box">
+                          <Building size={18} className="field-icon" />
+                        </div>
+                        <input
+                          type="text"
+                          className="modern-input"
+                          value={item.organization}
+                          onChange={(e) => handleUpdateTimeline(idx, 'organization', e.target.value)}
+                        />
+                      </div>
                     </div>
 
                     <div className="modern-form-group">
                       <label className="modern-label">Phân loại Cột mốc</label>
-                      <select
-                        className="modern-input"
-                        value={item.type}
-                        onChange={(e) => handleUpdateTimeline(idx, 'type', e.target.value)}
-                      >
-                        <option value="work">Công tác & Giảng dạy</option>
-                        <option value="education">Đào tạo học vị</option>
-                      </select>
+                      <div className="input-field-wrapper">
+                        <div className="field-icon-box">
+                          <GraduationCap size={18} className="field-icon" />
+                        </div>
+                        <select
+                          className="modern-input"
+                          value={item.type}
+                          onChange={(e) => handleUpdateTimeline(idx, 'type', e.target.value)}
+                        >
+                          <option value="work">Công tác & Giảng dạy</option>
+                          <option value="education">Đào tạo học vị</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
 
@@ -1345,6 +1509,41 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           display: flex;
           flex-direction: column;
           gap: 0.5rem;
+        }
+
+        .avatar-action-row {
+          display: flex;
+          align-items: center;
+          gap: 0.8rem;
+          flex-wrap: wrap;
+        }
+
+        .upload-device-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          white-space: nowrap;
+          background: #ffffff;
+          border: 1px solid rgba(0, 56, 130, 0.25);
+          color: var(--color-primary);
+          font-weight: 700;
+          padding: 0.75rem 1.1rem;
+          border-radius: 12px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          box-shadow: 0 2px 8px rgba(0, 56, 130, 0.06);
+        }
+
+        .upload-device-btn:hover {
+          background: var(--color-primary);
+          color: #ffffff;
+          border-color: var(--color-primary);
+          transform: translateY(-1px);
+        }
+
+        .flex-grow-input {
+          flex-grow: 1;
+          min-width: 260px;
         }
 
         .avatar-presets-bar {
