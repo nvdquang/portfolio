@@ -10,7 +10,7 @@ export const initialPortfolioData = {
     "email": "quang@lhu.edu.vn",
     "github": "https://github.com/nvdquang",
     "location": "Biên Hòa, Đồng Nai, Việt Nam",
-    "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600",
+    "avatarUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
     "stats": [
       {
         "label": "Năm kinh nghiệm",
