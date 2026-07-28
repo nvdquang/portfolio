@@ -246,25 +246,18 @@ export const initialPortfolioData = {
   ],
   "timeline": [
     {
-      "year": "2018 - Hiện tại",
+      "year": "2006 - 2009",
       "title": "Giảng viên & Kỹ sư Phần mềm",
       "organization": "Trường Đại học Lạc Hồng (LHU)",
-      "description": "Phụ trách giảng dạy các môn học Kỹ thuật Phần mềm, Lập trình Web, Cơ sở dữ liệu và Trí tuệ nhân tạo. Đồng thời chủ trì phát triển các hệ thống công nghệ thông tin nội bộ.",
+      "description": "Phụ trách giảng dạy các môn học Kỹ thuật Phần mềm, Lập trình Web, Cơ sở dữ liệu và Trí tuệ nhân tạo. Đồng thời chủ trì phát triển các hệ thống phần mềm \"Khám chữa bệnh ngoại trú\" cho Bệnh viện Đa khoa Đồng Nai.",
       "type": "work"
     },
     {
-      "year": "2016 - 2018",
+      "year": "2009 - Nay",
       "title": "Thạc sĩ Khoa học Máy tính / CNTT",
       "organization": "Trường Đại học Lạc Hồng (LHU)",
-      "description": "Tốt nghiệp chương trình Đào tạo Thạc sĩ với đề tài nghiên cứu về Xử lý dữ liệu lớn và Ứng dụng Học máy trong Phân tích Học tập.",
-      "type": "education"
-    },
-    {
-      "year": "2012 - 2016",
-      "title": "Kỹ sư Công nghệ Thông tin",
-      "organization": "Đại học Lạc Hồng",
-      "description": "Tốt nghiệp Kỹ sư CNTT chuyên ngành Kỹ thuật Phần mềm. Đạt nhiều giải thưởng trong các cuộc thi sáng tạo công nghệ.",
-      "type": "education"
+      "description": "Tốt nghiệp chương trình Đào tạo Thạc sĩ với đề tài nghiên cứu \"Ứng dụng mạng Nơron lan truyền ngược, Dự báo số lượng bệnh nhân khám chữa bệnh\" - Đại học Công nghệ thông tin - ĐHQG TP. HCM",
+      "type": "work"
     }
   ],
   "resumeInfo": {
