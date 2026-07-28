@@ -1462,26 +1462,185 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           gap: 1.2rem;
         }
 
+        /* ========================================================= */
+        /* MODERN DASHBOARD FORM COMPONENTS & TEXTBOXES UI/UX SYSTEM  */
+        /* ========================================================= */
+        .dash-panel {
+          padding: 2.2rem 2.4rem;
+          background: #ffffff;
+          border: 1px solid rgba(0, 56, 130, 0.12);
+          border-radius: 20px;
+          box-shadow: 0 10px 30px rgba(0, 44, 108, 0.05);
+          margin-bottom: 2rem;
+        }
+
+        .panel-title {
+          font-size: 1.35rem;
+          font-weight: 800;
+          color: #0f172a;
+          letter-spacing: -0.02em;
+          margin-bottom: 1.8rem;
+          padding-bottom: 0.8rem;
+          border-bottom: 2px solid #f1f5f9;
+        }
+
+        .panel-header-action {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 1.8rem;
+          padding-bottom: 0.8rem;
+          border-bottom: 2px solid #f1f5f9;
+        }
+
+        .panel-header-action .panel-title {
+          margin-bottom: 0;
+          padding-bottom: 0;
+          border-bottom: none;
+        }
+
+        /* Form Group & Symmetric Grid */
+        .symmetric-form-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
+          width: 100%;
+        }
+
+        .modern-form-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.55rem;
+          width: 100%;
+        }
+
+        .modern-label {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.5rem;
+          font-size: 0.9rem;
+          font-weight: 700;
+          color: #1e293b;
+          margin-bottom: 0.15rem;
+        }
+
+        .label-badge {
+          font-size: 0.72rem;
+          font-weight: 600;
+          font-family: var(--font-mono);
+          color: #003882;
+          background: rgba(0, 56, 130, 0.08);
+          padding: 0.2rem 0.6rem;
+          border-radius: 6px;
+          white-space: nowrap;
+        }
+
+        /* Input Field Wrapper & Floating Icons */
+        .input-field-wrapper {
+          position: relative;
+          display: flex;
+          align-items: center;
+          width: 100%;
+        }
+
+        .field-icon-box {
+          position: absolute;
+          left: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          pointer-events: none;
+          z-index: 5;
+        }
+
+        .field-icon {
+          color: #64748b;
+          transition: color 0.2s ease;
+        }
+
+        .modern-input {
+          width: 100%;
+          box-sizing: border-box;
+          padding: 0.85rem 1rem 0.85rem 2.8rem;
+          background: #f8fafc;
+          border: 1.5px solid #cbd5e1;
+          border-radius: 12px;
+          color: #0f172a;
+          font-family: var(--font-sans);
+          font-size: 0.95rem;
+          font-weight: 500;
+          outline: none;
+          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+        }
+
+        select.modern-input {
+          cursor: pointer;
+          appearance: auto;
+        }
+
+        .modern-input::placeholder {
+          color: #94a3b8;
+        }
+
+        .modern-input:focus {
+          background: #ffffff;
+          border-color: #003882;
+          box-shadow: 0 0 0 4px rgba(0, 56, 130, 0.14);
+        }
+
+        .input-field-wrapper:focus-within .field-icon {
+          color: #003882;
+        }
+
+        /* Standalone Textarea */
+        .modern-textarea {
+          width: 100%;
+          box-sizing: border-box;
+          padding: 0.9rem 1.1rem;
+          background: #f8fafc;
+          border: 1.5px solid #cbd5e1;
+          border-radius: 12px;
+          color: #0f172a;
+          font-family: var(--font-sans);
+          font-size: 0.95rem;
+          font-weight: 500;
+          outline: none;
+          resize: vertical;
+          min-height: 100px;
+          line-height: 1.6;
+          transition: all 0.2s ease-in-out;
+        }
+
+        .modern-textarea:focus {
+          background: #ffffff;
+          border-color: #003882;
+          box-shadow: 0 0 0 4px rgba(0, 56, 130, 0.14);
+        }
+
         /* Avatar Editor Box */
         .avatar-editor-card {
           display: flex;
           align-items: center;
           gap: 1.8rem;
-          padding: 1.4rem 1.6rem;
+          padding: 1.6rem 1.8rem;
           background: rgba(0, 56, 130, 0.03);
-          border: 1px solid rgba(0, 56, 130, 0.12);
+          border: 1px solid rgba(0, 56, 130, 0.14);
           border-radius: 16px;
-          margin-bottom: 1.8rem;
+          margin-bottom: 2rem;
           flex-wrap: wrap;
         }
 
         .avatar-preview-box {
-          width: 90px;
-          height: 90px;
+          width: 96px;
+          height: 96px;
           border-radius: 50%;
           overflow: hidden;
-          border: 3px solid #ffffff;
-          box-shadow: 0 4px 15px rgba(0, 56, 130, 0.15);
+          border: 4px solid #ffffff;
+          box-shadow: 0 6px 20px rgba(0, 56, 130, 0.16);
           flex-shrink: 0;
           background: #ffffff;
         }
@@ -1508,7 +1667,7 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           flex-grow: 1;
           display: flex;
           flex-direction: column;
-          gap: 0.5rem;
+          gap: 0.6rem;
         }
 
         .avatar-action-row {
@@ -1516,6 +1675,7 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           align-items: center;
           gap: 0.8rem;
           flex-wrap: wrap;
+          width: 100%;
         }
 
         .upload-device-btn {
@@ -1524,10 +1684,10 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           gap: 0.5rem;
           white-space: nowrap;
           background: #ffffff;
-          border: 1px solid rgba(0, 56, 130, 0.25);
+          border: 1.5px solid rgba(0, 56, 130, 0.25);
           color: var(--color-primary);
           font-weight: 700;
-          padding: 0.75rem 1.1rem;
+          padding: 0.8rem 1.2rem;
           border-radius: 12px;
           cursor: pointer;
           transition: all 0.2s ease;
@@ -1542,7 +1702,7 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
         }
 
         .flex-grow-input {
-          flex-grow: 1;
+          flex: 1;
           min-width: 260px;
         }
 
@@ -1555,18 +1715,19 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
         }
 
         .preset-label {
-          font-size: 0.78rem;
+          font-size: 0.8rem;
           color: var(--text-muted);
           font-family: var(--font-mono);
+          font-weight: 600;
         }
 
         .preset-btn {
-          padding: 0.25rem 0.6rem;
-          border-radius: 6px;
+          padding: 0.3rem 0.75rem;
+          border-radius: 8px;
           background: #ffffff;
-          border: 1px solid rgba(0, 56, 130, 0.15);
+          border: 1px solid rgba(0, 56, 130, 0.18);
           color: var(--color-primary);
-          font-size: 0.78rem;
+          font-size: 0.8rem;
           font-weight: 600;
           cursor: pointer;
           transition: all 0.2s ease;
@@ -1577,23 +1738,17 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           color: #ffffff;
         }
 
-        /* Symmetric Form Grid & Cards */
-        .symmetric-form-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 1.4rem;
-        }
-
+        /* Modern Card List Items */
         .editor-cards-list {
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 1.6rem;
         }
 
         .modern-editor-card {
-          padding: 1.6rem;
+          padding: 1.8rem;
           background: #ffffff;
-          border: 1px solid #e2e8f0;
+          border: 1.5px solid #e2e8f0;
           border-radius: 18px;
           box-shadow: 0 4px 18px rgba(0, 44, 108, 0.04);
           position: relative;
@@ -1601,7 +1756,7 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
         }
 
         .modern-editor-card:hover {
-          border-color: rgba(0, 56, 130, 0.25);
+          border-color: rgba(0, 56, 130, 0.3);
           box-shadow: 0 8px 25px rgba(0, 44, 108, 0.08);
         }
 
@@ -1609,8 +1764,8 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 1.2rem;
-          padding-bottom: 0.6rem;
+          margin-bottom: 1.4rem;
+          padding-bottom: 0.8rem;
           border-bottom: 1px solid #f1f5f9;
         }
 
@@ -1620,7 +1775,7 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           font-weight: 700;
           color: var(--color-primary);
           background: rgba(0, 56, 130, 0.06);
-          padding: 0.25rem 0.75rem;
+          padding: 0.3rem 0.85rem;
           border-radius: 9999px;
         }
 
@@ -1629,9 +1784,9 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           display: flex;
           align-items: center;
           gap: 1.4rem;
-          padding: 1rem 1.2rem;
+          padding: 1.2rem 1.4rem;
           background: #f8fafc;
-          border: 1px solid #e2e8f0;
+          border: 1.5px solid #e2e8f0;
           border-radius: 14px;
           flex-wrap: wrap;
         }
@@ -1659,7 +1814,7 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 0.3rem;
+          margin-bottom: 0.4rem;
         }
 
         .level-badge {
@@ -1668,7 +1823,7 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           color: var(--color-primary);
           font-size: 0.9rem;
           background: rgba(0, 56, 130, 0.08);
-          padding: 0.15rem 0.6rem;
+          padding: 0.2rem 0.7rem;
           border-radius: 6px;
         }
 
@@ -1679,15 +1834,9 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           cursor: pointer;
         }
 
-        .modern-textarea {
-          resize: vertical;
-          min-height: 80px;
-          line-height: 1.6;
-        }
-
         .delete-item-btn {
-          width: 34px;
-          height: 34px;
+          width: 36px;
+          height: 36px;
           border-radius: 10px;
           background: #fef2f2;
           border: 1px solid #fecaca;
@@ -1774,16 +1923,15 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           font-weight: 600;
         }
 
-        @media (max-width: 800px) {
-          .editor-item-grid {
+        @media (max-width: 768px) {
+          .symmetric-form-grid {
             grid-template-columns: 1fr;
-            padding-right: 0;
           }
-          .delete-item-btn {
-            position: relative;
-            top: 0;
-            right: 0;
-            margin-top: 0.8rem;
+          .dash-panel {
+            padding: 1.4rem;
+          }
+          .modern-editor-card {
+            padding: 1.2rem;
           }
         }
       `}</style>
