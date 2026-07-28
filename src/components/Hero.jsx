@@ -91,7 +91,11 @@ export const Hero = ({ onOpenResume }) => {
                 <div className="avatar-graphic">
                   <div className="avatar-glow"></div>
                   <div className="avatar-circle">
-                    <span className="avatar-initials">NV</span>
+                    {personalInfo.avatarUrl ? (
+                      <img src={personalInfo.avatarUrl} alt={personalInfo.fullName} className="avatar-img-element" />
+                    ) : (
+                      <span className="avatar-initials">NV</span>
+                    )}
                   </div>
                 </div>
 
@@ -283,6 +287,13 @@ export const Hero = ({ onOpenResume }) => {
           justify-content: center;
           position: relative;
           z-index: 1;
+          overflow: hidden;
+        }
+
+        .avatar-img-element {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
 
         .avatar-initials {

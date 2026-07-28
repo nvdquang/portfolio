@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   Lock, Key, LogIn, LogOut, Save, RotateCcw, Download, Plus, Trash2, 
   Edit3, CheckCircle2, User, Sparkles, Layers, Clock, ArrowLeft, ShieldCheck, AlertCircle,
-  Eye, EyeOff, GitCommit, Globe, RefreshCw, Github
+  Eye, EyeOff, GitCommit, Globe, RefreshCw, Github, Image, Upload, Link2, Camera
 } from 'lucide-react';
 import { initialPortfolioData, savePortfolioDataToStorage, resetPortfolioDataToStorage } from '../data/portfolioData';
 
@@ -683,93 +683,147 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           <div className="dash-panel glass-card">
             <h3 className="panel-title">Chỉnh sửa Thông tin Cá nhân & Đơn vị</h3>
             
-            <div className="form-grid">
-              <div className="form-group">
-                <label className="form-label">Họ và tên đầy đủ</label>
+            {/* Avatar Image Editor Box */}
+            <div className="avatar-editor-card">
+              <div className="avatar-preview-box">
+                {data.personalInfo.avatarUrl ? (
+                  <img src={data.personalInfo.avatarUrl} alt="Avatar" className="avatar-preview-img" />
+                ) : (
+                  <div className="avatar-fallback-box">NV</div>
+                )}
+              </div>
+              <div className="avatar-inputs-box">
+                <label className="modern-label">
+                  <span>Hình đại diện (Avatar Image URL)</span>
+                  <span className="label-badge">Image Link</span>
+                </label>
+                <div className="input-field-wrapper">
+                  <div className="field-icon-box">
+                    <Camera size={18} className="field-icon" />
+                  </div>
+                  <input
+                    type="text"
+                    className="modern-input"
+                    placeholder="Dán đường dẫn hình ảnh (https://...)"
+                    value={data.personalInfo.avatarUrl || ''}
+                    onChange={(e) => handleInfoChange('avatarUrl', e.target.value)}
+                  />
+                </div>
+                <div className="avatar-presets-bar">
+                  <span className="preset-label">Mẫu nhanh:</span>
+                  <button
+                    type="button"
+                    className="preset-btn"
+                    onClick={() => handleInfoChange('avatarUrl', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600')}
+                  >
+                    Mẫu 1
+                  </button>
+                  <button
+                    type="button"
+                    className="preset-btn"
+                    onClick={() => handleInfoChange('avatarUrl', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600')}
+                  >
+                    Mẫu 2
+                  </button>
+                  <button
+                    type="button"
+                    className="preset-btn"
+                    onClick={() => handleInfoChange('avatarUrl', '')}
+                  >
+                    Huy hiệu chữ (NV)
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Symmetric 2-Column Form Grid */}
+            <div className="symmetric-form-grid">
+              <div className="modern-form-group">
+                <label className="modern-label">Họ và tên đầy đủ *</label>
                 <input
                   type="text"
-                  className="form-input"
+                  className="modern-input"
                   value={data.personalInfo.fullName}
                   onChange={(e) => handleInfoChange('fullName', e.target.value)}
                 />
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Học vị / Học hàm</label>
+              <div className="modern-form-group">
+                <label className="modern-label">Học vị / Học hàm *</label>
                 <input
                   type="text"
-                  className="form-input"
+                  className="modern-input"
                   value={data.personalInfo.degreeTitle}
                   onChange={(e) => handleInfoChange('degreeTitle', e.target.value)}
                 />
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Chức danh / Chức vụ</label>
+              <div className="modern-form-group">
+                <label className="modern-label">Chức danh công tác</label>
                 <input
                   type="text"
-                  className="form-input"
+                  className="modern-input"
                   value={data.personalInfo.role}
                   onChange={(e) => handleInfoChange('role', e.target.value)}
                 />
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Trường / Đơn vị công tác</label>
+              <div className="modern-form-group">
+                <label className="modern-label">Trường / Đơn vị chủ quản</label>
                 <input
                   type="text"
-                  className="form-input"
+                  className="modern-input"
                   value={data.personalInfo.institution}
                   onChange={(e) => handleInfoChange('institution', e.target.value)}
                 />
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Khoa / Phong ban</label>
+              <div className="modern-form-group">
+                <label className="modern-label">Khoa / Phòng ban</label>
                 <input
                   type="text"
-                  className="form-input"
+                  className="modern-input"
                   value={data.personalInfo.department}
                   onChange={(e) => handleInfoChange('department', e.target.value)}
                 />
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Email làm việc chính thức</label>
+              <div className="modern-form-group">
+                <label className="modern-label">Email làm việc chính thức</label>
                 <input
                   type="email"
-                  className="form-input"
+                  className="modern-input"
                   value={data.personalInfo.email}
                   onChange={(e) => handleInfoChange('email', e.target.value)}
                 />
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Đường dẫn GitHub Profile</label>
+              <div className="modern-form-group">
+                <label className="modern-label">Đường dẫn GitHub Profile</label>
                 <input
                   type="text"
-                  className="form-input"
+                  className="modern-input"
                   value={data.personalInfo.github}
                   onChange={(e) => handleInfoChange('github', e.target.value)}
                 />
               </div>
 
-              <div className="form-group">
-                <label className="form-label">Địa điểm / Địa chỉ công tác</label>
+              <div className="modern-form-group">
+                <label className="modern-label">Địa chỉ làm việc</label>
                 <input
                   type="text"
-                  className="form-input"
+                  className="modern-input"
                   value={data.personalInfo.location}
                   onChange={(e) => handleInfoChange('location', e.target.value)}
                 />
               </div>
             </div>
 
-            <div className="form-group" style={{ marginTop: '1.2rem' }}>
-              <label className="form-label">Tóm tắt tiểu sử ngắn (Hero Bio)</label>
+            <div className="modern-form-group" style={{ marginTop: '1.5rem' }}>
+              <label className="modern-label">Tiểu sử tóm tắt (Hero Bio - Hiển thị tại banner chính)</label>
               <textarea
                 rows={4}
-                className="form-input"
+                className="modern-input modern-textarea"
                 value={data.personalInfo.bioLong}
                 onChange={(e) => handleInfoChange('bioLong', e.target.value)}
               />
@@ -788,36 +842,35 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
               </button>
             </div>
 
-            <div className="editor-list">
+            <div className="editor-cards-list">
               {data.skills.map((skill, idx) => (
-                <div key={idx} className="editor-item-card">
-                  <div className="editor-item-grid">
-                    <div className="form-group">
-                      <label className="form-label">Tên Kỹ năng</label>
+                <div key={idx} className="modern-editor-card">
+                  <div className="card-top-row">
+                    <span className="card-index-badge">#Kỹ năng {idx + 1}</span>
+                    <button
+                      onClick={() => handleDeleteSkill(idx)}
+                      className="delete-item-btn"
+                      title="Xóa kỹ năng này"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+
+                  <div className="symmetric-form-grid">
+                    <div className="modern-form-group">
+                      <label className="modern-label">Tên Kỹ năng</label>
                       <input
                         type="text"
-                        className="form-input"
+                        className="modern-input"
                         value={skill.name}
                         onChange={(e) => handleUpdateSkill(idx, 'name', e.target.value)}
                       />
                     </div>
 
-                    <div className="form-group">
-                      <label className="form-label">Phần trăm thành thạo ({skill.level}%)</label>
-                      <input
-                        type="range"
-                        min="10"
-                        max="100"
-                        className="form-range"
-                        value={skill.level}
-                        onChange={(e) => handleUpdateSkill(idx, 'level', parseInt(e.target.value))}
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label className="form-label">Nhóm Kỹ năng</label>
+                    <div className="modern-form-group">
+                      <label className="modern-label">Nhóm Kỹ năng</label>
                       <select
-                        className="form-input"
+                        className="modern-input"
                         value={skill.category}
                         onChange={(e) => handleUpdateSkill(idx, 'category', e.target.value)}
                       >
@@ -829,13 +882,20 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => handleDeleteSkill(idx)}
-                    className="delete-item-btn"
-                    title="Xóa kỹ năng này"
-                  >
-                    <Trash2 size={16} />
-                  </button>
+                  <div className="modern-form-group" style={{ marginTop: '1.2rem' }}>
+                    <div className="slider-label-row">
+                      <label className="modern-label">Trình độ thành thạo</label>
+                      <span className="level-badge">{skill.level}%</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="10"
+                      max="100"
+                      className="modern-range-slider"
+                      value={skill.level}
+                      onChange={(e) => handleUpdateSkill(idx, 'level', parseInt(e.target.value))}
+                    />
+                  </div>
                 </div>
               ))}
             </div>
@@ -853,31 +913,53 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
               </button>
             </div>
 
-            <div className="editor-list">
+            <div className="editor-cards-list">
               {data.projects.map((proj, idx) => (
-                <div key={proj.id || idx} className="editor-item-card project-editor-card">
-                  <div className="editor-item-header">
-                    <h4 className="editor-item-title">{proj.title || "Dự án mới"}</h4>
+                <div key={proj.id || idx} className="modern-editor-card">
+                  <div className="card-top-row">
+                    <span className="card-index-badge">#Dự án {idx + 1}</span>
                     <button onClick={() => handleDeleteProject(idx)} className="delete-item-btn">
                       <Trash2 size={16} />
                     </button>
                   </div>
 
-                  <div className="form-grid">
-                    <div className="form-group">
-                      <label className="form-label">Tên dự án</label>
+                  {/* Project Image Preview & URL Edit */}
+                  <div className="project-img-edit-box">
+                    <div className="project-cover-preview">
+                      <img src={proj.image} alt={proj.title} className="cover-img" />
+                    </div>
+                    <div className="project-img-input-box">
+                      <label className="modern-label">Hình ảnh bìa dự án (URL Image Link)</label>
+                      <div className="input-field-wrapper">
+                        <div className="field-icon-box">
+                          <Image size={18} className="field-icon" />
+                        </div>
+                        <input
+                          type="text"
+                          className="modern-input"
+                          placeholder="Dán URL hình ảnh..."
+                          value={proj.image}
+                          onChange={(e) => handleUpdateProject(idx, 'image', e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="symmetric-form-grid" style={{ marginTop: '1.2rem' }}>
+                    <div className="modern-form-group">
+                      <label className="modern-label">Tên Dự án *</label>
                       <input
                         type="text"
-                        className="form-input"
+                        className="modern-input"
                         value={proj.title}
                         onChange={(e) => handleUpdateProject(idx, 'title', e.target.value)}
                       />
                     </div>
 
-                    <div className="form-group">
-                      <label className="form-label">Nhóm loại dự án</label>
+                    <div className="modern-form-group">
+                      <label className="modern-label">Danh mục Loại dự án</label>
                       <select
-                        className="form-input"
+                        className="modern-input"
                         value={proj.category}
                         onChange={(e) => handleUpdateProject(idx, 'category', e.target.value)}
                       >
@@ -888,45 +970,45 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
                       </select>
                     </div>
 
-                    <div className="form-group">
-                      <label className="form-label">Link GitHub Code</label>
+                    <div className="modern-form-group">
+                      <label className="modern-label">Đường dẫn GitHub Code</label>
                       <input
                         type="text"
-                        className="form-input"
+                        className="modern-input"
                         value={proj.githubUrl}
                         onChange={(e) => handleUpdateProject(idx, 'githubUrl', e.target.value)}
                       />
                     </div>
 
-                    <div className="form-group">
-                      <label className="form-label">Link Demo / Truy cập</label>
+                    <div className="modern-form-group">
+                      <label className="modern-label">Đường dẫn Trải nghiệm Demo</label>
                       <input
                         type="text"
-                        className="form-input"
+                        className="modern-input"
                         value={proj.demoUrl}
                         onChange={(e) => handleUpdateProject(idx, 'demoUrl', e.target.value)}
                       />
                     </div>
                   </div>
 
-                  <div className="form-group" style={{ marginTop: '0.8rem' }}>
-                    <label className="form-label">Mô tả tóm tắt dự án</label>
+                  <div className="modern-form-group" style={{ marginTop: '1.2rem' }}>
+                    <label className="modern-label">Mô tả dự án</label>
                     <textarea
-                      rows={2}
-                      className="form-input"
+                      rows={3}
+                      className="modern-input modern-textarea"
                       value={proj.description}
                       onChange={(e) => handleUpdateProject(idx, 'description', e.target.value)}
                     />
                   </div>
 
-                  <div className="checkbox-row" style={{ marginTop: '0.8rem' }}>
+                  <div className="checkbox-row" style={{ marginTop: '1.2rem' }}>
                     <label className="checkbox-label">
                       <input
                         type="checkbox"
                         checked={proj.featured}
                         onChange={(e) => handleUpdateProject(idx, 'featured', e.target.checked)}
                       />
-                      <span>Đánh dấu Dự án Nổi bật (Hiển thị tab Star)</span>
+                      <span>Đánh dấu Dự án Nổi bật (Hiển thị Huy hiệu Star ⭐)</span>
                     </label>
                   </div>
                 </div>
@@ -946,44 +1028,51 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
               </button>
             </div>
 
-            <div className="editor-list">
+            <div className="editor-cards-list">
               {data.timeline.map((item, idx) => (
-                <div key={idx} className="editor-item-card">
-                  <div className="editor-item-grid">
-                    <div className="form-group">
-                      <label className="form-label">Thời gian (Ví dụ: 2018 - Hiện tại)</label>
+                <div key={idx} className="modern-editor-card">
+                  <div className="card-top-row">
+                    <span className="card-index-badge">#Cột mốc {idx + 1}</span>
+                    <button onClick={() => handleDeleteTimeline(idx)} className="delete-item-btn">
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+
+                  <div className="symmetric-form-grid">
+                    <div className="modern-form-group">
+                      <label className="modern-label">Giai đoạn Thời gian (Ví dụ: 2018 - Hiện tại)</label>
                       <input
                         type="text"
-                        className="form-input"
+                        className="modern-input"
                         value={item.year}
                         onChange={(e) => handleUpdateTimeline(idx, 'year', e.target.value)}
                       />
                     </div>
 
-                    <div className="form-group">
-                      <label className="form-label">Tên vị trí / Cột mốc</label>
+                    <div className="modern-form-group">
+                      <label className="modern-label">Tên vị trí / Cột mốc</label>
                       <input
                         type="text"
-                        className="form-input"
+                        className="modern-input"
                         value={item.title}
                         onChange={(e) => handleUpdateTimeline(idx, 'title', e.target.value)}
                       />
                     </div>
 
-                    <div className="form-group">
-                      <label className="form-label">Đơn vị / Trường học</label>
+                    <div className="modern-form-group">
+                      <label className="modern-label">Tên Đơn vị / Trường học</label>
                       <input
                         type="text"
-                        className="form-input"
+                        className="modern-input"
                         value={item.organization}
                         onChange={(e) => handleUpdateTimeline(idx, 'organization', e.target.value)}
                       />
                     </div>
 
-                    <div className="form-group">
-                      <label className="form-label">Loại cột mốc</label>
+                    <div className="modern-form-group">
+                      <label className="modern-label">Phân loại Cột mốc</label>
                       <select
-                        className="form-input"
+                        className="modern-input"
                         value={item.type}
                         onChange={(e) => handleUpdateTimeline(idx, 'type', e.target.value)}
                       >
@@ -993,23 +1082,15 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
                     </div>
                   </div>
 
-                  <div className="form-group" style={{ marginTop: '0.8rem' }}>
-                    <label className="form-label">Mô tả chi tiết</label>
+                  <div className="modern-form-group" style={{ marginTop: '1.2rem' }}>
+                    <label className="modern-label">Mô tả chi tiết nhiệm vụ / thành tựu</label>
                     <textarea
-                      rows={2}
-                      className="form-input"
+                      rows={3}
+                      className="modern-input modern-textarea"
                       value={item.description}
                       onChange={(e) => handleUpdateTimeline(idx, 'description', e.target.value)}
                     />
                   </div>
-
-                  <button
-                    onClick={() => handleDeleteTimeline(idx)}
-                    className="delete-item-btn"
-                    title="Xóa cột mốc này"
-                  >
-                    <Trash2 size={16} />
-                  </button>
                 </div>
               ))}
             </div>
@@ -1217,77 +1298,211 @@ export const Dashboard = ({ portfolioData, onUpdateData, onReturnHome }) => {
           gap: 1.2rem;
         }
 
-        .editor-item-card {
-          padding: 1.4rem;
-          background: rgba(0, 56, 130, 0.02);
-          border: 1px solid rgba(0, 56, 130, 0.1);
-          border-radius: var(--radius-md);
-          position: relative;
+        /* Avatar Editor Box */
+        .avatar-editor-card {
+          display: flex;
+          align-items: center;
+          gap: 1.8rem;
+          padding: 1.4rem 1.6rem;
+          background: rgba(0, 56, 130, 0.03);
+          border: 1px solid rgba(0, 56, 130, 0.12);
+          border-radius: 16px;
+          margin-bottom: 1.8rem;
+          flex-wrap: wrap;
         }
 
-        .editor-item-grid {
+        .avatar-preview-box {
+          width: 90px;
+          height: 90px;
+          border-radius: 50%;
+          overflow: hidden;
+          border: 3px solid #ffffff;
+          box-shadow: 0 4px 15px rgba(0, 56, 130, 0.15);
+          flex-shrink: 0;
+          background: #ffffff;
+        }
+
+        .avatar-preview-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .avatar-fallback-box {
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, #003882 0%, #d97706 100%);
+          color: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 800;
+          font-size: 1.8rem;
+        }
+
+        .avatar-inputs-box {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .avatar-presets-bar {
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          margin-top: 0.4rem;
+          flex-wrap: wrap;
+        }
+
+        .preset-label {
+          font-size: 0.78rem;
+          color: var(--text-muted);
+          font-family: var(--font-mono);
+        }
+
+        .preset-btn {
+          padding: 0.25rem 0.6rem;
+          border-radius: 6px;
+          background: #ffffff;
+          border: 1px solid rgba(0, 56, 130, 0.15);
+          color: var(--color-primary);
+          font-size: 0.78rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .preset-btn:hover {
+          background: var(--color-primary);
+          color: #ffffff;
+        }
+
+        /* Symmetric Form Grid & Cards */
+        .symmetric-form-grid {
           display: grid;
-          grid-template-columns: 1.2fr 1fr 1.2fr;
-          gap: 1rem;
-          padding-right: 2.5rem;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.4rem;
         }
 
-        .editor-item-header {
+        .editor-cards-list {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        .modern-editor-card {
+          padding: 1.6rem;
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 18px;
+          box-shadow: 0 4px 18px rgba(0, 44, 108, 0.04);
+          position: relative;
+          transition: all 0.25s ease;
+        }
+
+        .modern-editor-card:hover {
+          border-color: rgba(0, 56, 130, 0.25);
+          box-shadow: 0 8px 25px rgba(0, 44, 108, 0.08);
+        }
+
+        .card-top-row {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 1rem;
-          padding-bottom: 0.5rem;
-          border-bottom: 1px solid rgba(0, 56, 130, 0.08);
+          margin-bottom: 1.2rem;
+          padding-bottom: 0.6rem;
+          border-bottom: 1px solid #f1f5f9;
         }
 
-        .editor-item-title {
-          font-size: 1.05rem;
+        .card-index-badge {
+          font-family: var(--font-mono);
+          font-size: 0.82rem;
+          font-weight: 700;
           color: var(--color-primary);
+          background: rgba(0, 56, 130, 0.06);
+          padding: 0.25rem 0.75rem;
+          border-radius: 9999px;
+        }
+
+        /* Project Image Box */
+        .project-img-edit-box {
+          display: flex;
+          align-items: center;
+          gap: 1.4rem;
+          padding: 1rem 1.2rem;
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-radius: 14px;
+          flex-wrap: wrap;
+        }
+
+        .project-cover-preview {
+          width: 120px;
+          height: 75px;
+          border-radius: 10px;
+          overflow: hidden;
+          flex-shrink: 0;
+          border: 1px solid #cbd5e1;
+        }
+
+        .project-cover-preview .cover-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .project-img-input-box {
+          flex-grow: 1;
+        }
+
+        .slider-label-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 0.3rem;
+        }
+
+        .level-badge {
+          font-family: var(--font-mono);
+          font-weight: 800;
+          color: var(--color-primary);
+          font-size: 0.9rem;
+          background: rgba(0, 56, 130, 0.08);
+          padding: 0.15rem 0.6rem;
+          border-radius: 6px;
+        }
+
+        .modern-range-slider {
+          width: 100%;
+          height: 8px;
+          accent-color: var(--color-primary);
+          cursor: pointer;
+        }
+
+        .modern-textarea {
+          resize: vertical;
+          min-height: 80px;
+          line-height: 1.6;
         }
 
         .delete-item-btn {
-          position: absolute;
-          top: 1rem;
-          right: 1rem;
-          width: 32px;
-          height: 32px;
-          border-radius: var(--radius-sm);
-          background: rgba(220, 38, 38, 0.08);
-          border: 1px solid rgba(220, 38, 38, 0.2);
+          width: 34px;
+          height: 34px;
+          border-radius: 10px;
+          background: #fef2f2;
+          border: 1px solid #fecaca;
           color: #dc2626;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          transition: var(--transition-smooth);
+          transition: all 0.2s ease;
         }
 
         .delete-item-btn:hover {
           background: #dc2626;
           color: #ffffff;
-        }
-
-        .form-range {
-          width: 100%;
-          height: 8px;
-          margin-top: 0.8rem;
-          accent-color: var(--color-primary);
-        }
-
-        .checkbox-row {
-          display: flex;
-          align-items: center;
-        }
-
-        .checkbox-label {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          font-size: 0.9rem;
-          font-weight: 600;
-          color: #0f172a;
-          cursor: pointer;
         }
 
         .gh-sync-btn {
