@@ -13,12 +13,12 @@ export const initialPortfolioData = {
     "officeAddress": "Số 10, đường Huỳnh Văn Nghệ, Phường Trấn Biên, TP. Biên Hòa, Tỉnh Đồng Nai",
     "location": "64C/5 KP. 23, P. Long Bình, TP. Biên Hòa, Tỉnh Đồng Nai",
     "bioShort": "Giảng viên Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng. Chuyên nghiên cứu Mạng máy tính & Bảo mật, Trí tuệ nhân tạo (AI) và Lập trình IoT.",
-    "bioLong": "Tôi là Nguyễn Vũ Duy Quang, Thạc sĩ ngành Khoa học máy tính (tốt nghiệp Đại học Công nghệ thông tin – ĐHQG TP. HCM). Tôi có gần 20 năm kinh nghiệm công tác tại Khoa Công nghệ thông tin - Trường Đại học Lạc Hồng (LHU), từng đảm nhiệm vị trí Trưởng bộ môn Mạng máy tính và Quản trị dữ liệu, Quản lý công tác NCKH. Hướng nghiên cứu chính của tôi tập trung vào Mạng máy tính & Bảo mật, Công nghệ AI và Lập trình IoT.",
+    "bioLong": "Tôi là Nguyễn Vũ Duy Quang, Thạc sĩ ngành Khoa học máy tính (tốt nghiệp Đại học Công nghệ thông tin – ĐHQG TP. HCM). Tôi có gần 20 năm kinh nghiệm công tác tại Khoa Công nghệ thông tin - Trường Đại học Lạc Hồng (LHU), từng đảm nhiệm vị trí Trưởng bộ môn Mạng máy tính và Quản trị dữ liệu, Quản lý công tác NCKH, tham gia xây dựng báo cáo kiểm định chất lượng quốc tế ABET (Hoa Kỳ) và AUN-QA. Hướng nghiên cứu chính của tôi tập trung vào Mạng máy tính & Bảo mật, Công nghệ AI và Lập trình IoT.",
     "avatarUrl": "",
     "stats": [
       { "label": "Đề tài NCKH", "value": "12+" },
       { "label": "Bài báo & Tạp chí", "value": "5+" },
-      { "label": "Giải thưởng Sáng tạo", "value": "5+" },
+      { "label": "Kiểm định Quốc tế", "value": "ABET & AUN-QA" },
       { "label": "Chứng chỉ Quốc tế", "value": "4+" }
     ]
   },
@@ -27,7 +27,7 @@ export const initialPortfolioData = {
     { "id": "software", "name": "Mạng & Bảo mật" },
     { "id": "ai", "name": "AI & Học máy" },
     { "id": "architecture", "name": "IoT & Định vị" },
-    { "id": "academic", "name": "NCKH & Đào tạo" }
+    { "id": "academic", "name": "NCKH & Kiểm định" }
   ],
   "projectCategories": [
     { "id": "all", "name": "Tất cả" },
@@ -40,7 +40,7 @@ export const initialPortfolioData = {
     "Mạng máy tính và Bảo mật (Network Architecture, SDN, CSRF & Cybersecurity)",
     "Công nghệ AI & Y tế (Clinical Decision Support Systems, Molecular Network Visualization)",
     "Lập trình IoT (Internet of Things & Embedded Systems)",
-    "Hệ thống phần mềm hỗ trợ Đào tạo E-Learning & Xử lý hình ảnh y tế (DICOM)"
+    "Kiểm định chất lượng giáo dục đại học quốc tế (ABET - Hoa Kỳ, AUN-QA - Đông Nam Á)"
   ],
   "educationList": [
     {
@@ -96,7 +96,7 @@ export const initialPortfolioData = {
     { "name": "Trí tuệ Nhân tạo (AI, Neural Networks, Prompt Injection Defense)", "level": 92, "category": "ai", "icon": "Brain" },
     { "name": "Lập trình IoT & Định vị Thiết bị Cứu nạn", "level": 90, "category": "architecture", "icon": "Cpu" },
     { "name": "Cơ sở dữ liệu & Quản trị dữ liệu", "level": 92, "category": "software", "icon": "Database" },
-    { "name": "Lập trình C/C++, VB.NET, Web E-Learning", "level": 90, "category": "software", "icon": "Code" },
+    { "name": "Kiểm định Chất lượng Đào tạo (ABET, AUN-QA)", "level": 95, "category": "academic", "icon": "Award" },
     { "name": "Quản lý công tác NCKH & Giảng dạy Đại học", "level": 95, "category": "academic", "icon": "BookOpen" }
   ],
   "projects": [
@@ -213,10 +213,24 @@ export const initialPortfolioData = {
       "type": "work"
     },
     {
+      "year": "2024",
+      "title": "Tham gia Xây dựng Báo cáo Tự Đánh giá Kiểm định Quốc tế ABET (Hoa Kỳ)",
+      "organization": "Khoa CNTT - Trường Đại học Lạc Hồng (LHU)",
+      "description": "Thành viên ban xây dựng báo cáo tự đánh giá kiểm định chất lượng giáo dục đại học quốc tế tiêu chuẩn ABET (Hoa Kỳ) ngành Công nghệ Thông tin.",
+      "type": "work"
+    },
+    {
       "year": "8/2024 – 12/2024",
       "title": "Giảng viên Bộ môn An toàn Thông tin",
       "organization": "Đại học FPT (Phân hiệu TP.HCM)",
       "description": "Giảng dạy các học phần về An toàn thông tin, bảo mật hệ thống mạng và kiểm thử an ninh phần mềm.",
+      "type": "work"
+    },
+    {
+      "year": "2022",
+      "title": "Tham gia Xây dựng Báo cáo Tự Đánh giá Kiểm định AUN-QA",
+      "organization": "Khoa CNTT - Trường Đại học Lạc Hồng (LHU)",
+      "description": "Thành viên ban biên soạn báo cáo tự đánh giá kiểm định chất lượng giáo dục theo tiêu chuẩn AUN-QA (Mạng lưới các trường đại học Đông Nam Á).",
       "type": "work"
     },
     {
@@ -335,8 +349,9 @@ export const initialPortfolioData = {
   "resumeInfo": {
     "title": "Lý lịch Khoa học & Hồ sơ Năng lực Chuyên môn",
     "lastUpdated": "Tháng 07, 2026",
-    "summary": "Thạc sĩ Nguyễn Vũ Duy Quang có gần 20 năm kinh nghiệm trong công tác giảng dạy đại học, tham gia xây dựng Đề án mở ngành An toàn thông tin LHU 2026, quản lý bộ môn Mạng máy tính & Quản trị dữ liệu, quản lý NCKH tại Trường Đại học Lạc Hồng. Ông đã chủ trì và tham gia nhiều dự án hợp tác quốc tế (Cintana Research hợp tác cùng Đại học Indonesia phát triển hệ thống CDSS http://cdss.cloud), đề tài cấp Tỉnh, cấp Trường và sở hữu các chứng chỉ quốc tế uy tín từ AWS và Cisco.",
+    "summary": "Thạc sĩ Nguyễn Vũ Duy Quang có gần 20 năm kinh nghiệm trong công tác giảng dạy đại học, tham gia xây dựng Báo cáo tự đánh giá Kiểm định chất lượng Quốc tế ABET (Hoa Kỳ - 2024) và AUN-QA (Đông Nam Á - 2022), xây dựng Đề án mở ngành An toàn thông tin LHU 2026. Ông đã chủ trì và tham gia nhiều dự án hợp tác quốc tế (Cintana Research hợp tác cùng Đại học Indonesia phát triển hệ thống CDSS http://cdss.cloud) và sở hữu các chứng chỉ quốc tế uy tín từ AWS và Cisco.",
     "competencies": [
+      "Xây dựng Báo cáo Tự Đánh giá Kiểm định Quốc tế ABET (Hoa Kỳ - 2024) & AUN-QA (Đông Nam Á - 2022)",
       "Tham gia xây dựng Đề án mở ngành An toàn Thông tin - Khoa CNTT 2026",
       "Dự án NCKH quốc tế Cintana Research liên kết Đại học Indonesia (CDSS: http://cdss.cloud)",
       "Chứng chỉ quốc tế AWS Certified Cloud Practitioner & Cisco CyberOps Associate Instructor",
@@ -349,6 +364,7 @@ export const initialPortfolioData = {
 };
 
 const STORAGE_KEYS = [
+  'nvdquang_portfolio_data_v6',
   'nvdquang_portfolio_data_v5',
   'nvdquang_portfolio_data_v4',
   'nvdquang_portfolio_data_v3',
