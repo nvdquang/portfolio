@@ -10,37 +10,45 @@ export const initialPortfolioData = {
     "phone": "0918884034",
     "email": "quang@lhu.edu.vn",
     "github": "https://github.com/nvdquang",
-    "officeAddress": "Số 10, đường Huỳnh Văn Nghệ, Phường Trấn Biên, TP. Đồng Nai",
-    "location": "64C/5 KP. 23, P. Long Bình, TP. Đồng Nai",
-    "bioShort": "Giảng viên Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng. Chuyên nghiên cứu Mạng máy tính & Bảo mật, Trí tuệ nhân tạo (AI) và Lập trình IoT. Đạt Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao từ Cisco.",
-    "bioLong": "Tôi là Nguyễn Vũ Duy Quang, Thạc sĩ ngành Khoa học máy tính (tốt nghiệp Đại học Công nghệ thông tin – ĐHQG TP. HCM). Tôi có gần 20 năm kinh nghiệm công tác tại Khoa Công nghệ thông tin - Trường Đại học Lạc Hồng (LHU), từng đảm nhiệm vị trí Trưởng bộ môn Mạng máy tính và Quản trị dữ liệu, Quản lý công tác NCKH. Tôi vinh dự được Cisco trao tặng Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao (Instructor Excellence Advanced Level Award), tham gia xây dựng báo cáo kiểm định chất lượng quốc tế ABET (Hoa Kỳ) và AUN-QA. Hướng nghiên cứu chính của tôi tập trung vào Mạng máy tính & Bảo mật, Công nghệ AI và Lập trình IoT.",
+    "officeAddress": "Số 10, đường Huỳnh Văn Nghệ, Phường Trấn Biên, TP. Biên Hòa, Tỉnh Đồng Nai",
+    "location": "64C/5 KP. 23, P. Long Bình, TP. Biên Hòa, Tỉnh Đồng Nai",
+    "bioShort": "Giảng viên Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng. Chuyên nghiên cứu Mạng máy tính & Bảo mật, Trí tuệ nhân tạo (AI), Hệ thống phần mềm Y tế và Lập trình IoT. Đạt Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao từ Cisco.",
+    "bioLong": "Tôi là Nguyễn Vũ Duy Quang, Thạc sĩ ngành Khoa học máy tính (tốt nghiệp Đại học Công nghệ thông tin – ĐHQG TP. HCM). Tôi có gần 20 năm kinh nghiệm công tác tại Khoa Công nghệ thông tin - Trường Đại học Lạc Hồng (LHU), từng đảm nhiệm vị trí Trưởng bộ môn Mạng máy tính và Quản trị dữ liệu, Quản lý công tác NCKH. Tôi từng là Lập trình viên chính & Kỹ sư hạ tầng mạng triển khai thành công Hệ thống Khám chữa bệnh ngoại trú cho Bệnh viện Đa khoa Đồng Nai, Bệnh viện ITO và Trung tâm CSKH Bà mẹ & Trẻ em. Tôi vinh dự nhận Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao (Instructor Excellence Advanced Level Award) từ Cisco Networking Academy, tham gia kiểm định chất lượng quốc tế ABET (Hoa Kỳ) và AUN-QA.",
     "avatarUrl": "",
     "stats": [
-      { "label": "Đề tài NCKH", "value": "12+" },
+      { "label": "Đề tài NCKH & Dự án", "value": "13+" },
       { "label": "Bài báo & Tạp chí", "value": "5+" },
       { "label": "Kiểm định Quốc tế", "value": "ABET & AUN-QA" },
-      { "label": "Chứng chỉ & Giải thưởng", "value": "5+ Quốc tế" }
+      { "label": "Chứng chỉ & Giải thưởng", "value": "6+ Quốc tế & Tỉnh" }
     ]
   },
   "skillCategories": [
     { "id": "all", "name": "Tất cả kỹ năng" },
     { "id": "software", "name": "Mạng & Bảo mật" },
-    { "id": "ai", "name": "AI & Học máy" },
-    { "id": "architecture", "name": "IoT & Định vị" },
-    { "id": "academic", "name": "NCKH & Kiểm định" }
+    { "id": "ai", "name": "AI & Y tế" },
+    { "id": "architecture", "name": "IoT & Hạ tầng" },
+    { "id": "academic", "name": "Giảng dạy & NCKH" }
   ],
   "projectCategories": [
     { "id": "all", "name": "Tất cả" },
     { "id": "featured", "name": "⭐ Nổi bật" },
-    { "id": "software", "name": "Phần mềm & E-Learning" },
+    { "id": "software", "name": "Phần mềm & Y tế (HIS)" },
     { "id": "ai", "name": "AI & Y tế Quốc tế" },
     { "id": "architecture", "name": "Mạng & Hạ tầng SDN" }
   ],
   "researchFields": [
-    "Mạng máy tính và Bảo mật (Network Architecture, SDN, CSRF & Cybersecurity)",
-    "Công nghệ AI & Y tế (Clinical Decision Support Systems, Molecular Network Visualization)",
+    "Mạng máy tính và Bảo mật (Network Architecture, Cisco CCNA, MCSA/MCSE, SDN, CSRF & Cybersecurity)",
+    "Công nghệ AI & Y tế (Clinical Decision Support Systems, Molecular Network Visualization, Phần mềm Khám chữa bệnh)",
     "Lập trình IoT (Internet of Things & Embedded Systems)",
     "Kiểm định chất lượng giáo dục đại học quốc tế (ABET - Hoa Kỳ, AUN-QA - Đông Nam Á)"
+  ],
+  "teachingCourses": [
+    "Lập trình C/C++",
+    "Lập trình VB .NET",
+    "Hệ quản trị Cơ sở Dữ liệu SQL Server",
+    "Cisco CCNA v4.0 & CCNA v7.0",
+    "MCSA & MCSE (Microsoft Certified Systems)",
+    "IT Essentials"
   ],
   "educationList": [
     {
@@ -53,7 +61,7 @@ export const initialPortfolioData = {
       "year": "2001 – 2006",
       "institution": "Trường Đại học Lạc Hồng",
       "field": "Công nghệ thông tin",
-      "degree": "Kỹ sư"
+      "degree": "Kỹ sư (Giải Nhất NCKH Sinh viên)"
     }
   ],
   "certificates": [
@@ -101,14 +109,30 @@ export const initialPortfolioData = {
     }
   ],
   "skills": [
-    { "name": "Mạng máy tính & Bảo mật (IPv6, SDN, CSRF, Active Directory)", "level": 95, "category": "software", "icon": "Shield" },
-    { "name": "Trí tuệ Nhân tạo (AI, Neural Networks, Prompt Injection Defense)", "level": 92, "category": "ai", "icon": "Brain" },
-    { "name": "Lập trình IoT & Định vị Thiết bị Cứu nạn", "level": 90, "category": "architecture", "icon": "Cpu" },
-    { "name": "Cơ sở dữ liệu & Quản trị dữ liệu", "level": 92, "category": "software", "icon": "Database" },
-    { "name": "Kiểm định Chất lượng Đào tạo (ABET, AUN-QA)", "level": 95, "category": "academic", "icon": "Award" },
-    { "name": "Quản lý công tác NCKH & Giảng dạy Đại học", "level": 95, "category": "academic", "icon": "BookOpen" }
+    { "name": "Mạng máy tính & Bảo mật (Cisco CCNA, MCSA/MCSE, IPv6, SDN, CSRF)", "level": 95, "category": "software", "icon": "Shield" },
+    { "name": "Trí tuệ Nhân tạo & Y tế (AI, CDSS, Neural Networks, Prompt Injection Defense)", "level": 92, "category": "ai", "icon": "Brain" },
+    { "name": "Lập trình C/C++, VB.NET & SQL Server", "level": 92, "category": "software", "icon": "Code" },
+    { "name": "Lập trình IoT & Thiết bị Định vị", "level": 90, "category": "architecture", "icon": "Cpu" },
+    { "name": "Giảng dạy Chuyên ngành (CCNA, MCSA, SQL Server, C/C++)", "level": 95, "category": "academic", "icon": "BookOpen" },
+    { "name": "Kiểm định Chất lượng Giáo dục (ABET, AUN-QA)", "level": 95, "category": "academic", "icon": "Award" }
   ],
   "projects": [
+    {
+      "id": "his-outpatient-hospital-system",
+      "title": "Hệ Thống Phần Mềm & Hạ Tầng Mạng Khám Chữa Bệnh Ngoại Trú (HIS)",
+      "description": "Lập trình viên chính thiết kế, xây dựng ứng dụng Khám chữa bệnh ngoại trú và thiết kế hệ thống mạng tại Bệnh viện Đa khoa Đồng Nai (2009). Dự án được mở rộng triển khai thành công tại Bệnh viện ITO và Trung tâm CSKH Bà mẹ & Trẻ em (2012).",
+      "category": "software",
+      "tags": ["Y tế (HIS)", "SQL Server", "VB.NET", "Hạ tầng Mạng", "BV ĐK Đồng Nai", "BV ITO"],
+      "githubUrl": "https://github.com/nvdquang",
+      "demoUrl": "https://lhu.edu.vn",
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800",
+      "highlights": [
+        "Đạt Giải Nhất Hội thi Nghiên cứu Khoa học Sinh viên (Trường Đại học Lạc Hồng)",
+        "Lập trình viên chính xây dựng ứng dụng & thiết kế hạ tầng mạng tại Bệnh viện Đa khoa Đồng Nai (2009)",
+        "Mở rộng triển khai tại Bệnh viện ITO và Trung tâm CSKH Bà mẹ & Trẻ em Đồng Nai (2012)"
+      ]
+    },
     {
       "id": "cintana-research-cdss",
       "title": "Clinical Decision Support System (CDSS) - Molecular Network Visualization",
@@ -188,22 +212,6 @@ export const initialPortfolioData = {
         "Nghiên cứu cơ chế tấn công Prompt Injection đối với mô hình ngôn ngữ lớn (LLM)",
         "Đề xuất khung giải pháp phòng thủ cho các ứng dụng AI Agent"
       ]
-    },
-    {
-      "id": "pub-csrf-wordpress-plugin",
-      "title": "Khai Thác Lỗ Hổng CSRF Trong Plugin WordPress (CVE-2025-24717)",
-      "description": "Công trình nghiên cứu xuất bản trên Tạp chí Khoa học Lạc Hồng (2025). Đánh giá an toàn thông tin mã nguồn mở và phương pháp khắc phục lỗ hổng CSRF.",
-      "category": "architecture",
-      "tags": ["Cybersecurity", "CSRF", "CVE-2025-24717", "WordPress"],
-      "githubUrl": "https://github.com/nvdquang",
-      "demoUrl": "https://lhu.edu.vn",
-      "featured": false,
-      "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
-      "highlights": [
-        "Công bố trên Tạp chí Khoa học Lạc Hồng (2025)",
-        "Phân tích lỗ hổng bảo mật thực tế mã CVE-2025-24717",
-        "Đưa ra giải pháp vá lỗi và bảo mật Plugin Web"
-      ]
     }
   ],
   "timeline": [
@@ -211,14 +219,14 @@ export const initialPortfolioData = {
       "year": "2026",
       "title": "Tham gia Ban Xây dựng Đề án Mở ngành An toàn Thông tin",
       "organization": "Khoa CNTT - Trường Đại học Lạc Hồng (LHU)",
-      "description": "Thành viên ban xây dựng Đề án mở ngành đào tạo kỹ sư An toàn Thông tin tại Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng.",
+      "description": "Thành viên ban xây dựng Đề án mở ngành đào tạo cử nhân/kỹ sư An toàn Thông tin tại Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng.",
       "type": "work"
     },
     {
       "year": "2025 – Nay",
       "title": "Giảng viên Khoa Công nghệ Thông tin",
       "organization": "Trường Đại học Lạc Hồng (LHU)",
-      "description": "Giảng dạy đại học, nghiên cứu khoa học, tham gia dự án quốc tế Cintana Research hợp tác cùng Đại học Indonesia phát triển hệ thống CDSS (http://cdss.cloud).",
+      "description": "Giảng dạy các môn C/C++, VB.NET, SQL Server, Cisco CCNA, MCSA/MCSE, IT Essentials; tham gia dự án quốc tế Cintana Research hợp tác cùng Đại học Indonesia phát triển hệ thống CDSS (http://cdss.cloud).",
       "type": "work"
     },
     {
@@ -250,10 +258,24 @@ export const initialPortfolioData = {
       "type": "work"
     },
     {
+      "year": "2012",
+      "title": "Mở rộng Triển khai Hệ thống Phần mềm Khám Chữa bệnh Ngoại trú",
+      "organization": "Bệnh viện ITO & Trung tâm CSKH Bà mẹ và Trẻ em Đồng Nai",
+      "description": "Triển khai phần mềm quản lý và nâng cao chất lượng khám chữa bệnh ngoại trú tại Bệnh viện ITO và Trung tâm chăm sóc sức khỏe bà mẹ và trẻ em.",
+      "type": "work"
+    },
+    {
+      "year": "2009",
+      "title": "Lập trình viên Chính & Kỹ sư Mạng Dự án Phần mềm Y tế",
+      "organization": "Bệnh viện Đa khoa Đồng Nai",
+      "description": "Thiết kế, lập trình ứng dụng Khám chữa bệnh ngoại trú và xây dựng hạ tầng mạng máy tính phục vụ công tác điều trị ngoại trú tại Bệnh viện Đa khoa Đồng Nai.",
+      "type": "work"
+    },
+    {
       "year": "2008 – 2024",
       "title": "Giảng viên & Trưởng Bộ môn Mạng Máy tính & Quản trị Dữ liệu",
       "organization": "Khoa CNTT - Trường Đại học Lạc Hồng",
-      "description": "Phụ trách giảng dạy, quản lý chuyên môn Bộ môn Mạng máy tính & Quản trị dữ liệu, quản lý công tác NCKH của Khoa CNTT.",
+      "description": "Phụ trách giảng dạy các môn C/C++, VB.NET, SQL Server, Cisco CCNA, MCSA/MCSE, IT Essentials; quản lý chuyên môn Bộ môn Mạng máy tính & Quản trị dữ liệu, quản lý công tác NCKH của Khoa CNTT.",
       "type": "work"
     },
     {
@@ -264,17 +286,10 @@ export const initialPortfolioData = {
       "type": "education"
     },
     {
-      "year": "2006 – 2007",
-      "title": "Trợ giảng Khoa Công nghệ Thông tin",
-      "organization": "Khoa CNTT - Trường Đại học Lạc Hồng",
-      "description": "Trợ giảng thực hành các học phần Mạng máy tính và Lập trình.",
-      "type": "work"
-    },
-    {
-      "year": "2001 – 2006",
-      "title": "Đào tạo Học vị Kỹ sư Công nghệ Thông tin",
-      "organization": "Trường Đại học Lạc Hồng",
-      "description": "Tốt nghiệp Kỹ sư chuyên ngành Công nghệ thông tin.",
+      "year": "2006",
+      "title": "Giải Nhất NCKH Sinh viên & Tốt nghiệp Kỹ sư CNTT",
+      "organization": "Trường Đại học Lạc Hồng & Bệnh viện ĐK Thống Nhất",
+      "description": "Đạt Giải Nhất Hội thi Nghiên cứu Khoa học Sinh viên với đề tài 'Tin học hóa khám chữa bệnh ngoại trú tại Bệnh viện Đa khoa Thống Nhất'. Tốt nghiệp Kỹ sư CNTT.",
       "type": "education"
     }
   ],
@@ -338,6 +353,12 @@ export const initialPortfolioData = {
       "contest": "Cisco Networking Academy (Vinh danh Giảng viên Xuất sắc Cấp độ Nâng cao Toàn cầu - Cert ID: 22058291-2ef0-497b-84b5-057fff8b8518)"
     },
     {
+      "year": "2006",
+      "title": "Tin học hóa khám chữa bệnh ngoại trú tại Bệnh viện Đa khoa Thống Nhất",
+      "award": "Giải Nhất",
+      "contest": "Hội thi Nghiên cứu Khoa học Sinh viên (Trường Đại học Lạc Hồng)"
+    },
+    {
       "year": "2022",
       "title": "Hệ Thống Định Vị Thuyền Viên Hỗ Trợ Cứu Nạn Trên Biển",
       "award": "Giải Ba",
@@ -371,22 +392,22 @@ export const initialPortfolioData = {
   "resumeInfo": {
     "title": "Lý lịch Khoa học & Hồ sơ Năng lực Chuyên môn",
     "lastUpdated": "Tháng 07, 2026",
-    "summary": "Thạc sĩ Nguyễn Vũ Duy Quang có gần 20 năm kinh nghiệm trong công tác giảng dạy đại học. Ông vinh dự nhận Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao (Instructor Excellence Advanced Level Award) từ Cisco Networking Academy (2022). Ông tham gia xây dựng Báo cáo tự đánh giá Kiểm định chất lượng Quốc tế ABET (Hoa Kỳ - 2024), AUN-QA (Đông Nam Á - 2022) và Đề án mở ngành An toàn thông tin LHU 2026. Chủ trì và tham gia nhiều dự án hợp tác quốc tế (Cintana Research hợp tác cùng Đại học Indonesia phát triển hệ thống CDSS http://cdss.cloud).",
+    "summary": "Thạc sĩ Nguyễn Vũ Duy Quang có gần 20 năm kinh nghiệm trong công tác giảng dạy đại học. Ông phụ trách giảng dạy các môn Lập trình C/C++, VB.NET, SQL Server, Cisco CCNA v4.0 & v7.0, MCSA/MCSE, IT Essentials. Đạt Giải Nhất NCKH Sinh viên (2006) và từng là Lập trình viên chính & Kỹ sư thiết kế hạ tầng mạng triển khai ứng dụng Khám chữa bệnh ngoại trú cho Bệnh viện Đa khoa Đồng Nai (2009), Bệnh viện ITO và Trung tâm CSKH Bà mẹ & Trẻ em (2012). Nhận Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao từ Cisco (2022). Tham gia xây dựng báo cáo kiểm định ABET (Hoa Kỳ - 2024), AUN-QA (2022) và dự án Cintana Research quốc tế (CDSS: http://cdss.cloud).",
     "competencies": [
+      "Giảng dạy chuyên sâu: Lập trình C/C++, VB.NET, SQL Server, Cisco CCNA (v4.0 & v7.0), MCSA/MCSE, IT Essentials",
+      "Lập trình viên chính & Kỹ sư mạng dự án Phần mềm Y tế Bệnh viện ĐK Đồng Nai (2009), Bệnh viện ITO & CSKH Bà mẹ & Trẻ em (2012)",
+      "Giải Nhất Hội thi Nghiên cứu Khoa học Sinh viên (2006)",
       "Giải thưởng Instructor Excellence Advanced Level Award từ Cisco Networking Academy (2022)",
       "Xây dựng Báo cáo Tự Đánh giá Kiểm định Quốc tế ABET (Hoa Kỳ - 2024) & AUN-QA (Đông Nam Á - 2022)",
       "Tham gia xây dựng Đề án mở ngành An toàn Thông tin - Khoa CNTT 2026",
       "Dự án NCKH quốc tế Cintana Research liên kết Đại học Indonesia (CDSS: http://cdss.cloud)",
-      "Chứng chỉ quốc tế AWS Certified Cloud Practitioner & Cisco CyberOps Associate Instructor",
-      "Mạng máy tính & Bảo mật hệ thống (IPv6, SDN, Firewalls, CVE, Active Directory)",
-      "Trí tuệ nhân tạo (AI Agents, Neural Networks, Prompt Injection Defense)",
-      "Thiết kế & Lập trình ứng dụng IoT, thiết bị định vị cứu nạn",
-      "Quản lý NCKH Khoa CNTT & Hướng dẫn sinh viên tham gia các cuộc thi sáng tạo"
+      "Chứng chỉ quốc tế AWS Certified Cloud Practitioner & Cisco CyberOps Associate Instructor"
     ]
   }
 };
 
 const STORAGE_KEYS = [
+  'nvdquang_portfolio_data_v8',
   'nvdquang_portfolio_data_v7',
   'nvdquang_portfolio_data_v6',
   'nvdquang_portfolio_data_v5',
@@ -412,6 +433,7 @@ export const getStoredPortfolioData = () => {
           scientificPublications: parsed.scientificPublications || initialPortfolioData.scientificPublications,
           textbooks: parsed.textbooks || initialPortfolioData.textbooks,
           awards: parsed.awards || initialPortfolioData.awards,
+          teachingCourses: parsed.teachingCourses || initialPortfolioData.teachingCourses,
         };
       }
     }

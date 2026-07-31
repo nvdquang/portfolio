@@ -8,7 +8,7 @@ export const Hero = ({ onOpenResume }) => {
   const roles = [
     "Thạc sĩ Khoa học Máy tính / CNTT",
     "Giảng viên Khoa CNTT - ĐH Lạc Hồng",
-    "Kỹ sư Phần mềm Senior & AI Systems"
+    "Chuyên gia phát triển phần mềm, Tư vấn công nghệ, Thiết kế hệ thống mạng, an toàn thông tin.",
   ];
 
   useEffect(() => {
@@ -108,7 +108,7 @@ export const Hero = ({ onOpenResume }) => {
               <div className="avatar-info">
                 <h3 className="profile-name">{personalInfo.fullName}</h3>
                 <p className="profile-degree">
-                  <Award size={14} /> {personalInfo.degreeTitle} Công nghệ Thông tin
+                  <Award size={14} /> {personalInfo.degreeTitle} Khoa học máy tính.
                 </p>
                 <p className="profile-org">{personalInfo.department}</p>
               </div>

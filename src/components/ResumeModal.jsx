@@ -98,6 +98,19 @@ export const ResumeModal = ({ isOpen, onClose }) => {
             </div>
           </section>
 
+          {portfolioData.teachingCourses && (
+            <section className="cv-section">
+              <h3 className="cv-section-title">III. CÁC HỌC PHẦN PHỤ TRÁCH GIẢNG DẠY</h3>
+              <div className="cv-skills-chips">
+                {portfolioData.teachingCourses.map((course, idx) => (
+                  <span key={idx} className="cv-skill-chip" style={{ background: '#eff6ff', color: '#003882', borderColor: '#bfdbfe' }}>
+                    📖 {course}
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
+
           {portfolioData.scientificPublications && (
             <section className="cv-section">
               <h3 className="cv-section-title">III. BÀI BÁO KHOA HỌC ĐÃ CÔNG BỐ</h3>
