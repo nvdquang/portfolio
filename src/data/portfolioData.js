@@ -16,7 +16,7 @@ export const initialPortfolioData = {
     "bioLong": "Tôi là Nguyễn Vũ Duy Quang, Thạc sĩ ngành Khoa học máy tính (tốt nghiệp Đại học Công nghệ thông tin – ĐHQG TP. HCM). Tôi có gần 20 năm kinh nghiệm công tác tại Khoa Công nghệ thông tin - Trường Đại học Lạc Hồng (LHU), từng đảm nhiệm vị trí Trưởng bộ môn Mạng máy tính và Quản trị dữ liệu, Quản lý công tác NCKH. Hướng nghiên cứu chính của tôi tập trung vào Mạng máy tính & Bảo mật, Công nghệ AI và Lập trình IoT.",
     "avatarUrl": "",
     "stats": [
-      { "label": "Đề tài NCKH", "value": "11+" },
+      { "label": "Đề tài NCKH", "value": "12+" },
       { "label": "Bài báo & Tạp chí", "value": "5+" },
       { "label": "Giải thưởng Sáng tạo", "value": "5+" },
       { "label": "Chứng chỉ Quốc tế", "value": "4+" }
@@ -33,12 +33,12 @@ export const initialPortfolioData = {
     { "id": "all", "name": "Tất cả" },
     { "id": "featured", "name": "⭐ Nổi bật" },
     { "id": "software", "name": "Phần mềm & E-Learning" },
-    { "id": "ai", "name": "AI & An ninh bảo mật" },
+    { "id": "ai", "name": "AI & Y tế Quốc tế" },
     { "id": "architecture", "name": "Mạng & Hạ tầng SDN" }
   ],
   "researchFields": [
     "Mạng máy tính và Bảo mật (Network Architecture, SDN, CSRF & Cybersecurity)",
-    "Công nghệ AI (AI Technology, Neural Networks & Prompt Injection Security)",
+    "Công nghệ AI & Y tế (Clinical Decision Support Systems, Molecular Network Visualization)",
     "Lập trình IoT (Internet of Things & Embedded Systems)",
     "Hệ thống phần mềm hỗ trợ Đào tạo E-Learning & Xử lý hình ảnh y tế (DICOM)"
   ],
@@ -100,6 +100,22 @@ export const initialPortfolioData = {
     { "name": "Quản lý công tác NCKH & Giảng dạy Đại học", "level": 95, "category": "academic", "icon": "BookOpen" }
   ],
   "projects": [
+    {
+      "id": "cintana-research-cdss",
+      "title": "Clinical Decision Support System (CDSS) - Molecular Network Visualization",
+      "description": "Dự án NCKH quốc tế thuộc Chương trình Cintana Research hợp tác cùng Đại học Indonesia: Design and Construction of a Web-Based Clinical Decision Support System Prototype Using Molecular Network Visualization for Drug Interaction Detection. Đã xây dựng & triển khai trực tuyến.",
+      "category": "ai",
+      "tags": ["Cintana Research", "Indonesia", "AI/ML", "Drug Interaction", "Molecular Network"],
+      "githubUrl": "https://github.com/nvdquang",
+      "demoUrl": "http://cdss.cloud",
+      "featured": true,
+      "image": "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&q=80&w=800",
+      "highlights": [
+        "Dự án NCKH quốc tế thuộc chương trình Cintana Alliance hợp tác cùng Đại học Indonesia",
+        "Trực quan hóa mạng phân tử (Molecular Network Visualization) để phát hiện tương tác thuốc",
+        "Hệ thống Prototype hoạt động trực tuyến chính thức tại: http://cdss.cloud"
+      ]
+    },
     {
       "id": "nc-thuyen-vien-cuu-nan",
       "title": "Hệ Thống Định Vị Thuyền Viên & Hỗ Trợ Cứu Nạn Trên Biển",
@@ -179,30 +195,21 @@ export const initialPortfolioData = {
         "Phân tích lỗ hổng bảo mật thực tế mã CVE-2025-24717",
         "Đưa ra giải pháp vá lỗi và bảo mật Plugin Web"
       ]
-    },
-    {
-      "id": "nc-vnpt-media-share",
-      "title": "Hệ Thống Chia Sẻ Nội Dung Đa Phương Tiện Tại VNPT Đồng Nai",
-      "description": "Giải Khuyến khích Cuộc thi Phát huy sáng kiến, sáng tạo tỉnh Đồng Nai (2023). Triển khai hệ thống phân phối dữ liệu đa truyền thông.",
-      "category": "software",
-      "tags": ["VNPT", "Multi-media", "Sáng tạo 2023"],
-      "githubUrl": "https://github.com/nvdquang",
-      "demoUrl": "https://lhu.edu.vn",
-      "featured": false,
-      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=800",
-      "highlights": [
-        "Giải Khuyến khích Phát huy sáng kiến tỉnh Đồng Nai 2023",
-        "Ứng dụng truyền tải và chia sẻ tài nguyên đa phương tiện",
-        "Thử nghiệm và triển khai tại VNPT Đồng Nai"
-      ]
     }
   ],
   "timeline": [
     {
+      "year": "2026",
+      "title": "Tham gia Ban Xây dựng Đề án Mở ngành An toàn Thông tin",
+      "organization": "Khoa CNTT - Trường Đại học Lạc Hồng (LHU)",
+      "description": "Thành viên ban xây dựng Đề án mở ngành đào tạo cử nhân/kỹ sư An toàn Thông tin tại Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng.",
+      "type": "work"
+    },
+    {
       "year": "2025 – Nay",
       "title": "Giảng viên Khoa Công nghệ Thông tin",
       "organization": "Trường Đại học Lạc Hồng (LHU)",
-      "description": "Giảng dạy đại học, nghiên cứu khoa học và chủ trì các đề tài ứng dụng công nghệ tại Khoa CNTT.",
+      "description": "Giảng dạy đại học, nghiên cứu khoa học, tham gia dự án quốc tế Cintana Research hợp tác cùng Đại học Indonesia phát triển hệ thống CDSS (http://cdss.cloud).",
       "type": "work"
     },
     {
@@ -327,20 +334,22 @@ export const initialPortfolioData = {
   ],
   "resumeInfo": {
     "title": "Lý lịch Khoa học & Hồ sơ Năng lực Chuyên môn",
-    "lastUpdated": "Tháng 04, 2025",
-    "summary": "Thạc sĩ Nguyễn Vũ Duy Quang có gần 20 năm kinh nghiệm trong công tác giảng dạy đại học, quản lý bộ môn Mạng máy tính & Quản trị dữ liệu, quản lý NCKH tại Trường Đại học Lạc Hồng. Ông sở hữu các chứng chỉ quốc tế uy tín từ AWS (AWS Certified Cloud Practitioner) và Cisco (CyberOps Associate Instructor, Active NetAcad Instructor, IoT Security).",
+    "lastUpdated": "Tháng 07, 2026",
+    "summary": "Thạc sĩ Nguyễn Vũ Duy Quang có gần 20 năm kinh nghiệm trong công tác giảng dạy đại học, tham gia xây dựng Đề án mở ngành An toàn thông tin LHU 2026, quản lý bộ môn Mạng máy tính & Quản trị dữ liệu, quản lý NCKH tại Trường Đại học Lạc Hồng. Ông đã chủ trì và tham gia nhiều dự án hợp tác quốc tế (Cintana Research hợp tác cùng Đại học Indonesia phát triển hệ thống CDSS http://cdss.cloud), đề tài cấp Tỉnh, cấp Trường và sở hữu các chứng chỉ quốc tế uy tín từ AWS và Cisco.",
     "competencies": [
+      "Tham gia xây dựng Đề án mở ngành An toàn Thông tin - Khoa CNTT 2026",
+      "Dự án NCKH quốc tế Cintana Research liên kết Đại học Indonesia (CDSS: http://cdss.cloud)",
       "Chứng chỉ quốc tế AWS Certified Cloud Practitioner & Cisco CyberOps Associate Instructor",
       "Mạng máy tính & Bảo mật hệ thống (IPv6, SDN, Firewalls, CVE, Active Directory)",
       "Trí tuệ nhân tạo (AI Agents, Neural Networks, Prompt Injection Defense)",
       "Thiết kế & Lập trình ứng dụng IoT, thiết bị định vị cứu nạn",
-      "Quản lý NCKH Khoa CNTT & Hướng dẫn sinh viên tham gia các cuộc thi sáng tạo",
-      "Biên soạn giáo trình giảng dạy đại học (Active Directory, VB.NET, C/C++)"
+      "Quản lý NCKH Khoa CNTT & Hướng dẫn sinh viên tham gia các cuộc thi sáng tạo"
     ]
   }
 };
 
 const STORAGE_KEYS = [
+  'nvdquang_portfolio_data_v5',
   'nvdquang_portfolio_data_v4',
   'nvdquang_portfolio_data_v3',
   'nvdquang_portfolio_data_v2',
