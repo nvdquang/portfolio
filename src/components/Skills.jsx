@@ -73,6 +73,30 @@ export const Skills = () => {
             );
           })}
         </div>
+
+        {/* International Certificates Section */}
+        {portfolioData.certificates && (
+          <div className="certifications-container" style={{ marginTop: '4rem' }}>
+            <div className="section-header" style={{ marginBottom: '2rem' }}>
+              <h3 style={{ fontSize: '1.4rem', color: '#003882', fontWeight: 800 }}>Chứng chỉ Chuyên môn Quốc tế</h3>
+              <p style={{ color: '#64748b', fontSize: '0.92rem', marginTop: '0.3rem' }}>Các chứng nhận và bằng cấp chuyên sâu được cấp bởi Amazon Web Services (AWS) và Cisco Networking Academy.</p>
+            </div>
+
+            <div className="certs-grid">
+              {portfolioData.certificates.map((cert) => (
+                <div key={cert.id} className="cert-card glass-card">
+                  <div className="cert-badge-tag">{cert.date}</div>
+                  <h4 className="cert-title">{cert.title}</h4>
+                  <p className="cert-issuer">🏢 {cert.issuer}</p>
+                  <p className="cert-desc">{cert.description}</p>
+                  {cert.validationNumber && (
+                    <div className="cert-val-code">Validation: <code>{cert.validationNumber}</code></div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       <style>{`
@@ -174,7 +198,80 @@ export const Skills = () => {
           height: 100%;
           background: linear-gradient(90deg, #003882 0%, #0284c7 100%);
           border-radius: var(--radius-full);
-          transition: width 1s ease-in-out;
+          transition: width 1s ease-out;
+        }
+
+        .certs-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+          gap: 1.5rem;
+        }
+
+        .cert-card {
+          padding: 1.5rem;
+          background: #ffffff;
+          border: 1px solid rgba(0, 56, 130, 0.12);
+          border-left: 4px solid var(--color-primary);
+          border-radius: var(--radius-md);
+          position: relative;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+          transition: all 0.3s ease;
+        }
+
+        .cert-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 10px 25px rgba(0, 56, 130, 0.1);
+        }
+
+        .cert-badge-tag {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          background: #f59e0b;
+          color: #ffffff;
+          font-size: 0.75rem;
+          font-weight: 700;
+          padding: 0.2rem 0.6rem;
+          border-radius: 12px;
+          font-family: var(--font-mono);
+        }
+
+        .cert-title {
+          font-size: 1.05rem;
+          color: #0f172a;
+          font-weight: 700;
+          margin-bottom: 0.4rem;
+          padding-right: 4rem;
+        }
+
+        .cert-issuer {
+          font-size: 0.85rem;
+          color: var(--color-primary);
+          font-weight: 600;
+          margin-bottom: 0.6rem;
+        }
+
+        .cert-desc {
+          font-size: 0.85rem;
+          color: #64748b;
+          line-height: 1.5;
+        }
+
+        .cert-val-code {
+          margin-top: 0.8rem;
+          padding-top: 0.6rem;
+          border-top: 1px dashed #e2e8f0;
+          font-size: 0.78rem;
+          color: #475569;
+        }
+
+        .cert-val-code code {
+          background: #f1f5f9;
+          padding: 0.1rem 0.4rem;
+          border-radius: 4px;
+          color: #003882;
+          font-family: var(--font-mono);
+          font-weight: 700;
         }
       `}</style>
     </section>

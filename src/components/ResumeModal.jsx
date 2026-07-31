@@ -170,6 +170,24 @@ export const ResumeModal = ({ isOpen, onClose }) => {
               </div>
             </section>
           )}
+
+          {portfolioData.certificates && (
+            <section className="cv-section">
+              <h3 className="cv-section-title">VI. CHỨNG CHỈ QUỐC TẾ & CHUYÊN MÔN</h3>
+              <div className="cv-awards-list">
+                {portfolioData.certificates.map((cert, idx) => (
+                  <div key={idx} className="cv-award-card" style={{ borderLeft: '4px solid #003882' }}>
+                    <div className="cv-award-badge" style={{ background: '#d97706' }}>{cert.date}</div>
+                    <div className="cv-award-info">
+                      <h4>{cert.title}</h4>
+                      <p><strong>Cơ quan cấp:</strong> {cert.issuer}</p>
+                      <p style={{ marginTop: '0.2rem', color: '#475569' }}>{cert.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
       </div>
 
