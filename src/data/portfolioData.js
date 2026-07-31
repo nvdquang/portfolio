@@ -12,14 +12,14 @@ export const initialPortfolioData = {
     "github": "https://github.com/nvdquang",
     "officeAddress": "Số 10, đường Huỳnh Văn Nghệ, Phường Trấn Biên, TP. Biên Hòa, Tỉnh Đồng Nai",
     "location": "64C/5 KP. 23, P. Long Bình, TP. Biên Hòa, Tỉnh Đồng Nai",
-    "bioShort": "Giảng viên Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng. Chuyên nghiên cứu Mạng máy tính & Bảo mật, Trí tuệ nhân tạo (AI) và Lập trình IoT.",
-    "bioLong": "Tôi là Nguyễn Vũ Duy Quang, Thạc sĩ ngành Khoa học máy tính (tốt nghiệp Đại học Công nghệ thông tin – ĐHQG TP. HCM). Tôi có gần 20 năm kinh nghiệm công tác tại Khoa Công nghệ thông tin - Trường Đại học Lạc Hồng (LHU), từng đảm nhiệm vị trí Trưởng bộ môn Mạng máy tính và Quản trị dữ liệu, Quản lý công tác NCKH, tham gia xây dựng báo cáo kiểm định chất lượng quốc tế ABET (Hoa Kỳ) và AUN-QA. Hướng nghiên cứu chính của tôi tập trung vào Mạng máy tính & Bảo mật, Công nghệ AI và Lập trình IoT.",
+    "bioShort": "Giảng viên Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng. Chuyên nghiên cứu Mạng máy tính & Bảo mật, Trí tuệ nhân tạo (AI) và Lập trình IoT. Đạt Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao từ Cisco.",
+    "bioLong": "Tôi là Nguyễn Vũ Duy Quang, Thạc sĩ ngành Khoa học máy tính (tốt nghiệp Đại học Công nghệ thông tin – ĐHQG TP. HCM). Tôi có gần 20 năm kinh nghiệm công tác tại Khoa Công nghệ thông tin - Trường Đại học Lạc Hồng (LHU), từng đảm nhiệm vị trí Trưởng bộ môn Mạng máy tính và Quản trị dữ liệu, Quản lý công tác NCKH. Tôi vinh dự được Cisco trao tặng Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao (Instructor Excellence Advanced Level Award), tham gia xây dựng báo cáo kiểm định chất lượng quốc tế ABET (Hoa Kỳ) và AUN-QA. Hướng nghiên cứu chính của tôi tập trung vào Mạng máy tính & Bảo mật, Công nghệ AI và Lập trình IoT.",
     "avatarUrl": "",
     "stats": [
       { "label": "Đề tài NCKH", "value": "12+" },
       { "label": "Bài báo & Tạp chí", "value": "5+" },
       { "label": "Kiểm định Quốc tế", "value": "ABET & AUN-QA" },
-      { "label": "Chứng chỉ Quốc tế", "value": "4+" }
+      { "label": "Chứng chỉ & Giải thưởng", "value": "5+ Quốc tế" }
     ]
   },
   "skillCategories": [
@@ -57,6 +57,15 @@ export const initialPortfolioData = {
     }
   ],
   "certificates": [
+    {
+      "id": "cisco-instructor-excellence-advanced",
+      "title": "Cisco Instructor Excellence Advanced Level Award",
+      "issuer": "Cisco Networking Academy",
+      "date": "28/03/2022",
+      "validationNumber": "Cert ID: 22058291-2ef0-497b-84b5-057fff8b8518",
+      "icon": "Award",
+      "description": "Giải thưởng Xuất sắc Cấp độ Nâng cao vinh danh giảng viên đạt các tiêu chuẩn khắt khe về kỹ năng truyền đạt, sự hài lòng học viên và hiệu suất giảng dạy xuất sắc từ Cisco Networking Academy toàn cầu."
+    },
     {
       "id": "aws-cloud-practitioner",
       "title": "AWS Certified Cloud Practitioner",
@@ -202,7 +211,7 @@ export const initialPortfolioData = {
       "year": "2026",
       "title": "Tham gia Ban Xây dựng Đề án Mở ngành An toàn Thông tin",
       "organization": "Khoa CNTT - Trường Đại học Lạc Hồng (LHU)",
-      "description": "Thành viên ban xây dựng Đề án mở ngành đào tạo kỹ sư An toàn Thông tin tại Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng.",
+      "description": "Thành viên ban xây dựng Đề án mở ngành đào tạo cử nhân/kỹ sư An toàn Thông tin tại Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng.",
       "type": "work"
     },
     {
@@ -224,6 +233,13 @@ export const initialPortfolioData = {
       "title": "Giảng viên Bộ môn An toàn Thông tin",
       "organization": "Đại học FPT (Phân hiệu TP.HCM)",
       "description": "Giảng dạy các học phần về An toàn thông tin, bảo mật hệ thống mạng và kiểm thử an ninh phần mềm.",
+      "type": "work"
+    },
+    {
+      "year": "2022",
+      "title": "Cisco Instructor Excellence Advanced Level Award",
+      "organization": "Cisco Networking Academy (Toàn cầu)",
+      "description": "Nhận Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao toàn cầu từ Giám đốc Cisco Networking Academy (Cert ID: 22058291-2ef0-497b-84b5-057fff8b8518).",
       "type": "work"
     },
     {
@@ -317,6 +333,12 @@ export const initialPortfolioData = {
   "awards": [
     {
       "year": "2022",
+      "title": "Instructor Excellence Advanced Level Award",
+      "award": "Giải thưởng Xuất sắc Quốc tế",
+      "contest": "Cisco Networking Academy (Vinh danh Giảng viên Xuất sắc Cấp độ Nâng cao Toàn cầu - Cert ID: 22058291-2ef0-497b-84b5-057fff8b8518)"
+    },
+    {
+      "year": "2022",
       "title": "Hệ Thống Định Vị Thuyền Viên Hỗ Trợ Cứu Nạn Trên Biển",
       "award": "Giải Ba",
       "contest": "Đổi mới sáng tạo ngành Thuỷ sản Tỉnh Bà Rịa Vũng Tàu - 2022"
@@ -349,8 +371,9 @@ export const initialPortfolioData = {
   "resumeInfo": {
     "title": "Lý lịch Khoa học & Hồ sơ Năng lực Chuyên môn",
     "lastUpdated": "Tháng 07, 2026",
-    "summary": "Thạc sĩ Nguyễn Vũ Duy Quang có gần 20 năm kinh nghiệm trong công tác giảng dạy đại học, tham gia xây dựng Báo cáo tự đánh giá Kiểm định chất lượng Quốc tế ABET (Hoa Kỳ - 2024) và AUN-QA (Đông Nam Á - 2022), xây dựng Đề án mở ngành An toàn thông tin LHU 2026. Ông đã chủ trì và tham gia nhiều dự án hợp tác quốc tế (Cintana Research hợp tác cùng Đại học Indonesia phát triển hệ thống CDSS http://cdss.cloud) và sở hữu các chứng chỉ quốc tế uy tín từ AWS và Cisco.",
+    "summary": "Thạc sĩ Nguyễn Vũ Duy Quang có gần 20 năm kinh nghiệm trong công tác giảng dạy đại học. Ông vinh dự nhận Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao (Instructor Excellence Advanced Level Award) từ Cisco Networking Academy (2022). Ông tham gia xây dựng Báo cáo tự đánh giá Kiểm định chất lượng Quốc tế ABET (Hoa Kỳ - 2024), AUN-QA (Đông Nam Á - 2022) và Đề án mở ngành An toàn thông tin LHU 2026. Chủ trì và tham gia nhiều dự án hợp tác quốc tế (Cintana Research hợp tác cùng Đại học Indonesia phát triển hệ thống CDSS http://cdss.cloud).",
     "competencies": [
+      "Giải thưởng Instructor Excellence Advanced Level Award từ Cisco Networking Academy (2022)",
       "Xây dựng Báo cáo Tự Đánh giá Kiểm định Quốc tế ABET (Hoa Kỳ - 2024) & AUN-QA (Đông Nam Á - 2022)",
       "Tham gia xây dựng Đề án mở ngành An toàn Thông tin - Khoa CNTT 2026",
       "Dự án NCKH quốc tế Cintana Research liên kết Đại học Indonesia (CDSS: http://cdss.cloud)",
@@ -364,6 +387,7 @@ export const initialPortfolioData = {
 };
 
 const STORAGE_KEYS = [
+  'nvdquang_portfolio_data_v7',
   'nvdquang_portfolio_data_v6',
   'nvdquang_portfolio_data_v5',
   'nvdquang_portfolio_data_v4',
