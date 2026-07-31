@@ -43,6 +43,9 @@ export const ResumeModal = ({ isOpen, onClose }) => {
                 {personalInfo.degreeTitle} Công nghệ Thông tin • Giảng viên ĐH Lạc Hồng
               </h2>
               <p className="cv-org">{personalInfo.institution} - {personalInfo.department}</p>
+              {personalInfo.birthDate && (
+                <p className="cv-sub-info"><strong>Ngày sinh:</strong> {personalInfo.birthDate} | <strong>Giới tính:</strong> {personalInfo.gender || 'Nam'}</p>
+              )}
             </div>
             <div className="cv-header-right">
               <div className="cv-contact-item">
@@ -51,6 +54,11 @@ export const ResumeModal = ({ isOpen, onClose }) => {
               <div className="cv-contact-item">
                 <Github size={14} /> <span>github.com/nvdquang</span>
               </div>
+              {personalInfo.phone && (
+                <div className="cv-contact-item">
+                  <ShieldCheck size={14} /> <span>ĐTDĐ: {personalInfo.phone}</span>
+                </div>
+              )}
               <div className="cv-contact-item">
                 <ShieldCheck size={14} /> <span>{personalInfo.location}</span>
               </div>
@@ -60,16 +68,18 @@ export const ResumeModal = ({ isOpen, onClose }) => {
           <div className="cv-divider"></div>
 
           <section className="cv-section">
-            <h3 className="cv-section-title">I. TÓM TẮT NĂNG LỰC CHUYÊN MÔN</h3>
+            <h3 className="cv-section-title">I. TÓM TẮT NĂNG LỰC & HƯỚNG NGHIÊN CỨU CHÍNH</h3>
             <p className="cv-text">{resumeInfo.summary}</p>
-            <div className="cv-competencies-grid">
-              {resumeInfo.competencies.map((comp, idx) => (
-                <div key={idx} className="cv-comp-item">
-                  <CheckCircle2 size={15} className="cv-comp-icon" />
-                  <span>{comp}</span>
-                </div>
-              ))}
-            </div>
+            {portfolioData.researchFields && (
+              <div className="cv-research-box">
+                <strong style={{ color: '#003882', display: 'block', marginBottom: '0.4rem' }}>Hướng nghiên cứu chính 5 năm gần đây:</strong>
+                <ul className="cv-bullet-list">
+                  {portfolioData.researchFields.map((field, idx) => (
+                    <li key={idx}>{field}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </section>
 
           <section className="cv-section">
@@ -88,16 +98,78 @@ export const ResumeModal = ({ isOpen, onClose }) => {
             </div>
           </section>
 
-          <section className="cv-section">
-            <h3 className="cv-section-title">III. KỸ NĂNG CÔNG NGHỆ CHÍNH</h3>
-            <div className="cv-skills-chips">
-              {skills.map((s, idx) => (
-                <span key={idx} className="cv-skill-chip">
-                  {s.name} ({s.level}%)
-                </span>
-              ))}
-            </div>
-          </section>
+          {portfolioData.scientificPublications && (
+            <section className="cv-section">
+              <h3 className="cv-section-title">III. BÀI BÁO KHOA HỌC ĐÃ CÔNG BỐ</h3>
+              <div className="cv-table-wrapper">
+                <table className="cv-table">
+                  <thead>
+                    <tr>
+                      <th>Năm</th>
+                      <th>Tên bài báo khoa học</th>
+                      <th>Tạp chí / Hội thảo</th>
+                      <th>Vai trò</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {portfolioData.scientificPublications.map((pub, idx) => (
+                      <tr key={idx}>
+                        <td><strong>{pub.year}</strong></td>
+                        <td>{pub.title}</td>
+                        <td>{pub.journal}</td>
+                        <td>{pub.role}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          )}
+
+          {portfolioData.textbooks && (
+            <section className="cv-section">
+              <h3 className="cv-section-title">IV. GIÁO TRÌNH & SÁCH ĐÃ XUẤT BẢN</h3>
+              <div className="cv-table-wrapper">
+                <table className="cv-table">
+                  <thead>
+                    <tr>
+                      <th>Năm</th>
+                      <th>Tên giáo trình</th>
+                      <th>Cơ quan / Nhà xuất bản</th>
+                      <th>Vai trò</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {portfolioData.textbooks.map((tb, idx) => (
+                      <tr key={idx}>
+                        <td><strong>{tb.year}</strong></td>
+                        <td>{tb.title}</td>
+                        <td>{tb.publisher}</td>
+                        <td>{tb.role}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          )}
+
+          {portfolioData.awards && (
+            <section className="cv-section">
+              <h3 className="cv-section-title">V. GIẢI THƯỞNG & THAM GIA CUỘC THI KHCN</h3>
+              <div className="cv-awards-list">
+                {portfolioData.awards.map((aw, idx) => (
+                  <div key={idx} className="cv-award-card">
+                    <div className="cv-award-badge">{aw.award}</div>
+                    <div className="cv-award-info">
+                      <h4>{aw.title}</h4>
+                      <p>{aw.contest}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
       </div>
 
@@ -264,6 +336,101 @@ export const ResumeModal = ({ isOpen, onClose }) => {
           font-size: 0.8rem;
           color: var(--text-muted);
           font-weight: 600;
+        }
+
+        .cv-sub-info {
+          font-size: 0.88rem;
+          color: #475569;
+          margin-top: 0.3rem;
+        }
+
+        .cv-research-box {
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-left: 4px solid #003882;
+          border-radius: 8px;
+          padding: 1rem 1.2rem;
+          margin-bottom: 1rem;
+        }
+
+        .cv-bullet-list {
+          margin: 0;
+          padding-left: 1.2rem;
+          color: #334155;
+          font-size: 0.9rem;
+          line-height: 1.6;
+        }
+
+        .cv-table-wrapper {
+          overflow-x: auto;
+          margin-top: 0.5rem;
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
+        }
+
+        .cv-table {
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 0.88rem;
+          text-align: left;
+        }
+
+        .cv-table th {
+          background: #f1f5f9;
+          color: #0f172a;
+          padding: 0.7rem 0.9rem;
+          font-weight: 700;
+          border-bottom: 2px solid #cbd5e1;
+        }
+
+        .cv-table td {
+          padding: 0.7rem 0.9rem;
+          border-bottom: 1px solid #e2e8f0;
+          color: #334155;
+          vertical-align: top;
+        }
+
+        .cv-table tr:last-child td {
+          border-bottom: none;
+        }
+
+        .cv-awards-list {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+
+        .cv-award-card {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
+          padding: 0.8rem 1rem;
+        }
+
+        .cv-award-badge {
+          background: #003882;
+          color: #ffffff;
+          font-size: 0.8rem;
+          font-weight: 700;
+          padding: 0.3rem 0.7rem;
+          border-radius: 20px;
+          white-space: nowrap;
+        }
+
+        .cv-award-info h4 {
+          font-size: 0.92rem;
+          color: #0f172a;
+          margin: 0 0 0.2rem 0;
+          font-weight: 700;
+        }
+
+        .cv-award-info p {
+          font-size: 0.84rem;
+          color: #64748b;
+          margin: 0;
         }
 
         @media print {
