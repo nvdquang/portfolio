@@ -12,8 +12,17 @@ const iconMap = {
   Cloud, Network, GraduationCap, BookOpen, Users
 };
 
+const defaultSkillCategories = [
+  { id: 'all', name: 'Tất cả kỹ năng' },
+  { id: 'software', name: 'Mạng & Bảo mật' },
+  { id: 'ai', name: 'AI & Học máy' },
+  { id: 'architecture', name: 'IoT & Định vị' },
+  { id: 'academic', name: 'NCKH & Đào tạo' }
+];
+
 export const Skills = () => {
-  const { skillCategories, skills } = portfolioData;
+  const { skillCategories, skills = [] } = portfolioData;
+  const categories = (skillCategories && skillCategories.length) ? skillCategories : defaultSkillCategories;
   const [activeCategory, setActiveCategory] = useState('all');
 
   const filteredSkills = activeCategory === 'all'
@@ -36,7 +45,7 @@ export const Skills = () => {
 
         {/* Category Tabs */}
         <div className="category-tabs">
-          {skillCategories.map((cat) => (
+          {categories.map((cat) => (
             <button
               key={cat.id}
               className={`tab-btn ${activeCategory === cat.id ? 'active' : ''}`}

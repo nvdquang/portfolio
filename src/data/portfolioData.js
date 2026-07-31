@@ -22,6 +22,20 @@ export const initialPortfolioData = {
       { "label": "Chứng chỉ Quốc tế", "value": "4+" }
     ]
   },
+  "skillCategories": [
+    { "id": "all", "name": "Tất cả kỹ năng" },
+    { "id": "software", "name": "Mạng & Bảo mật" },
+    { "id": "ai", "name": "AI & Học máy" },
+    { "id": "architecture", "name": "IoT & Định vị" },
+    { "id": "academic", "name": "NCKH & Đào tạo" }
+  ],
+  "projectCategories": [
+    { "id": "all", "name": "Tất cả" },
+    { "id": "featured", "name": "⭐ Nổi bật" },
+    { "id": "software", "name": "Phần mềm & E-Learning" },
+    { "id": "ai", "name": "AI & An ninh bảo mật" },
+    { "id": "architecture", "name": "Mạng & Hạ tầng SDN" }
+  ],
   "researchFields": [
     "Mạng máy tính và Bảo mật (Network Architecture, SDN, CSRF & Cybersecurity)",
     "Công nghệ AI (AI Technology, Neural Networks & Prompt Injection Security)",
@@ -326,13 +340,31 @@ export const initialPortfolioData = {
   }
 };
 
-const STORAGE_KEY = 'nvdquang_portfolio_data_v4';
+const STORAGE_KEYS = [
+  'nvdquang_portfolio_data_v4',
+  'nvdquang_portfolio_data_v3',
+  'nvdquang_portfolio_data_v2',
+  'nvdquang_portfolio_data_v1'
+];
 
 export const getStoredPortfolioData = () => {
   try {
-    const dataStr = localStorage.getItem(STORAGE_KEY);
-    if (dataStr) {
-      return JSON.parse(dataStr);
+    for (const key of STORAGE_KEYS) {
+      const dataStr = localStorage.getItem(key);
+      if (dataStr) {
+        const parsed = JSON.parse(dataStr);
+        return {
+          ...initialPortfolioData,
+          ...parsed,
+          personalInfo: { ...initialPortfolioData.personalInfo, ...(parsed.personalInfo || {}) },
+          skillCategories: (parsed.skillCategories && parsed.skillCategories.length) ? parsed.skillCategories : initialPortfolioData.skillCategories,
+          projectCategories: (parsed.projectCategories && parsed.projectCategories.length) ? parsed.projectCategories : initialPortfolioData.projectCategories,
+          certificates: parsed.certificates || initialPortfolioData.certificates,
+          scientificPublications: parsed.scientificPublications || initialPortfolioData.scientificPublications,
+          textbooks: parsed.textbooks || initialPortfolioData.textbooks,
+          awards: parsed.awards || initialPortfolioData.awards,
+        };
+      }
     }
   } catch (e) {
     console.error("Failed to load custom data from localStorage", e);
@@ -342,7 +374,7 @@ export const getStoredPortfolioData = () => {
 
 export const savePortfolioDataToStorage = (data) => {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    localStorage.setItem(STORAGE_KEYS[0], JSON.stringify(data));
   } catch (e) {
     console.error("Failed to save data to localStorage", e);
   }
@@ -350,7 +382,7 @@ export const savePortfolioDataToStorage = (data) => {
 
 export const resetPortfolioDataToStorage = () => {
   try {
-    localStorage.removeItem(STORAGE_KEY);
+    STORAGE_KEYS.forEach(k => localStorage.removeItem(k));
   } catch (e) {
     console.error("Failed to reset localStorage data", e);
   }
