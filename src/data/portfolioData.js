@@ -10,8 +10,8 @@ export const initialPortfolioData = {
     "phone": "0918884034",
     "email": "quang@lhu.edu.vn",
     "github": "https://github.com/nvdquang",
-    "officeAddress": "Số 10, đường Huỳnh Văn Nghệ, Phường Trấn Biên, TP. Biên Hòa, Tỉnh Đồng Nai",
-    "location": "64C/5 KP. 23, P. Long Bình, TP. Biên Hòa, Tỉnh Đồng Nai",
+    "officeAddress": "Số 10, đường Huỳnh Văn Nghệ, Phường Trấn Biên, TP. Đồng Nai",
+    "location": "64C/5 KP. 23, P. Long Bình, TP. Đồng Nai",
     "bioShort": "Giảng viên Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng. Chuyên nghiên cứu Mạng máy tính & Bảo mật, Trí tuệ nhân tạo (AI) và Lập trình IoT. Đạt Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao từ Cisco.",
     "bioLong": "Tôi là Nguyễn Vũ Duy Quang, Thạc sĩ ngành Khoa học máy tính (tốt nghiệp Đại học Công nghệ thông tin – ĐHQG TP. HCM). Tôi có gần 20 năm kinh nghiệm công tác tại Khoa Công nghệ thông tin - Trường Đại học Lạc Hồng (LHU), từng đảm nhiệm vị trí Trưởng bộ môn Mạng máy tính và Quản trị dữ liệu, Quản lý công tác NCKH. Tôi vinh dự được Cisco trao tặng Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao (Instructor Excellence Advanced Level Award), tham gia xây dựng báo cáo kiểm định chất lượng quốc tế ABET (Hoa Kỳ) và AUN-QA. Hướng nghiên cứu chính của tôi tập trung vào Mạng máy tính & Bảo mật, Công nghệ AI và Lập trình IoT.",
     "avatarUrl": "",
@@ -211,7 +211,7 @@ export const initialPortfolioData = {
       "year": "2026",
       "title": "Tham gia Ban Xây dựng Đề án Mở ngành An toàn Thông tin",
       "organization": "Khoa CNTT - Trường Đại học Lạc Hồng (LHU)",
-      "description": "Thành viên ban xây dựng Đề án mở ngành đào tạo cử nhân/kỹ sư An toàn Thông tin tại Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng.",
+      "description": "Thành viên ban xây dựng Đề án mở ngành đào tạo kỹ sư An toàn Thông tin tại Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng.",
       "type": "work"
     },
     {
