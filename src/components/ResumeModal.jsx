@@ -111,9 +111,39 @@ export const ResumeModal = ({ isOpen, onClose }) => {
             </section>
           )}
 
+          {portfolioData.nckhProjects && (
+            <section className="cv-section">
+              <h3 className="cv-section-title">IV. DANH MỤC ĐỀ TÀI & DỰ ÁN NGHIÊN CỨU KHOA HỌC (11 ĐỀ TÀI)</h3>
+              <div className="cv-table-wrapper">
+                <table className="cv-table">
+                  <thead>
+                    <tr>
+                      <th style={{ width: '45px' }}>STT</th>
+                      <th>Tên đề tài / dự án NCKH</th>
+                      <th style={{ width: '110px' }}>Cấp đề tài</th>
+                      <th style={{ width: '90px' }}>Thời gian</th>
+                      <th style={{ width: '110px' }}>Vai trò</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {portfolioData.nckhProjects.map((proj) => (
+                      <tr key={proj.stt}>
+                        <td><strong>{proj.stt}</strong></td>
+                        <td>{proj.title}</td>
+                        <td><span className={`cv-badge ${proj.level.includes('Tỉnh') ? 'badge-amber' : 'badge-navy'}`}>{proj.level}</span></td>
+                        <td>{proj.year}</td>
+                        <td><strong>{proj.role}</strong></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          )}
+
           {portfolioData.scientificPublications && (
             <section className="cv-section">
-              <h3 className="cv-section-title">III. BÀI BÁO KHOA HỌC ĐÃ CÔNG BỐ</h3>
+              <h3 className="cv-section-title">V. BÀI BÁO KHOA HỌC ĐÃ CÔNG BỐ</h3>
               <div className="cv-table-wrapper">
                 <table className="cv-table">
                   <thead>
@@ -141,7 +171,7 @@ export const ResumeModal = ({ isOpen, onClose }) => {
 
           {portfolioData.textbooks && (
             <section className="cv-section">
-              <h3 className="cv-section-title">IV. GIÁO TRÌNH & SÁCH ĐÃ XUẤT BẢN</h3>
+              <h3 className="cv-section-title">VI. GIÁO TRÌNH & SÁCH ĐÃ XUẤT BẢN</h3>
               <div className="cv-table-wrapper">
                 <table className="cv-table">
                   <thead>
@@ -169,7 +199,7 @@ export const ResumeModal = ({ isOpen, onClose }) => {
 
           {portfolioData.awards && (
             <section className="cv-section">
-              <h3 className="cv-section-title">V. GIẢI THƯỞNG & THAM GIA CUỘC THI KHCN</h3>
+              <h3 className="cv-section-title">VII. GIẢI THƯỞNG & THAM GIA CUỘC THI KHCN</h3>
               <div className="cv-awards-list">
                 {portfolioData.awards.map((aw, idx) => (
                   <div key={idx} className="cv-award-card">
@@ -186,7 +216,7 @@ export const ResumeModal = ({ isOpen, onClose }) => {
 
           {portfolioData.certificates && (
             <section className="cv-section">
-              <h3 className="cv-section-title">VI. CHỨNG CHỈ QUỐC TẾ & CHUYÊN MÔN</h3>
+              <h3 className="cv-section-title">VIII. CHỨNG CHỈ QUỐC TẾ & CHUYÊN MÔN</h3>
               <div className="cv-awards-list">
                 {portfolioData.certificates.map((cert, idx) => (
                   <div key={idx} className="cv-award-card" style={{ borderLeft: '4px solid #003882' }}>

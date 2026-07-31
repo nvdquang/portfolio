@@ -13,10 +13,10 @@ export const initialPortfolioData = {
     "officeAddress": "Số 10, đường Huỳnh Văn Nghệ, Phường Trấn Biên, TP. Biên Hòa, Tỉnh Đồng Nai",
     "location": "64C/5 KP. 23, P. Long Bình, TP. Biên Hòa, Tỉnh Đồng Nai",
     "bioShort": "Giảng viên Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng. Chuyên nghiên cứu Mạng máy tính & Bảo mật, Trí tuệ nhân tạo (AI), Hệ thống phần mềm Y tế và Lập trình IoT. Đạt Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao từ Cisco.",
-    "bioLong": "Tôi là Nguyễn Vũ Duy Quang, Thạc sĩ ngành Khoa học máy tính (tốt nghiệp Đại học Công nghệ thông tin – ĐHQG TP. HCM). Tôi có gần 20 năm kinh nghiệm công tác tại Khoa Công nghệ thông tin - Trường Đại học Lạc Hồng (LHU), từng đảm nhiệm vị trí Trưởng bộ môn Mạng máy tính và Quản trị dữ liệu, Quản lý công tác NCKH. Tôi từng là Lập trình viên chính & Kỹ sư hạ tầng mạng triển khai thành công Hệ thống Khám chữa bệnh ngoại trú cho Bệnh viện Đa khoa Đồng Nai, Bệnh viện ITO và Trung tâm CSKH Bà mẹ & Trẻ em. Tôi vinh dự nhận Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao (Instructor Excellence Advanced Level Award) từ Cisco Networking Academy, tham gia kiểm định chất lượng quốc tế ABET (Hoa Kỳ) và AUN-QA.",
+    "bioLong": "Tôi là Nguyễn Vũ Duy Quang, Thạc sĩ ngành Khoa học máy tính (tốt nghiệp Đại học Công nghệ thông tin – ĐHQG TP. HCM). Tôi có gần 20 năm kinh nghiệm công tác tại Khoa Công nghệ thông tin - Trường Đại học Lạc Hồng (LHU), từng đảm nhiệm vị trí Trưởng bộ môn Mạng máy tính và Quản trị dữ liệu, Quản lý công tác NCKH. Tôi chủ nhiệm và tham gia 11 đề tài/dự án NCKH cấp Tỉnh và cấp Trường, từng là Lập trình viên chính & Kỹ sư hạ tầng mạng triển khai thành công Hệ thống Khám chữa bệnh ngoại trú cho Bệnh viện Đa khoa Đồng Nai, Bệnh viện ITO và Trung tâm CSKH Bà mẹ & Trẻ em. Tôi vinh dự nhận Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao từ Cisco Networking Academy, tham gia kiểm định chất lượng quốc tế ABET (Hoa Kỳ) và AUN-QA.",
     "avatarUrl": "",
     "stats": [
-      { "label": "Đề tài NCKH & Dự án", "value": "13+" },
+      { "label": "Đề tài NCKH", "value": "11 Đề tài" },
       { "label": "Bài báo & Tạp chí", "value": "5+" },
       { "label": "Kiểm định Quốc tế", "value": "ABET & AUN-QA" },
       { "label": "Chứng chỉ & Giải thưởng", "value": "6+ Quốc tế & Tỉnh" }
@@ -49,6 +49,85 @@ export const initialPortfolioData = {
     "Cisco CCNA v4.0 & CCNA v7.0",
     "MCSA & MCSE (Microsoft Certified Systems)",
     "IT Essentials"
+  ],
+  "nckhProjects": [
+    {
+      "stt": 1,
+      "title": "Nghiên cứu và ứng dụng chuẩn DICOM trong việc lưu trữ, truyền nhận và chẩn đoán hình ảnh y tế từ xa tại bệnh viện Đa khoa Đồng Nai",
+      "level": "Cấp trường",
+      "year": "2011",
+      "role": "Thành viên"
+    },
+    {
+      "stt": 2,
+      "title": "Tái tạo ảnh 3 chiều trong chuẩn đoán hình ảnh y khoa",
+      "level": "Cấp trường",
+      "year": "2011",
+      "role": "Chủ nhiệm"
+    },
+    {
+      "stt": 3,
+      "title": "Quản trị mạng trên môi trường IPv6",
+      "level": "Cấp trường",
+      "year": "2012",
+      "role": "Chủ nhiệm"
+    },
+    {
+      "stt": 4,
+      "title": "Xây dựng hệ thống tự động gửi thông báo, kết quả học tập cho sinh viên",
+      "level": "Cấp trường",
+      "year": "2013",
+      "role": "Chủ nhiệm"
+    },
+    {
+      "stt": 5,
+      "title": "Giáo trình: Quản trị Active Directory trên Window Server",
+      "level": "Cấp trường",
+      "year": "2013",
+      "role": "Chủ biên"
+    },
+    {
+      "stt": 6,
+      "title": "Giáo trình: Lập trình ứng dụng căn bản với VB .NET",
+      "level": "Cấp trường",
+      "year": "2014",
+      "role": "Chủ biên"
+    },
+    {
+      "stt": 7,
+      "title": "Giáo trình: Lập trình C/C++",
+      "level": "Cấp trường",
+      "year": "2015",
+      "role": "Đồng tác giả"
+    },
+    {
+      "stt": 8,
+      "title": "Vai trò của liên từ (Linking words) trong việc phân tích các nhận xét tiếng Anh",
+      "level": "Cấp trường",
+      "year": "2016",
+      "role": "Thành viên"
+    },
+    {
+      "stt": 9,
+      "title": "Xây dựng ứng dụng Web chat đa ngôn ngữ",
+      "level": "Cấp tỉnh",
+      "year": "2017",
+      "role": "Thành viên"
+    },
+    {
+      "stt": 10,
+      "title": "Xây dựng công cụ hỗ trợ tạo bộ câu hỏi trắc nghiệm trong đào tạo E-Learning",
+      "level": "Cấp tỉnh",
+      "year": "2022",
+      "role": "Chủ nhiệm"
+    },
+    {
+      "stt": 11,
+      "title": "Hệ thống định vị thuyền viên và hỗ trợ cứu nạn trên biển",
+      "level": "Cấp tỉnh",
+      "year": "2022",
+      "role": "Chủ nhiệm"
+    }
   ],
   "educationList": [
     {
@@ -392,8 +471,9 @@ export const initialPortfolioData = {
   "resumeInfo": {
     "title": "Lý lịch Khoa học & Hồ sơ Năng lực Chuyên môn",
     "lastUpdated": "Tháng 07, 2026",
-    "summary": "Thạc sĩ Nguyễn Vũ Duy Quang có gần 20 năm kinh nghiệm trong công tác giảng dạy đại học. Ông phụ trách giảng dạy các môn Lập trình C/C++, VB.NET, SQL Server, Cisco CCNA v4.0 & v7.0, MCSA/MCSE, IT Essentials. Đạt Giải Nhất NCKH Sinh viên (2006) và từng là Lập trình viên chính & Kỹ sư thiết kế hạ tầng mạng triển khai ứng dụng Khám chữa bệnh ngoại trú cho Bệnh viện Đa khoa Đồng Nai (2009), Bệnh viện ITO và Trung tâm CSKH Bà mẹ & Trẻ em (2012). Nhận Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao từ Cisco (2022). Tham gia xây dựng báo cáo kiểm định ABET (Hoa Kỳ - 2024), AUN-QA (2022) và dự án Cintana Research quốc tế (CDSS: http://cdss.cloud).",
+    "summary": "Thạc sĩ Nguyễn Vũ Duy Quang có gần 20 năm kinh nghiệm trong công tác giảng dạy đại học. Ông chủ nhiệm và tham gia 11 đề tài/dự án NCKH cấp Tỉnh và cấp Trường. Phụ trách giảng dạy các môn Lập trình C/C++, VB.NET, SQL Server, Cisco CCNA v4.0 & v7.0, MCSA/MCSE, IT Essentials. Đạt Giải Nhất NCKH Sinh viên (2006) và từng là Lập trình viên chính & Kỹ sư thiết kế hạ tầng mạng triển khai ứng dụng Khám chữa bệnh ngoại trú cho Bệnh viện Đa khoa Đồng Nai (2009), Bệnh viện ITO và Trung tâm CSKH Bà mẹ & Trẻ em (2012). Nhận Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao từ Cisco (2022). Tham gia xây dựng báo cáo kiểm định ABET (Hoa Kỳ - 2024), AUN-QA (2022) và dự án Cintana Research quốc tế (CDSS: http://cdss.cloud).",
     "competencies": [
+      "Chủ nhiệm & tham gia 11 Đề tài / Dự án NCKH cấp Tỉnh và cấp Trường",
       "Giảng dạy chuyên sâu: Lập trình C/C++, VB.NET, SQL Server, Cisco CCNA (v4.0 & v7.0), MCSA/MCSE, IT Essentials",
       "Lập trình viên chính & Kỹ sư mạng dự án Phần mềm Y tế Bệnh viện ĐK Đồng Nai (2009), Bệnh viện ITO & CSKH Bà mẹ & Trẻ em (2012)",
       "Giải Nhất Hội thi Nghiên cứu Khoa học Sinh viên (2006)",
@@ -407,6 +487,7 @@ export const initialPortfolioData = {
 };
 
 const STORAGE_KEYS = [
+  'nvdquang_portfolio_data_v9',
   'nvdquang_portfolio_data_v8',
   'nvdquang_portfolio_data_v7',
   'nvdquang_portfolio_data_v6',
@@ -433,6 +514,7 @@ export const getStoredPortfolioData = () => {
           scientificPublications: parsed.scientificPublications || initialPortfolioData.scientificPublications,
           textbooks: parsed.textbooks || initialPortfolioData.textbooks,
           awards: parsed.awards || initialPortfolioData.awards,
+          nckhProjects: parsed.nckhProjects || initialPortfolioData.nckhProjects,
           teachingCourses: parsed.teachingCourses || initialPortfolioData.teachingCourses,
         };
       }
