@@ -202,7 +202,7 @@ export const initialPortfolioData = {
       "year": "2026",
       "title": "Tham gia Ban Xây dựng Đề án Mở ngành An toàn Thông tin",
       "organization": "Khoa CNTT - Trường Đại học Lạc Hồng (LHU)",
-      "description": "Thành viên ban xây dựng Đề án mở ngành đào tạo cử nhân/kỹ sư An toàn Thông tin tại Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng.",
+      "description": "Thành viên ban xây dựng Đề án mở ngành đào tạo kỹ sư An toàn Thông tin tại Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng.",
       "type": "work"
     },
     {
