@@ -92,7 +92,7 @@ export const Contact = () => {
               <div className="info-body">
                 <span className="info-label">Địa chỉ làm việc</span>
                 <span className="info-val-static">
-                  {personalInfo.institution} - Biên Hòa, Đồng Nai
+                  {personalInfo.institution} - TP. Đồng Nai
                 </span>
               </div>
             </div>
@@ -107,7 +107,7 @@ export const Contact = () => {
                 </div>
                 <h3>Cảm ơn bạn đã gửi tin nhắn!</h3>
                 <p>
-                  Tin nhắn của bạn đã được gửi thành công đến Thạc sĩ Nguyễn Vũ Duy Quang ({personalInfo.email}).
+                  Tin nhắn của bạn đã được gửi thành công!({personalInfo.email}).
                 </p>
               </div>
             ) : (
