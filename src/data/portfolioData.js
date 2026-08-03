@@ -110,21 +110,21 @@ export const initialPortfolioData = {
     {
       "stt": 9,
       "title": "Xây dựng ứng dụng Web chat đa ngôn ngữ",
-      "level": "Cấp tỉnh",
+      "level": "Giải Khuyến khích - Cấp tỉnh",
       "year": "2017",
       "role": "Thành viên"
     },
     {
       "stt": 10,
       "title": "Xây dựng công cụ hỗ trợ tạo bộ câu hỏi trắc nghiệm trong đào tạo E-Learning",
-      "level": "Cấp tỉnh",
+      "level": "Giải Khuyến khích - Cấp tỉnh",
       "year": "2022",
       "role": "Chủ nhiệm"
     },
     {
       "stt": 11,
       "title": "Hệ thống định vị thuyền viên và hỗ trợ cứu nạn trên biển",
-      "level": "Cấp tỉnh",
+      "level": "Giải Ba - Cấp tỉnh",
       "year": "2022",
       "role": "Chủ nhiệm"
     }
@@ -316,8 +316,8 @@ export const initialPortfolioData = {
       "type": "work"
     },
     {
-      "year": "8/2024 – 12/2024",
-      "title": "Giảng viên Bộ môn An toàn Thông tin",
+      "year": "8/2024 – Nay",
+      "title": "Giảng viên thỉnh giảng Bộ môn An toàn Thông tin",
       "organization": "Đại học FPT (Phân hiệu TP.HCM)",
       "description": "Giảng dạy các học phần về An toàn thông tin, bảo mật hệ thống mạng và kiểm thử an ninh phần mềm.",
       "type": "work"
