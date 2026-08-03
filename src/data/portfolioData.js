@@ -13,7 +13,7 @@ export const initialPortfolioData = {
     "officeAddress": "Số 10, đường Huỳnh Văn Nghệ, Phường Trấn Biên, TP. Biên Hòa, Tỉnh Đồng Nai",
     "location": "64C/5 KP. 23, P. Long Bình, TP. Biên Hòa, Tỉnh Đồng Nai",
     "bioShort": "Giảng viên Khoa Công nghệ Thông tin - Trường Đại học Lạc Hồng. Chuyên nghiên cứu Mạng máy tính & Bảo mật, Trí tuệ nhân tạo (AI), Hệ thống phần mềm Y tế và Lập trình IoT. Đạt Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao từ Cisco.",
-    "bioLong": "Tôi là Nguyễn Vũ Duy Quang, Thạc sĩ ngành Khoa học máy tính (tốt nghiệp Đại học Công nghệ thông tin – ĐHQG TP. HCM). Tôi có gần 20 năm kinh nghiệm công tác tại Khoa Công nghệ thông tin - Trường Đại học Lạc Hồng (LHU), từng đảm nhiệm vị trí Trưởng bộ môn Mạng máy tính và Quản trị dữ liệu, Quản lý công tác NCKH. Tôi chủ nhiệm và tham gia 11 đề tài/dự án NCKH cấp Tỉnh và cấp Trường, từng là Lập trình viên chính & Kỹ sư hạ tầng mạng triển khai thành công Hệ thống Khám chữa bệnh ngoại trú cho Bệnh viện Đa khoa Đồng Nai, Bệnh viện ITO và Trung tâm CSKH Bà mẹ & Trẻ em. Tôi vinh dự nhận Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao từ Cisco Networking Academy, tham gia kiểm định chất lượng quốc tế ABET (Hoa Kỳ) và AUN-QA.",
+    "bioLong": "Tôi là Nguyễn Vũ Duy Quang, Thạc sĩ ngành Khoa học máy tính (tốt nghiệp Đại học Công nghệ thông tin – ĐHQG TP. HCM). Tôi có hơn 15 năm kinh nghiệm công tác tại Khoa Công nghệ thông tin - Trường Đại học Lạc Hồng (LHU), từng đảm nhiệm vị trí Trưởng bộ môn Mạng máy tính và Quản trị dữ liệu, Quản lý công tác NCKH. Tôi chủ nhiệm và tham gia 11 đề tài/dự án NCKH cấp Tỉnh và cấp Trường, từng là Lập trình viên chính & Kỹ sư hạ tầng mạng triển khai thành công Hệ thống Khám chữa bệnh ngoại trú cho Bệnh viện Đa khoa Đồng Nai, Bệnh viện ITO và Trung tâm CSKH Bà mẹ & Trẻ em. Tôi vinh dự nhận Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao từ Cisco Networking Academy, tham gia kiểm định chất lượng quốc tế ABET (Hoa Kỳ) và AUN-QA.",
     "avatarUrl": "",
     "stats": [
       { "label": "Đề tài NCKH", "value": "11 Đề tài" },
@@ -359,16 +359,16 @@ export const initialPortfolioData = {
     },
     {
       "year": "2007 – 2010",
-      "title": "Đào tạo Học vị Thạc sĩ Khoa học Máy tính",
+      "title": "Đào tạo: Thạc sĩ Khoa học Máy tính",
       "organization": "Đại học Công nghệ thông tin – ĐHQG TP. HCM",
       "description": "Tốt nghiệp Thạc sĩ chuyên ngành Khoa học máy tính.",
       "type": "education"
     },
     {
       "year": "2006",
-      "title": "Giải Nhất NCKH Sinh viên & Tốt nghiệp Kỹ sư CNTT",
-      "organization": "Trường Đại học Lạc Hồng & Bệnh viện ĐK Thống Nhất",
-      "description": "Đạt Giải Nhất Hội thi Nghiên cứu Khoa học Sinh viên với đề tài 'Tin học hóa khám chữa bệnh ngoại trú tại Bệnh viện Đa khoa Thống Nhất'. Tốt nghiệp Kỹ sư CNTT.",
+      "title": "Đào tạo: Kỹ sư CNTT - Giải Nhất NCKH Sinh viên",
+      "organization": "Trường Đại học Lạc Hồng",
+      "description": "Giải Nhất Hội thi Nghiên cứu Khoa học Sinh viên với đề tài 'Tin học hóa khám chữa bệnh ngoại trú tại Bệnh viện Đa khoa Thống Nhất'. Tốt nghiệp Kỹ sư CNTT.",
       "type": "education"
     }
   ],
@@ -471,11 +471,11 @@ export const initialPortfolioData = {
   "resumeInfo": {
     "title": "Lý lịch Khoa học & Hồ sơ Năng lực Chuyên môn",
     "lastUpdated": "Tháng 07, 2026",
-    "summary": "Thạc sĩ Nguyễn Vũ Duy Quang có gần 20 năm kinh nghiệm trong công tác giảng dạy đại học. Ông chủ nhiệm và tham gia 11 đề tài/dự án NCKH cấp Tỉnh và cấp Trường. Phụ trách giảng dạy các môn Lập trình C/C++, VB.NET, SQL Server, Cisco CCNA v4.0 & v7.0, MCSA/MCSE, IT Essentials. Đạt Giải Nhất NCKH Sinh viên (2006) và từng là Lập trình viên chính & Kỹ sư thiết kế hạ tầng mạng triển khai ứng dụng Khám chữa bệnh ngoại trú cho Bệnh viện Đa khoa Đồng Nai (2009), Bệnh viện ITO và Trung tâm CSKH Bà mẹ & Trẻ em (2012). Nhận Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao từ Cisco (2022). Tham gia xây dựng báo cáo kiểm định ABET (Hoa Kỳ - 2024), AUN-QA (2022) và dự án Cintana Research quốc tế (CDSS: http://cdss.cloud).",
+    "summary": "Thạc sĩ Nguyễn Vũ Duy Quang có hơn 15 năm kinh nghiệm trong công tác giảng dạy đại học. Ông chủ nhiệm và tham gia 11 đề tài/dự án NCKH cấp Tỉnh và cấp Trường. Phụ trách giảng dạy các môn Lập trình C/C++, VB.NET, SQL Server, Cisco CCNA v4.0 & v7.0, MCSA/MCSE, IT Essentials. Đạt Giải Nhất NCKH Sinh viên (2006) và từng là Lập trình viên chính & Kỹ sư thiết kế hạ tầng mạng triển khai ứng dụng Khám chữa bệnh ngoại trú cho Bệnh viện Đa khoa Đồng Nai (2009), Bệnh viện ITO và Trung tâm CSKH Bà mẹ & Trẻ em (2012). Nhận Giải thưởng Giảng viên Xuất sắc Cấp độ Nâng cao từ Cisco (2022). Tham gia xây dựng báo cáo kiểm định ABET (Hoa Kỳ - 2024), AUN-QA (2022) và dự án Cintana Research quốc tế (CDSS: http://cdss.cloud).",
     "competencies": [
       "Chủ nhiệm & tham gia 11 Đề tài / Dự án NCKH cấp Tỉnh và cấp Trường",
       "Giảng dạy chuyên sâu: Lập trình C/C++, VB.NET, SQL Server, Cisco CCNA (v4.0 & v7.0), MCSA/MCSE, IT Essentials",
-      "Lập trình viên chính & Kỹ sư mạng dự án Phần mềm Y tế Bệnh viện ĐK Đồng Nai (2009), Bệnh viện ITO & CSKH Bà mẹ & Trẻ em (2012)",
+      "Lập trình viên chính & Kỹ sư mạng dự án Phần mềm Y tế Bệnh viện ĐK Đồng Nai (2009), Bệnh viện ITO & CSKH Bà mẹ & Trẻ em (2012) Đồng Nai.",
       "Giải Nhất Hội thi Nghiên cứu Khoa học Sinh viên (2006)",
       "Giải thưởng Instructor Excellence Advanced Level Award từ Cisco Networking Academy (2022)",
       "Xây dựng Báo cáo Tự Đánh giá Kiểm định Quốc tế ABET (Hoa Kỳ - 2024) & AUN-QA (Đông Nam Á - 2022)",
