@@ -1,8 +1,9 @@
 import React from 'react';
 import { ArrowUp, Code2, Heart } from 'lucide-react';
-import { portfolioData } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Footer = () => {
+  const { language, t, getLocalized, portfolioData } = useLanguage();
   const { personalInfo } = portfolioData;
 
   const scrollToTop = () => {
@@ -16,16 +17,16 @@ export const Footer = () => {
           <div className="footer-left">
             <div className="footer-logo">
               <Code2 size={20} className="footer-logo-icon" />
-              <span>{personalInfo.fullName} ({personalInfo.degreeTitle})</span>
+              <span>{personalInfo.fullName} ({getLocalized(personalInfo, 'degreeTitle')})</span>
             </div>
             <p className="footer-tagline">
-              {personalInfo.institution} • {personalInfo.department}
+              {getLocalized(personalInfo, 'institution')} • {getLocalized(personalInfo, 'department')}
             </p>
           </div>
 
           <div className="footer-right">
-            <button onClick={scrollToTop} className="back-to-top-btn" title="Về đầu trang">
-              <span>Đầu trang</span>
+            <button onClick={scrollToTop} className="back-to-top-btn" title={t('footer_back_to_top')}>
+              <span>{t('footer_back_to_top')}</span>
               <ArrowUp size={16} />
             </button>
           </div>
@@ -33,10 +34,10 @@ export const Footer = () => {
 
         <div className="footer-bottom">
           <p className="copyright">
-            © {new Date().getFullYear()} {personalInfo.fullName}. All rights reserved.
+            © {new Date().getFullYear()} {personalInfo.fullName}. {t('footer_all_rights')}
           </p>
           <div className="built-with">
-            <span>Thiết kế nhận diện LHU với React + Vite</span>
+            <span>{t('footer_built_with')}</span>
           </div>
         </div>
       </div>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Send, Mail, Github, MapPin, Copy, Check, Sparkles, MessageSquare } from 'lucide-react';
-import { portfolioData } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Contact = () => {
+  const { language, t, getLocalized, portfolioData } = useLanguage();
   const { personalInfo } = portfolioData;
   const [copied, setCopied] = useState(false);
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ export const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
-      alert("Vui lòng điền đầy đủ Họ tên, Email và Nội dung tin nhắn.");
+      alert(t('contact_form_validation'));
       return;
     }
     setSubmitted(true);
@@ -38,11 +39,11 @@ export const Contact = () => {
         <div className="section-header">
           <div className="section-tag">
             <Send size={14} />
-            <span>Kết nối & Hợp tác</span>
+            <span>{t('contact_tag')}</span>
           </div>
-          <h2 className="section-title">Liên hệ Công việc & Nghiên cứu</h2>
+          <h2 className="section-title">{t('contact_title')}</h2>
           <p className="section-subtitle">
-            Nếu bạn có thắc mắc, mong muốn trao đổi chuyên môn, hoặc đề xuất hợp tác nghiên cứu khoa học, vui lòng để lại tin nhắn.
+            {t('contact_subtitle')}
           </p>
         </div>
 
@@ -54,7 +55,7 @@ export const Contact = () => {
                 <Mail size={22} />
               </div>
               <div className="info-body">
-                <span className="info-label">Email chính thức</span>
+                <span className="info-label">{t('contact_email_label')}</span>
                 <a href={`mailto:${personalInfo.email}`} className="info-val">
                   {personalInfo.email}
                 </a>
@@ -62,7 +63,7 @@ export const Contact = () => {
               <button
                 onClick={handleCopyEmail}
                 className="copy-btn"
-                title="Sao chép địa chỉ email"
+                title="Copy Email"
               >
                 {copied ? <Check size={18} className="copy-success" /> : <Copy size={18} />}
               </button>
@@ -73,7 +74,7 @@ export const Contact = () => {
                 <Github size={22} />
               </div>
               <div className="info-body">
-                <span className="info-label">Trang GitHub cá nhân</span>
+                <span className="info-label">{t('contact_github_label')}</span>
                 <a
                   href={personalInfo.github}
                   target="_blank"
@@ -90,9 +91,9 @@ export const Contact = () => {
                 <MapPin size={22} />
               </div>
               <div className="info-body">
-                <span className="info-label">Địa chỉ làm việc</span>
+                <span className="info-label">{t('contact_office_label')}</span>
                 <span className="info-val-static">
-                  {personalInfo.institution} - TP. Đồng Nai
+                  {getLocalized(personalInfo, 'officeAddress') || `${getLocalized(personalInfo, 'institution')} - Dong Nai`}
                 </span>
               </div>
             </div>
@@ -105,20 +106,18 @@ export const Contact = () => {
                 <div className="toast-icon">
                   <Sparkles size={28} />
                 </div>
-                <h3>Cảm ơn bạn đã gửi tin nhắn!</h3>
-                <p>
-                  Tin nhắn của bạn đã được gửi thành công!({personalInfo.email}).
-                </p>
+                <h3>{t('contact_form_success_title')}</h3>
+                <p>{t('contact_form_success_desc')}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="contact-form">
+                <h3 className="form-heading">{t('contact_form_title')}</h3>
                 <div className="form-row">
                   <div className="form-group">
-                    <label className="form-label">Họ và tên *</label>
+                    <label className="form-label">{t('contact_form_name')}</label>
                     <input
                       type="text"
                       className="form-input"
-                      placeholder="Ví dụ: Nguyễn Văn A"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       required
@@ -126,11 +125,10 @@ export const Contact = () => {
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label">Địa chỉ Email *</label>
+                    <label className="form-label">{t('contact_form_email')}</label>
                     <input
                       type="email"
                       className="form-input"
-                      placeholder="name@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       required
@@ -139,31 +137,29 @@ export const Contact = () => {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">Tiêu đề tin nhắn</label>
+                  <label className="form-label">{t('contact_form_subject')}</label>
                   <input
                     type="text"
                     className="form-input"
-                    placeholder="Đề xuất hợp tác dự án / Hợp tác nghiên cứu..."
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   />
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">Nội dung tin nhắn *</label>
+                  <label className="form-label">{t('contact_form_msg')}</label>
                   <textarea
-                    rows={5}
+                    rows={4}
                     className="form-input form-textarea"
-                    placeholder="Vui lòng nhập chi tiết nội dung trao đổi của bạn tại đây..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     required
                   ></textarea>
                 </div>
 
-                <button type="submit" className="btn btn-primary submit-btn">
+                <button type="submit" className="btn btn-primary form-submit-btn">
+                  <span>{t('contact_form_send')}</span>
                   <Send size={18} />
-                  <span>Gửi tin nhắn ngay</span>
                 </button>
               </form>
             )}
@@ -172,14 +168,10 @@ export const Contact = () => {
       </div>
 
       <style>{`
-        .bg-alt-section {
-          background-color: var(--bg-section-alt);
-        }
-
         .contact-grid {
           display: grid;
           grid-template-columns: 0.9fr 1.1fr;
-          gap: 2rem;
+          gap: 2.5rem;
           align-items: start;
         }
 
@@ -190,19 +182,20 @@ export const Contact = () => {
         }
 
         .info-card {
-          padding: 1.2rem 1.5rem;
+          padding: 1.4rem;
+          background: #ffffff;
+          border: 1px solid rgba(0, 56, 130, 0.1);
+          border-radius: var(--radius-lg);
           display: flex;
           align-items: center;
           gap: 1.2rem;
           position: relative;
-          background: #ffffff;
-          border: 1px solid rgba(0, 56, 130, 0.1);
         }
 
         .info-icon-box {
           width: 48px;
           height: 48px;
-          border-radius: var(--radius-md);
+          border-radius: 12px;
           background: rgba(0, 56, 130, 0.06);
           border: 1px solid rgba(0, 56, 130, 0.15);
           display: flex;
@@ -215,67 +208,70 @@ export const Contact = () => {
         .info-body {
           display: flex;
           flex-direction: column;
-          flex-grow: 1;
+          flex: 1;
         }
 
         .info-label {
           font-size: 0.78rem;
-          color: var(--text-muted);
-          margin-bottom: 0.2rem;
-          font-family: var(--font-mono);
+          color: #64748b;
+          font-weight: 600;
+
         }
 
         .info-val {
-          color: #0f172a;
-          font-weight: 700;
-          text-decoration: none;
           font-size: 0.98rem;
-          transition: var(--transition-smooth);
+          font-weight: 700;
+          color: var(--color-primary);
+          text-decoration: none;
         }
 
         .info-val:hover {
-          color: var(--color-primary);
+          text-decoration: underline;
         }
 
         .info-val-static {
-          color: #0f172a;
-          font-weight: 700;
           font-size: 0.95rem;
+          font-weight: 700;
+          color: #0f172a;
         }
 
         .copy-btn {
-          background: rgba(0, 56, 130, 0.04);
-          border: 1px solid rgba(0, 56, 130, 0.12);
-          color: var(--text-muted);
-          width: 36px;
-          height: 36px;
-          border-radius: var(--radius-md);
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          background: none;
+          border: none;
+          color: #64748b;
           cursor: pointer;
+          padding: 0.5rem;
+          border-radius: 50%;
           transition: var(--transition-smooth);
         }
 
         .copy-btn:hover {
+          background: rgba(0, 56, 130, 0.08);
           color: var(--color-primary);
-          background: rgba(0, 56, 130, 0.1);
         }
 
         .copy-success {
-          color: var(--color-emerald);
+          color: #10b981;
         }
 
         .contact-form-container {
-          padding: 2.2rem;
+          padding: 2rem;
           background: #ffffff;
+          border-radius: 20px;
           border: 1px solid rgba(0, 56, 130, 0.1);
+        }
+
+        .form-heading {
+          font-size: 1.2rem;
+          font-weight: 800;
+          color: #0f172a;
+          margin-bottom: 1.4rem;
         }
 
         .contact-form {
           display: flex;
           flex-direction: column;
-          gap: 1.4rem;
+          gap: 1.2rem;
         }
 
         .form-row {
@@ -291,57 +287,65 @@ export const Contact = () => {
         }
 
         .form-label {
-          font-size: 0.88rem;
+          font-size: 0.85rem;
           font-weight: 700;
-          color: #0f172a;
+          color: #334155;
         }
 
         .form-input {
-          width: 100%;
-          padding: 0.8rem 1rem;
-          background: #ffffff;
-          border: 1px solid rgba(0, 56, 130, 0.2);
+          padding: 0.75rem 1rem;
           border-radius: var(--radius-md);
-          color: #0f172a;
-          font-family: var(--font-sans);
-          font-size: 0.95rem;
-          outline: none;
+          border: 1px solid rgba(0, 56, 130, 0.18);
+          font-size: 0.92rem;
           transition: var(--transition-smooth);
+          outline: none;
         }
 
         .form-input:focus {
           border-color: var(--color-primary);
-          box-shadow: 0 0 12px rgba(0, 56, 130, 0.15);
+          box-shadow: 0 0 0 3px rgba(0, 56, 130, 0.1);
         }
 
         .form-textarea {
           resize: vertical;
         }
 
-        .submit-btn {
+        .form-submit-btn {
           margin-top: 0.5rem;
           width: 100%;
+          justify-content: center;
         }
 
         .success-toast {
           text-align: center;
-          padding: 2.5rem 1rem;
+          padding: 2.5rem 1.5rem;
         }
 
         .toast-icon {
           width: 60px;
           height: 60px;
           border-radius: 50%;
-          background: rgba(5, 150, 105, 0.1);
-          border: 1px solid rgba(5, 150, 105, 0.3);
-          color: var(--color-emerald);
+          background: rgba(16, 185, 129, 0.1);
+          color: #10b981;
           display: flex;
           align-items: center;
           justify-content: center;
           margin: 0 auto 1.2rem auto;
         }
 
-        @media (max-width: 850px) {
+        .success-toast h3 {
+          font-size: 1.3rem;
+          font-weight: 800;
+          color: #0f172a;
+          margin-bottom: 0.5rem;
+        }
+
+        .success-toast p {
+          color: #64748b;
+          font-size: 0.95rem;
+        }
+
+        @media (max-width: 800px) {
           .contact-grid {
             grid-template-columns: 1fr;
           }

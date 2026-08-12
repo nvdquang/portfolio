@@ -2,25 +2,26 @@ import React, { useState } from 'react';
 import { 
   Code, Layout, Server, Terminal, Cpu, Database, 
   Brain, Eye, MessageSquare, BarChart3, Box, GitBranch, 
-  Cloud, Network, GraduationCap, BookOpen, Users, Sparkles 
+  Cloud, Network, GraduationCap, BookOpen, Users, Sparkles, Shield, Lock, Award, ShieldCheck
 } from 'lucide-react';
-import { portfolioData } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 const iconMap = {
   Code, Layout, Server, Terminal, Cpu, Database,
   Brain, Eye, MessageSquare, BarChart3, Box, GitBranch,
-  Cloud, Network, GraduationCap, BookOpen, Users
+  Cloud, Network, GraduationCap, BookOpen, Users, Shield, Lock, Award, ShieldCheck
 };
 
 const defaultSkillCategories = [
-  { id: 'all', name: 'Tất cả kỹ năng' },
-  { id: 'software', name: 'Mạng & Bảo mật' },
-  { id: 'ai', name: 'AI & Học máy' },
-  { id: 'architecture', name: 'IoT & Định vị' },
-  { id: 'academic', name: 'NCKH & Đào tạo' }
+  { id: 'all', name: 'Tất cả kỹ năng', nameEn: 'All Skills' },
+  { id: 'software', name: 'Mạng & Bảo mật', nameEn: 'Network & Security' },
+  { id: 'ai', name: 'AI & Học máy', nameEn: 'AI & Machine Learning' },
+  { id: 'architecture', name: 'IoT & Định vị', nameEn: 'IoT & Location' },
+  { id: 'academic', name: 'NCKH & Đào tạo', nameEn: 'R&D & Teaching' }
 ];
 
 export const Skills = () => {
+  const { language, t, getLocalized, portfolioData } = useLanguage();
   const { skillCategories, skills = [] } = portfolioData;
   const categories = (skillCategories && skillCategories.length) ? skillCategories : defaultSkillCategories;
   const [activeCategory, setActiveCategory] = useState('all');
@@ -35,11 +36,11 @@ export const Skills = () => {
         <div className="section-header">
           <div className="section-tag">
             <Sparkles size={14} />
-            <span>Năng lực Chuyên môn</span>
+            <span>{t('skills_tag')}</span>
           </div>
-          <h2 className="section-title">Kỹ năng & Chuyên môn Công nghệ</h2>
+          <h2 className="section-title">{t('skills_title')}</h2>
           <p className="section-subtitle">
-            Tập hợp các công nghệ, kỹ thuật phát triển hệ thống và phương pháp giảng dạy được tích lũy trong quá trình làm việc và nghiên cứu.
+            {t('skills_subtitle')}
           </p>
         </div>
 
@@ -51,7 +52,7 @@ export const Skills = () => {
               className={`tab-btn ${activeCategory === cat.id ? 'active' : ''}`}
               onClick={() => setActiveCategory(cat.id)}
             >
-              {cat.name}
+              {getLocalized(cat, 'name')}
             </button>
           ))}
         </div>
@@ -67,7 +68,7 @@ export const Skills = () => {
                     <IconComponent size={20} className="skill-icon" />
                   </div>
                   <div className="skill-info">
-                    <h3 className="skill-name">{skill.name}</h3>
+                    <h3 className="skill-name">{getLocalized(skill, 'name')}</h3>
                     <span className="skill-percent">{skill.level}%</span>
                   </div>
                 </div>
@@ -87,19 +88,19 @@ export const Skills = () => {
         {portfolioData.certificates && (
           <div className="certifications-container" style={{ marginTop: '4rem' }}>
             <div className="section-header" style={{ marginBottom: '2rem' }}>
-              <h3 style={{ fontSize: '1.4rem', color: '#003882', fontWeight: 800 }}>Chứng chỉ Chuyên môn Quốc tế</h3>
-              <p style={{ color: '#64748b', fontSize: '0.92rem', marginTop: '0.3rem' }}>Các chứng nhận và bằng cấp chuyên sâu được cấp bởi Amazon Web Services (AWS) và Cisco Networking Academy.</p>
+              <h3 style={{ fontSize: '1.4rem', color: '#003882', fontWeight: 800 }}>{t('skills_certs_title')}</h3>
+              <p style={{ color: '#64748b', fontSize: '0.92rem', marginTop: '0.3rem' }}>{t('skills_certs_subtitle')}</p>
             </div>
 
             <div className="certs-grid">
               {portfolioData.certificates.map((cert) => (
                 <div key={cert.id} className="cert-card glass-card">
                   <div className="cert-badge-tag">{cert.date}</div>
-                  <h4 className="cert-title">{cert.title}</h4>
-                  <p className="cert-issuer">🏢 {cert.issuer}</p>
-                  <p className="cert-desc">{cert.description}</p>
+                  <h4 className="cert-title">{getLocalized(cert, 'title')}</h4>
+                  <p className="cert-issuer">🏢 {getLocalized(cert, 'issuer')}</p>
+                  <p className="cert-desc">{getLocalized(cert, 'description')}</p>
                   {cert.validationNumber && (
-                    <div className="cert-val-code">Validation: <code>{cert.validationNumber}</code></div>
+                    <div className="cert-val">{cert.validationNumber}</div>
                   )}
                 </div>
               ))}
@@ -111,48 +112,54 @@ export const Skills = () => {
       <style>{`
         .category-tabs {
           display: flex;
+          align-items: center;
           justify-content: center;
-          flex-wrap: wrap;
           gap: 0.8rem;
           margin-bottom: 3rem;
+          flex-wrap: wrap;
         }
 
         .tab-btn {
-          padding: 0.6rem 1.3rem;
+          padding: 0.6rem 1.4rem;
           border-radius: var(--radius-full);
-          background: #ffffff;
-          border: 1px solid rgba(0, 56, 130, 0.15);
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-          color: var(--text-muted);
-          font-size: 0.9rem;
+          background: rgba(0, 56, 130, 0.04);
+          border: 1px solid rgba(0, 56, 130, 0.12);
+          color: #475569;
           font-weight: 600;
+          font-size: 0.9rem;
           cursor: pointer;
           transition: var(--transition-smooth);
         }
 
         .tab-btn:hover {
           color: var(--color-primary);
-          border-color: rgba(0, 56, 130, 0.3);
-          background: rgba(0, 56, 130, 0.04);
+          background: rgba(0, 56, 130, 0.08);
         }
 
         .tab-btn.active {
-          background: linear-gradient(135deg, rgba(0, 56, 130, 0.1) 0%, rgba(217, 119, 6, 0.12) 100%);
-          border-color: rgba(0, 56, 130, 0.4);
-          color: var(--color-primary);
-          box-shadow: 0 4px 14px rgba(0, 56, 130, 0.12);
+          background: var(--color-primary);
+          color: #ffffff;
+          border-color: var(--color-primary);
+          box-shadow: 0 4px 12px rgba(0, 56, 130, 0.2);
         }
 
         .skills-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-          gap: 1.4rem;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          gap: 1.5rem;
         }
 
         .skill-card {
-          padding: 1.25rem 1.5rem;
+          padding: 1.4rem;
           background: #ffffff;
-          border: 1px solid rgba(0, 56, 130, 0.1);
+          border: 1px solid rgba(0, 56, 130, 0.08);
+          transition: var(--transition-smooth);
+        }
+
+        .skill-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 28px rgba(0, 56, 130, 0.1);
+          border-color: rgba(0, 56, 130, 0.2);
         }
 
         .skill-card-top {
@@ -165,7 +172,7 @@ export const Skills = () => {
         .skill-icon-wrapper {
           width: 44px;
           height: 44px;
-          border-radius: var(--radius-md);
+          border-radius: 12px;
           background: rgba(0, 56, 130, 0.06);
           border: 1px solid rgba(0, 56, 130, 0.15);
           display: flex;
@@ -176,87 +183,83 @@ export const Skills = () => {
         }
 
         .skill-info {
-          flex-grow: 1;
+          flex: 1;
           display: flex;
           align-items: center;
           justify-content: space-between;
         }
 
         .skill-name {
-          font-size: 0.98rem;
+          font-size: 0.95rem;
           font-weight: 700;
           color: #0f172a;
         }
 
         .skill-percent {
           font-family: var(--font-mono);
-          font-size: 0.85rem;
-          color: var(--color-primary);
           font-weight: 700;
+          font-size: 0.85rem;
+          color: var(--color-accent);
         }
 
         .progress-bar-bg {
           width: 100%;
-          height: 6px;
+          height: 8px;
+          border-radius: 4px;
           background: rgba(0, 56, 130, 0.08);
-          border-radius: var(--radius-full);
           overflow: hidden;
         }
 
         .progress-bar-fill {
           height: 100%;
-          background: linear-gradient(90deg, #003882 0%, #0284c7 100%);
-          border-radius: var(--radius-full);
+          border-radius: 4px;
+          background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
           transition: width 1s ease-out;
         }
 
         .certs-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
           gap: 1.5rem;
         }
 
         .cert-card {
+          position: relative;
           padding: 1.5rem;
           background: #ffffff;
-          border: 1px solid rgba(0, 56, 130, 0.12);
-          border-left: 4px solid var(--color-primary);
-          border-radius: var(--radius-md);
-          position: relative;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-          transition: all 0.3s ease;
+          border: 1px solid rgba(0, 56, 130, 0.1);
+          border-radius: var(--radius-lg);
+          transition: var(--transition-smooth);
         }
 
         .cert-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 10px 25px rgba(0, 56, 130, 0.1);
+          transform: translateY(-3px);
+          box-shadow: 0 10px 25px rgba(0, 56, 130, 0.08);
         }
 
         .cert-badge-tag {
-          position: absolute;
-          top: 1rem;
-          right: 1rem;
-          background: #f59e0b;
-          color: #ffffff;
+          display: inline-block;
+          padding: 0.2rem 0.6rem;
+          background: rgba(217, 119, 6, 0.1);
+          color: var(--color-accent);
           font-size: 0.75rem;
           font-weight: 700;
-          padding: 0.2rem 0.6rem;
-          border-radius: 12px;
+          border-radius: var(--radius-sm);
+          margin-bottom: 0.8rem;
           font-family: var(--font-mono);
         }
 
         .cert-title {
-          font-size: 1.05rem;
+          font-size: 1rem;
+          font-weight: 800;
           color: #0f172a;
-          font-weight: 700;
           margin-bottom: 0.4rem;
-          padding-right: 4rem;
         }
 
         .cert-issuer {
           font-size: 0.85rem;
           color: var(--color-primary);
-          font-weight: 600;
+          font-weight: 700;
           margin-bottom: 0.6rem;
         }
 
@@ -266,21 +269,13 @@ export const Skills = () => {
           line-height: 1.5;
         }
 
-        .cert-val-code {
+        .cert-val {
           margin-top: 0.8rem;
           padding-top: 0.6rem;
-          border-top: 1px dashed #e2e8f0;
-          font-size: 0.78rem;
-          color: #475569;
-        }
-
-        .cert-val-code code {
-          background: #f1f5f9;
-          padding: 0.1rem 0.4rem;
-          border-radius: 4px;
-          color: #003882;
+          border-top: 1px dashed rgba(0, 0, 0, 0.1);
           font-family: var(--font-mono);
-          font-weight: 700;
+          font-size: 0.75rem;
+          color: #94a3b8;
         }
       `}</style>
     </section>

@@ -8,22 +8,18 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
 import { Dashboard } from './components/Dashboard';
-import { getStoredPortfolioData } from './data/portfolioData';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
 
-export function App() {
+function MainLayout() {
   const [viewMode, setViewMode] = useState('portfolio'); // 'portfolio' | 'dashboard'
   const [isResumeOpen, setIsResumeOpen] = useState(false);
-  const [data, setData] = useState(() => getStoredPortfolioData());
-
-  const handleUpdateData = (newData) => {
-    setData(newData);
-  };
+  const { portfolioData, updatePortfolioData } = useLanguage();
 
   if (viewMode === 'dashboard') {
     return (
       <Dashboard
-        portfolioData={data}
-        onUpdateData={handleUpdateData}
+        portfolioData={portfolioData}
+        onUpdateData={updatePortfolioData}
         onReturnHome={() => setViewMode('portfolio')}
       />
     );
@@ -57,6 +53,14 @@ export function App() {
         onClose={() => setIsResumeOpen(false)}
       />
     </div>
+  );
+}
+
+export function App() {
+  return (
+    <LanguageProvider>
+      <MainLayout />
+    </LanguageProvider>
   );
 }
 

@@ -1,9 +1,10 @@
 import React from 'react';
 import { X, Download, Printer, Award, Mail, Github, CheckCircle2, ShieldCheck } from 'lucide-react';
-import { portfolioData } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 export const ResumeModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
+  const { language, t, getLocalized, portfolioData } = useLanguage();
   const { personalInfo, resumeInfo, skills, timeline } = portfolioData;
 
   const handlePrint = () => {
@@ -11,8 +12,12 @@ export const ResumeModal = ({ isOpen, onClose }) => {
   };
 
   const handleDownload = () => {
-    alert("Hồ sơ CV (PDF) của Thạc sĩ Nguyễn Vũ Duy Quang đang được tải xuống...");
+    alert(t('resume_download_alert'));
   };
+
+  const researchFieldsList = (language === 'en' && portfolioData.researchFieldsEn) ? portfolioData.researchFieldsEn : portfolioData.researchFields;
+  const teachingCoursesList = (language === 'en' && portfolioData.teachingCoursesEn) ? portfolioData.teachingCoursesEn : portfolioData.teachingCourses;
+  const competenciesList = (language === 'en' && resumeInfo.competenciesEn) ? resumeInfo.competenciesEn : resumeInfo.competencies;
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
@@ -21,11 +26,11 @@ export const ResumeModal = ({ isOpen, onClose }) => {
           <div className="resume-modal-actions">
             <button onClick={handleDownload} className="btn btn-primary btn-sm">
               <Download size={16} />
-              <span>Tải file CV (PDF)</span>
+              <span>{t('resume_btn_download')}</span>
             </button>
             <button onClick={handlePrint} className="btn btn-secondary btn-sm">
               <Printer size={16} />
-              <span>In hồ sơ</span>
+              <span>{t('resume_btn_print')}</span>
             </button>
           </div>
 
@@ -40,11 +45,13 @@ export const ResumeModal = ({ isOpen, onClose }) => {
             <div className="cv-header-left">
               <h1 className="cv-name">{personalInfo.fullName}</h1>
               <h2 className="cv-title">
-                {personalInfo.degreeTitle} Công nghệ Thông tin • Giảng viên ĐH Lạc Hồng
+                {getLocalized(personalInfo, 'degreeTitle')} {language === 'en' ? 'Computer Science' : 'Công nghệ Thông tin'} • {language === 'en' ? 'Lecturer at LHU' : 'Giảng viên ĐH Lạc Hồng'}
               </h2>
-              <p className="cv-org">{personalInfo.institution} - {personalInfo.department}</p>
+              <p className="cv-org">{getLocalized(personalInfo, 'institution')} - {getLocalized(personalInfo, 'department')}</p>
               {personalInfo.birthDate && (
-                <p className="cv-sub-info"><strong>Ngày sinh:</strong> {personalInfo.birthDate} | <strong>Giới tính:</strong> {personalInfo.gender || 'Nam'}</p>
+                <p className="cv-sub-info">
+                  <strong>{t('resume_dob')}</strong> {personalInfo.birthDate} | <strong>{t('resume_gender')}</strong> {getLocalized(personalInfo, 'gender')}
+                </p>
               )}
             </div>
             <div className="cv-header-right">
@@ -56,11 +63,11 @@ export const ResumeModal = ({ isOpen, onClose }) => {
               </div>
               {personalInfo.phone && (
                 <div className="cv-contact-item">
-                  <ShieldCheck size={14} /> <span>ĐTDĐ: {personalInfo.phone}</span>
+                  <ShieldCheck size={14} /> <span>{t('resume_phone')} {personalInfo.phone}</span>
                 </div>
               )}
               <div className="cv-contact-item">
-                <ShieldCheck size={14} /> <span>{personalInfo.location}</span>
+                <ShieldCheck size={14} /> <span>{getLocalized(personalInfo, 'location')}</span>
               </div>
             </div>
           </header>
@@ -68,13 +75,13 @@ export const ResumeModal = ({ isOpen, onClose }) => {
           <div className="cv-divider"></div>
 
           <section className="cv-section">
-            <h3 className="cv-section-title">I. TÓM TẮT NĂNG LỰC & HƯỚNG NGHIÊN CỨU CHÍNH</h3>
-            <p className="cv-text">{resumeInfo.summary}</p>
-            {portfolioData.researchFields && (
+            <h3 className="cv-section-title">{t('resume_sec_1')}</h3>
+            <p className="cv-text">{getLocalized(resumeInfo, 'summary')}</p>
+            {researchFieldsList && (
               <div className="cv-research-box">
-                <strong style={{ color: '#003882', display: 'block', marginBottom: '0.4rem' }}>Hướng nghiên cứu chính 5 năm gần đây:</strong>
+                <strong style={{ color: '#003882', display: 'block', marginBottom: '0.4rem' }}>{t('resume_sec_1_focus')}</strong>
                 <ul className="cv-bullet-list">
-                  {portfolioData.researchFields.map((field, idx) => (
+                  {researchFieldsList.map((field, idx) => (
                     <li key={idx}>{field}</li>
                   ))}
                 </ul>
@@ -83,26 +90,26 @@ export const ResumeModal = ({ isOpen, onClose }) => {
           </section>
 
           <section className="cv-section">
-            <h3 className="cv-section-title">II. QUÁ TRÌNH ĐÀO TẠO & CÔNG TÁC</h3>
+            <h3 className="cv-section-title">{t('resume_sec_2')}</h3>
             <div className="cv-timeline">
               {timeline.map((item, idx) => (
                 <div key={idx} className="cv-timeline-item">
-                  <div className="cv-timeline-year">{item.year}</div>
+                  <div className="cv-timeline-year">{getLocalized(item, 'year')}</div>
                   <div className="cv-timeline-body">
-                    <h4 className="cv-timeline-title">{item.title}</h4>
-                    <p className="cv-timeline-org">{item.organization}</p>
-                    <p className="cv-timeline-desc">{item.description}</p>
+                    <h4 className="cv-timeline-title">{getLocalized(item, 'title')}</h4>
+                    <p className="cv-timeline-org">{getLocalized(item, 'organization')}</p>
+                    <p className="cv-timeline-desc">{getLocalized(item, 'description')}</p>
                   </div>
                 </div>
               ))}
             </div>
           </section>
 
-          {portfolioData.teachingCourses && (
+          {teachingCoursesList && (
             <section className="cv-section">
-              <h3 className="cv-section-title">III. CÁC HỌC PHẦN PHỤ TRÁCH GIẢNG DẠY</h3>
+              <h3 className="cv-section-title">{t('resume_sec_3')}</h3>
               <div className="cv-skills-chips">
-                {portfolioData.teachingCourses.map((course, idx) => (
+                {teachingCoursesList.map((course, idx) => (
                   <span key={idx} className="cv-skill-chip" style={{ background: '#eff6ff', color: '#003882', borderColor: '#bfdbfe' }}>
                     📖 {course}
                   </span>
@@ -113,26 +120,26 @@ export const ResumeModal = ({ isOpen, onClose }) => {
 
           {portfolioData.nckhProjects && (
             <section className="cv-section">
-              <h3 className="cv-section-title">IV. DANH MỤC ĐỀ TÀI & DỰ ÁN NGHIÊN CỨU KHOA HỌC (11 ĐỀ TÀI)</h3>
+              <h3 className="cv-section-title">{t('resume_sec_4')}</h3>
               <div className="cv-table-wrapper">
                 <table className="cv-table">
                   <thead>
                     <tr>
-                      <th style={{ width: '45px' }}>STT</th>
-                      <th>Tên đề tài / dự án NCKH</th>
-                      <th style={{ width: '110px' }}>Cấp đề tài</th>
-                      <th style={{ width: '90px' }}>Thời gian</th>
-                      <th style={{ width: '110px' }}>Vai trò</th>
+                      <th style={{ width: '45px' }}>{t('resume_table_stt')}</th>
+                      <th>{t('resume_table_title')}</th>
+                      <th style={{ width: '180px' }}>{t('resume_table_level')}</th>
+                      <th style={{ width: '70px' }}>{t('resume_table_year')}</th>
+                      <th style={{ width: '110px' }}>{t('resume_table_role')}</th>
                     </tr>
                   </thead>
                   <tbody>
                     {portfolioData.nckhProjects.map((proj) => (
                       <tr key={proj.stt}>
-                        <td><strong>{proj.stt}</strong></td>
-                        <td>{proj.title}</td>
-                        <td><span className={`cv-badge ${proj.level.includes('Tỉnh') ? 'badge-amber' : 'badge-navy'}`}>{proj.level}</span></td>
-                        <td>{proj.year}</td>
-                        <td><strong>{proj.role}</strong></td>
+                        <td style={{ textAlign: 'center', fontWeight: 'bold' }}>{proj.stt}</td>
+                        <td style={{ fontWeight: '600' }}>{getLocalized(proj, 'title')}</td>
+                        <td><span className="cv-level-badge">{getLocalized(proj, 'level')}</span></td>
+                        <td style={{ textAlign: 'center' }}>{proj.year}</td>
+                        <td style={{ fontWeight: '600', color: '#003882' }}>{getLocalized(proj, 'role')}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -143,24 +150,24 @@ export const ResumeModal = ({ isOpen, onClose }) => {
 
           {portfolioData.scientificPublications && (
             <section className="cv-section">
-              <h3 className="cv-section-title">V. BÀI BÁO KHOA HỌC ĐÃ CÔNG BỐ</h3>
+              <h3 className="cv-section-title">{t('resume_sec_5')}</h3>
               <div className="cv-table-wrapper">
                 <table className="cv-table">
                   <thead>
                     <tr>
-                      <th>Năm</th>
-                      <th>Tên bài báo khoa học</th>
-                      <th>Tạp chí / Hội thảo</th>
-                      <th>Vai trò</th>
+                      <th style={{ width: '70px' }}>{t('resume_table_year')}</th>
+                      <th>{t('resume_table_title')}</th>
+                      <th>{t('resume_table_level')}</th>
+                      <th style={{ width: '120px' }}>{t('resume_table_role')}</th>
                     </tr>
                   </thead>
                   <tbody>
                     {portfolioData.scientificPublications.map((pub, idx) => (
                       <tr key={idx}>
-                        <td><strong>{pub.year}</strong></td>
-                        <td>{pub.title}</td>
-                        <td>{pub.journal}</td>
-                        <td>{pub.role}</td>
+                        <td style={{ textAlign: 'center', fontWeight: 'bold' }}>{pub.year}</td>
+                        <td style={{ fontWeight: '600' }}>{getLocalized(pub, 'title')}</td>
+                        <td style={{ color: '#003882', fontWeight: '600' }}>{getLocalized(pub, 'journal')}</td>
+                        <td>{getLocalized(pub, 'role')}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -171,24 +178,24 @@ export const ResumeModal = ({ isOpen, onClose }) => {
 
           {portfolioData.textbooks && (
             <section className="cv-section">
-              <h3 className="cv-section-title">VI. GIÁO TRÌNH & SÁCH ĐÃ XUẤT BẢN</h3>
+              <h3 className="cv-section-title">{t('resume_sec_6')}</h3>
               <div className="cv-table-wrapper">
                 <table className="cv-table">
                   <thead>
                     <tr>
-                      <th>Năm</th>
-                      <th>Tên giáo trình</th>
-                      <th>Cơ quan / Nhà xuất bản</th>
-                      <th>Vai trò</th>
+                      <th style={{ width: '70px' }}>{t('resume_table_year')}</th>
+                      <th>{t('resume_table_title')}</th>
+                      <th>{t('resume_table_publisher')}</th>
+                      <th style={{ width: '120px' }}>{t('resume_table_role')}</th>
                     </tr>
                   </thead>
                   <tbody>
                     {portfolioData.textbooks.map((tb, idx) => (
                       <tr key={idx}>
-                        <td><strong>{tb.year}</strong></td>
-                        <td>{tb.title}</td>
-                        <td>{tb.publisher}</td>
-                        <td>{tb.role}</td>
+                        <td style={{ textAlign: 'center', fontWeight: 'bold' }}>{tb.year}</td>
+                        <td style={{ fontWeight: '600' }}>{getLocalized(tb, 'title')}</td>
+                        <td>{getLocalized(tb, 'publisher')}</td>
+                        <td style={{ color: '#003882', fontWeight: '600' }}>{getLocalized(tb, 'role')}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -199,36 +206,27 @@ export const ResumeModal = ({ isOpen, onClose }) => {
 
           {portfolioData.awards && (
             <section className="cv-section">
-              <h3 className="cv-section-title">VII. GIẢI THƯỞNG & THAM GIA CUỘC THI KHCN</h3>
-              <div className="cv-awards-list">
+              <h3 className="cv-section-title">{t('resume_sec_7')}</h3>
+              <ul className="cv-bullet-list">
                 {portfolioData.awards.map((aw, idx) => (
-                  <div key={idx} className="cv-award-card">
-                    <div className="cv-award-badge">{aw.award}</div>
-                    <div className="cv-award-info">
-                      <h4>{aw.title}</h4>
-                      <p>{aw.contest}</p>
-                    </div>
-                  </div>
+                  <li key={idx}>
+                    <strong>[{aw.year}] {getLocalized(aw, 'award')}:</strong> {getLocalized(aw, 'title')} — <em style={{ color: '#475569' }}>{getLocalized(aw, 'contest')}</em>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </section>
           )}
 
           {portfolioData.certificates && (
             <section className="cv-section">
-              <h3 className="cv-section-title">VIII. CHỨNG CHỈ QUỐC TẾ & CHUYÊN MÔN</h3>
-              <div className="cv-awards-list">
+              <h3 className="cv-section-title">{t('resume_sec_8')}</h3>
+              <ul className="cv-bullet-list">
                 {portfolioData.certificates.map((cert, idx) => (
-                  <div key={idx} className="cv-award-card" style={{ borderLeft: '4px solid #003882' }}>
-                    <div className="cv-award-badge" style={{ background: '#d97706' }}>{cert.date}</div>
-                    <div className="cv-award-info">
-                      <h4>{cert.title}</h4>
-                      <p><strong>Cơ quan cấp:</strong> {cert.issuer}</p>
-                      <p style={{ marginTop: '0.2rem', color: '#475569' }}>{cert.description}</p>
-                    </div>
-                  </div>
+                  <li key={idx}>
+                    <strong>[{cert.date}] {getLocalized(cert, 'title')}</strong> ({getLocalized(cert, 'issuer')}) — <span>{getLocalized(cert, 'description')}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </section>
           )}
         </div>
@@ -236,13 +234,14 @@ export const ResumeModal = ({ isOpen, onClose }) => {
 
       <style>{`
         .resume-modal-container {
-          width: 100%;
-          max-width: 820px;
-          max-height: 90vh;
-          overflow-y: auto;
           position: relative;
-          padding: 2rem;
+          width: 100%;
+          max-width: 900px;
+          max-height: 92vh;
+          overflow-y: auto;
           background: #ffffff;
+          border-radius: 20px;
+          padding: 2.5rem;
           box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
 
@@ -250,264 +249,214 @@ export const ResumeModal = ({ isOpen, onClose }) => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 1.8rem;
+          margin-bottom: 2rem;
           padding-bottom: 1rem;
           border-bottom: 1px solid rgba(0, 56, 130, 0.1);
         }
 
         .resume-modal-actions {
           display: flex;
+          align-items: center;
           gap: 0.8rem;
         }
 
         .cv-document {
-          background: #ffffff;
-          border: 1px solid rgba(0, 56, 130, 0.12);
-          border-radius: var(--radius-md);
-          padding: 2.5rem;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+          color: #1e293b;
+          font-family: inherit;
         }
 
         .cv-header {
           display: flex;
           justify-content: space-between;
           align-items: flex-start;
-          gap: 1.5rem;
-          margin-bottom: 1.5rem;
+          gap: 2rem;
           flex-wrap: wrap;
         }
 
         .cv-name {
           font-size: 1.8rem;
+          font-weight: 800;
+          color: #003882;
           margin-bottom: 0.3rem;
-          color: var(--color-primary);
         }
 
         .cv-title {
           font-size: 1.05rem;
           font-weight: 700;
-          color: #0f172a;
+          color: #d97706;
           margin-bottom: 0.2rem;
         }
 
         .cv-org {
-          color: var(--text-muted);
-          font-size: 0.9rem;
+          font-size: 0.92rem;
+          color: #475569;
+          font-weight: 600;
+          margin-bottom: 0.4rem;
+        }
+
+        .cv-sub-info {
+          font-size: 0.85rem;
+          color: #64748b;
+        }
+
+        .cv-header-right {
+          display: flex;
+          flex-direction: column;
+          gap: 0.4rem;
+          font-size: 0.85rem;
+          color: #475569;
         }
 
         .cv-contact-item {
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          font-size: 0.85rem;
-          color: var(--text-muted);
-          font-family: var(--font-mono);
-          margin-bottom: 0.4rem;
         }
 
         .cv-divider {
           height: 2px;
           background: linear-gradient(90deg, #003882 0%, #d97706 100%);
-          margin-bottom: 1.8rem;
+          margin: 1.5rem 0;
+          border-radius: 2px;
         }
 
         .cv-section {
-          margin-bottom: 1.8rem;
+          margin-bottom: 2rem;
         }
 
         .cv-section-title {
-          font-size: 1.05rem;
-          color: var(--color-primary);
-          letter-spacing: 0.04em;
-          margin-bottom: 0.8rem;
-          font-family: var(--font-mono);
+          font-size: 1.1rem;
           font-weight: 800;
+          color: #003882;
+          border-bottom: 1px solid #cbd5e1;
+          padding-bottom: 0.4rem;
+          margin-bottom: 1rem;
+          text-transform: uppercase;
         }
 
         .cv-text {
-          color: var(--text-muted);
-          line-height: 1.6;
+          font-size: 0.95rem;
+          line-height: 1.65;
+          color: #334155;
           margin-bottom: 1rem;
-          font-size: 0.94rem;
-        }
-
-        .cv-competencies-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: 0.6rem;
-        }
-
-        .cv-comp-item {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          font-size: 0.9rem;
-          color: #0f172a;
-          font-weight: 500;
-        }
-
-        .cv-comp-icon {
-          color: var(--color-emerald);
-          flex-shrink: 0;
-        }
-
-        .cv-timeline-item {
-          display: grid;
-          grid-template-columns: 130px 1fr;
-          gap: 1rem;
-          margin-bottom: 1rem;
-        }
-
-        .cv-timeline-year {
-          font-family: var(--font-mono);
-          font-size: 0.85rem;
-          color: var(--color-primary);
-          font-weight: 700;
-        }
-
-        .cv-timeline-title {
-          font-size: 0.98rem;
-          margin-bottom: 0.2rem;
-          color: #0f172a;
-        }
-
-        .cv-timeline-org {
-          font-size: 0.85rem;
-          color: var(--color-accent);
-          font-weight: 600;
-          margin-bottom: 0.3rem;
-        }
-
-        .cv-timeline-desc {
-          font-size: 0.88rem;
-          color: var(--text-muted);
-        }
-
-        .cv-skills-chips {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.4rem;
-        }
-
-        .cv-skill-chip {
-          padding: 0.3rem 0.6rem;
-          background: rgba(0, 56, 130, 0.05);
-          border: 1px solid rgba(0, 56, 130, 0.12);
-          border-radius: var(--radius-sm);
-          font-size: 0.8rem;
-          color: var(--text-muted);
-          font-weight: 600;
-        }
-
-        .cv-sub-info {
-          font-size: 0.88rem;
-          color: #475569;
-          margin-top: 0.3rem;
         }
 
         .cv-research-box {
-          background: #f8fafc;
-          border: 1px solid #e2e8f0;
+          background: rgba(0, 56, 130, 0.04);
           border-left: 4px solid #003882;
-          border-radius: 8px;
-          padding: 1rem 1.2rem;
-          margin-bottom: 1rem;
+          padding: 1rem;
+          border-radius: 0 8px 8px 0;
+          margin-top: 0.8rem;
         }
 
         .cv-bullet-list {
           margin: 0;
           padding-left: 1.2rem;
-          color: #334155;
+          display: flex;
+          flex-direction: column;
+          gap: 0.4rem;
           font-size: 0.9rem;
-          line-height: 1.6;
+          color: #334155;
+        }
+
+        .cv-timeline {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .cv-timeline-item {
+          display: grid;
+          grid-template-columns: 100px 1fr;
+          gap: 1rem;
+        }
+
+        .cv-timeline-year {
+          font-family: var(--font-mono);
+          font-weight: 700;
+          font-size: 0.88rem;
+          color: #d97706;
+        }
+
+        .cv-timeline-title {
+          font-size: 0.98rem;
+          font-weight: 700;
+          color: #0f172a;
+
+        }
+
+        .cv-timeline-org {
+          font-size: 0.88rem;
+          font-weight: 600;
+          color: #003882;
+          margin-bottom: 0.2rem;
+        }
+
+        .cv-timeline-desc {
+          font-size: 0.88rem;
+          color: #64748b;
+          line-height: 1.5;
+        }
+
+        .cv-skills-chips {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.6rem;
+        }
+
+        .cv-skill-chip {
+          padding: 0.4rem 0.8rem;
+          border-radius: var(--radius-sm);
+          font-size: 0.85rem;
+          font-weight: 600;
+          border: 1px solid;
         }
 
         .cv-table-wrapper {
           overflow-x: auto;
-          margin-top: 0.5rem;
-          border: 1px solid #e2e8f0;
-          border-radius: 8px;
         }
 
         .cv-table {
           width: 100%;
           border-collapse: collapse;
           font-size: 0.88rem;
+        }
+
+        .cv-table th, .cv-table td {
+          padding: 0.65rem 0.8rem;
+          border: 1px solid #e2e8f0;
           text-align: left;
         }
 
         .cv-table th {
-          background: #f1f5f9;
-          color: #0f172a;
-          padding: 0.7rem 0.9rem;
-          font-weight: 700;
-          border-bottom: 2px solid #cbd5e1;
-        }
-
-        .cv-table td {
-          padding: 0.7rem 0.9rem;
-          border-bottom: 1px solid #e2e8f0;
-          color: #334155;
-          vertical-align: top;
-        }
-
-        .cv-table tr:last-child td {
-          border-bottom: none;
-        }
-
-        .cv-awards-list {
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-        }
-
-        .cv-award-card {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
           background: #f8fafc;
-          border: 1px solid #e2e8f0;
-          border-radius: 8px;
-          padding: 0.8rem 1rem;
-        }
-
-        .cv-award-badge {
-          background: #003882;
-          color: #ffffff;
-          font-size: 0.8rem;
-          font-weight: 700;
-          padding: 0.3rem 0.7rem;
-          border-radius: 20px;
-          white-space: nowrap;
-        }
-
-        .cv-award-info h4 {
-          font-size: 0.92rem;
-          color: #0f172a;
-          margin: 0 0 0.2rem 0;
+          color: #003882;
           font-weight: 700;
         }
 
-        .cv-award-info p {
-          font-size: 0.84rem;
-          color: #64748b;
-          margin: 0;
+        .cv-level-badge {
+          display: inline-block;
+          padding: 0.2rem 0.5rem;
+          background: #f1f5f9;
+          border-radius: 4px;
+          font-size: 0.78rem;
+          font-weight: 600;
+          color: #475569;
         }
 
         @media print {
-          body * {
-            visibility: hidden;
+          .resume-modal-bar {
+            display: none !important;
           }
-          .cv-document, .cv-document * {
-            visibility: visible;
+          .resume-modal-container {
+            max-width: 100% !important;
+            box-shadow: none !important;
+            padding: 0 !important;
           }
-          .cv-document {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            background: white;
-            color: black;
+          .modal-backdrop {
+            position: relative !important;
+            background: none !important;
+            padding: 0 !important;
           }
         }
       `}</style>

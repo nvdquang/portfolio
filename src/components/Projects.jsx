@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Layers, Github, ExternalLink, CheckCircle2, X, Sparkles, Code2 } from 'lucide-react';
-import { portfolioData } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Projects = () => {
-  const { projects } = portfolioData;
+  const { language, t, getLocalized, portfolioData } = useLanguage();
+  const { projects = [] } = portfolioData;
   const [filter, setFilter] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -19,11 +20,11 @@ export const Projects = () => {
         <div className="section-header">
           <div className="section-tag">
             <Layers size={14} />
-            <span>Sản phẩm & Đề tài</span>
+            <span>{t('projects_tag')}</span>
           </div>
-          <h2 className="section-title">Dự án & Nghiên cứu Nổi bật</h2>
+          <h2 className="section-title">{t('projects_title')}</h2>
           <p className="section-subtitle">
-            Các hệ thống phần mềm, giải pháp công nghệ và mô hình ứng dụng AI tiêu biểu được xây dựng thực tế.
+            {t('projects_subtitle')}
           </p>
         </div>
 
@@ -33,103 +34,113 @@ export const Projects = () => {
             className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
             onClick={() => setFilter('all')}
           >
-            Tất cả dự án
+            {t('projects_filter_all')}
           </button>
           <button
             className={`filter-btn ${filter === 'featured' ? 'active' : ''}`}
             onClick={() => setFilter('featured')}
           >
-            ⭐ Nổi bật
+            {t('projects_filter_featured')}
           </button>
           <button
             className={`filter-btn ${filter === 'software' ? 'active' : ''}`}
             onClick={() => setFilter('software')}
           >
-            Phần mềm & Web
+            {t('projects_filter_software')}
           </button>
           <button
             className={`filter-btn ${filter === 'ai' ? 'active' : ''}`}
             onClick={() => setFilter('ai')}
           >
-            Trí tuệ nhân tạo (AI)
+            {t('projects_filter_ai')}
           </button>
+
           <button
-            className={`filter-btn ${filter === 'academic' ? 'active' : ''}`}
-            onClick={() => setFilter('academic')}
+            className={`filter-btn ${filter === 'architecture' ? 'active' : ''}`}
+            onClick={() => setFilter('architecture')}
           >
-            Hệ thống Đào tạo LHU
+            {t('projects_filter_academic')}
           </button>
         </div>
 
         {/* Projects Grid */}
         <div className="projects-grid">
-          {filteredProjects.map((project) => (
-            <div key={project.id} className="project-card glass-card">
-              <div className="project-img-wrapper">
-                <img src={project.image} alt={project.title} className="project-img" />
-                <div className="project-img-overlay"></div>
-                {project.featured && (
-                  <span className="featured-badge">
-                    <Sparkles size={12} /> Nổi bật
-                  </span>
-                )}
-              </div>
+          {filteredProjects.map((project) => {
+            const projectTitle = getLocalized(project, 'title');
+            const projectDesc = getLocalized(project, 'description');
+            const projectTags = (language === 'en' && project.tagsEn && project.tagsEn.length) ? project.tagsEn : project.tags;
 
-              <div className="project-body">
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-desc">{project.description}</p>
-
-                <div className="project-tags">
-                  {project.tags.map((tag, idx) => (
-                    <span key={idx} className="badge">
-                      {tag}
+            return (
+              <div key={project.id} className="project-card glass-card">
+                <div className="project-img-wrapper">
+                  <img src={project.image} alt={projectTitle} className="project-img" />
+                  <div className="project-img-overlay"></div>
+                  {project.featured && (
+                    <span className="featured-badge">
+                      <Sparkles size={12} /> {t('projects_badge_featured')}
                     </span>
-                  ))}
+                  )}
                 </div>
 
-                <div className="project-actions">
-                  <button
-                    className="btn btn-secondary btn-sm"
-                    onClick={() => setSelectedProject(project)}
-                  >
-                    <Code2 size={15} />
-                    <span>Chi tiết</span>
-                  </button>
+                <div className="project-body">
+                  <h3 className="project-title">{projectTitle}</h3>
+                  <p className="project-desc">{projectDesc}</p>
 
-                  <div className="external-links">
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="icon-link-btn"
-                        title="Xem mã nguồn trên GitHub"
-                      >
-                        <Github size={18} />
-                      </a>
-                    )}
-                    {project.demoUrl && project.demoUrl !== '#' && (
-                      <a
-                        href={project.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="icon-link-btn"
-                        title="Trải nghiệm Demo"
-                      >
-                        <ExternalLink size={18} />
-                      </a>
-                    )}
+                  <div className="project-tags">
+                    {projectTags.map((tag, idx) => (
+                      <span key={idx} className="badge">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="project-actions">
+                    <button
+                      className="btn btn-secondary btn-sm"
+                      onClick={() => setSelectedProject(project)}
+                    >
+                      <Code2 size={15} />
+                      <span>{t('projects_btn_details')}</span>
+                    </button>
+
+                    <div className="external-links">
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="action-icon-btn"
+                          title={t('projects_modal_github')}
+                        >
+                          <Github size={16} />
+                        </a>
+                      )}
+                      {project.demoUrl && (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="action-icon-btn"
+                          title={t('projects_modal_demo')}
+                        >
+                          <ExternalLink size={16} />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Project Detail Modal */}
         {selectedProject && (
           <div className="modal-backdrop" onClick={() => setSelectedProject(null)}>
-            <div className="modal-content glass-card" onClick={(e) => e.stopPropagation()}>
+            <div
+              className="project-modal-container glass-card"
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
                 className="modal-close-btn"
                 onClick={() => setSelectedProject(null)}
@@ -138,56 +149,61 @@ export const Projects = () => {
               </button>
 
               <div className="modal-header">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="modal-cover-img"
-                />
+                <h3 className="modal-project-title">
+                  {getLocalized(selectedProject, 'title')}
+                </h3>
               </div>
 
               <div className="modal-body">
-                <h3 className="modal-title">{selectedProject.title}</h3>
-                <p className="modal-desc">{selectedProject.description}</p>
+                <img
+                  src={selectedProject.image}
+                  alt={getLocalized(selectedProject, 'title')}
+                  className="modal-img"
+                />
 
-                <div className="modal-section-title">
-                  <CheckCircle2 size={16} className="highlight-icon" /> Điểm nổi bật & Kết quả:
-                </div>
-                <ul className="modal-highlights">
-                  {selectedProject.highlights.map((h, i) => (
-                    <li key={i}>{h}</li>
-                  ))}
-                </ul>
+                <p className="modal-desc">
+                  {getLocalized(selectedProject, 'description')}
+                </p>
 
-                <div className="modal-tags">
-                  {selectedProject.tags.map((tag, i) => (
-                    <span key={i} className="badge">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                {/* Highlights List */}
+                {((language === 'en' && selectedProject.highlightsEn) || selectedProject.highlights) && (
+                  <div className="modal-highlights">
+                    <h4>{t('projects_modal_highlights')}</h4>
+                    <ul>
+                      {((language === 'en' && selectedProject.highlightsEn) ? selectedProject.highlightsEn : selectedProject.highlights).map((item, idx) => (
+                        <li key={idx}>
+                          <CheckCircle2 size={16} className="highlight-icon" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
 
-                <div className="modal-actions">
+              <div className="modal-footer">
+                {selectedProject.githubUrl && (
                   <a
                     href={selectedProject.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-primary"
+                    className="btn btn-secondary btn-sm"
                   >
-                    <Github size={18} />
-                    <span>Mã nguồn trên GitHub</span>
+                    <Github size={16} />
+                    <span>{t('projects_modal_github')}</span>
                   </a>
-                  {selectedProject.demoUrl && selectedProject.demoUrl !== '#' && (
-                    <a
-                      href={selectedProject.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-secondary"
-                    >
-                      <ExternalLink size={18} />
-                      <span>Truy cập hệ thống</span>
-                    </a>
-                  )}
-                </div>
+                )}
+                {selectedProject.demoUrl && (
+                  <a
+                    href={selectedProject.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary btn-sm"
+                  >
+                    <ExternalLink size={16} />
+                    <span>{t('projects_modal_demo')}</span>
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -196,40 +212,40 @@ export const Projects = () => {
 
       <style>{`
         .bg-alt-section {
-          background-color: var(--bg-section-alt);
+          background: rgba(248, 250, 252, 0.6);
         }
 
         .project-filters {
           display: flex;
+          align-items: center;
           justify-content: center;
-          flex-wrap: wrap;
-          gap: 0.7rem;
+          gap: 0.8rem;
           margin-bottom: 3rem;
+          flex-wrap: wrap;
         }
 
         .filter-btn {
-          padding: 0.5rem 1.2rem;
+          padding: 0.6rem 1.3rem;
           border-radius: var(--radius-full);
-          background: #ffffff;
-          border: 1px solid rgba(0, 56, 130, 0.15);
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
-          color: var(--text-muted);
-          font-size: 0.88rem;
+          background: rgba(0, 56, 130, 0.04);
+          border: 1px solid rgba(0, 56, 130, 0.12);
+          color: #475569;
           font-weight: 600;
+          font-size: 0.88rem;
           cursor: pointer;
           transition: var(--transition-smooth);
         }
 
         .filter-btn:hover {
           color: var(--color-primary);
-          border-color: rgba(0, 56, 130, 0.3);
+          background: rgba(0, 56, 130, 0.08);
         }
 
         .filter-btn.active {
-          background: rgba(0, 56, 130, 0.08);
-          border-color: rgba(0, 56, 130, 0.4);
-          color: var(--color-primary);
-          font-weight: 700;
+          background: var(--color-primary);
+          color: #ffffff;
+          border-color: var(--color-primary);
+          box-shadow: 0 4px 12px rgba(0, 56, 130, 0.2);
         }
 
         .projects-grid {
@@ -239,16 +255,24 @@ export const Projects = () => {
         }
 
         .project-card {
+          border-radius: var(--radius-lg);
           overflow: hidden;
-          display: flex;
-          flex-direction: column;
           background: #ffffff;
           border: 1px solid rgba(0, 56, 130, 0.1);
+          transition: var(--transition-smooth);
+          display: flex;
+          flex-direction: column;
+        }
+
+        .project-card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 16px 36px rgba(0, 56, 130, 0.12);
         }
 
         .project-img-wrapper {
           position: relative;
-          height: 190px;
+          width: 100%;
+          height: 200px;
           overflow: hidden;
         }
 
@@ -266,56 +290,62 @@ export const Projects = () => {
         .project-img-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, rgba(0, 56, 130, 0) 40%, rgba(0, 44, 108, 0.4) 100%);
+          background: linear-gradient(180deg, transparent 50%, rgba(15, 23, 42, 0.4) 100%);
         }
 
         .featured-badge {
           position: absolute;
           top: 1rem;
           right: 1rem;
-          display: flex;
-          align-items: center;
-          gap: 0.3rem;
-          padding: 0.3rem 0.7rem;
+          padding: 0.35rem 0.8rem;
           border-radius: var(--radius-full);
           background: rgba(217, 119, 6, 0.9);
+          backdrop-filter: blur(8px);
           color: #ffffff;
           font-size: 0.75rem;
           font-weight: 700;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
         }
 
         .project-body {
-          padding: 1.5rem;
+          padding: 1.6rem;
           display: flex;
           flex-direction: column;
-          flex-grow: 1;
+          flex: 1;
         }
 
         .project-title {
-          font-size: 1.2rem;
+          font-size: 1.15rem;
+          font-weight: 800;
+          color: #0f172a;
           margin-bottom: 0.6rem;
           line-height: 1.35;
-          color: #0f172a;
         }
 
         .project-desc {
-          color: var(--text-muted);
-          font-size: 0.92rem;
-          margin-bottom: 1.2rem;
+          font-size: 0.9rem;
+          color: #64748b;
           line-height: 1.6;
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
+          margin-bottom: 1.2rem;
+          flex: 1;
         }
 
         .project-tags {
           display: flex;
           flex-wrap: wrap;
           gap: 0.4rem;
-          margin-bottom: 1.5rem;
-          margin-top: auto;
+          margin-bottom: 1.4rem;
+        }
+
+        .badge {
+          padding: 0.25rem 0.6rem;
+          border-radius: var(--radius-sm);
+          background: rgba(0, 56, 130, 0.05);
+          color: var(--color-primary);
+          font-size: 0.76rem;
+          font-weight: 600;
         }
 
         .project-actions {
@@ -326,152 +356,132 @@ export const Projects = () => {
           border-top: 1px solid rgba(0, 56, 130, 0.08);
         }
 
-        .btn-sm {
-          padding: 0.45rem 0.9rem;
-          font-size: 0.85rem;
-        }
-
         .external-links {
           display: flex;
           align-items: center;
-          gap: 0.6rem;
+          gap: 0.5rem;
         }
 
-        .icon-link-btn {
-          width: 36px;
-          height: 36px;
-          border-radius: var(--radius-md);
-          background: rgba(0, 56, 130, 0.04);
-          border: 1px solid rgba(0, 56, 130, 0.12);
+        .action-icon-btn {
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          background: rgba(0, 56, 130, 0.05);
           display: flex;
           align-items: center;
           justify-content: center;
-          color: var(--text-muted);
-          transition: var(--transition-smooth);
-          text-decoration: none;
-        }
-
-        .icon-link-btn:hover {
           color: var(--color-primary);
-          background: rgba(0, 56, 130, 0.08);
-          border-color: rgba(0, 56, 130, 0.25);
+          text-decoration: none;
+          transition: var(--transition-smooth);
         }
 
-        /* Modal styling */
+        .action-icon-btn:hover {
+          background: var(--color-primary);
+          color: #ffffff;
+        }
+
         .modal-backdrop {
           position: fixed;
           inset: 0;
-          z-index: 1000;
-          background: rgba(15, 23, 42, 0.65);
-          backdrop-filter: blur(8px);
+          background: rgba(15, 23, 42, 0.6);
+          backdrop-filter: blur(6px);
+          z-index: 200;
           display: flex;
           align-items: center;
           justify-content: center;
           padding: 1.5rem;
         }
 
-        .modal-content {
+        .project-modal-container {
+          position: relative;
           width: 100%;
-          max-width: 650px;
+          max-width: 680px;
           max-height: 90vh;
           overflow-y: auto;
-          position: relative;
-          padding: 0;
           background: #ffffff;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+          border-radius: 20px;
+          padding: 2rem;
+          box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
         }
 
         .modal-close-btn {
           position: absolute;
-          top: 1rem;
-          right: 1rem;
-          z-index: 10;
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          background: #ffffff;
-          border: 1px solid rgba(0, 0, 0, 0.15);
-          color: #0f172a;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          top: 1.2rem;
+          right: 1.2rem;
+          background: none;
+          border: none;
+          color: #64748b;
           cursor: pointer;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          padding: 0.4rem;
+          border-radius: 50%;
+          transition: var(--transition-smooth);
         }
 
-        .modal-cover-img {
-          width: 100%;
-          height: 220px;
-          object-fit: cover;
-        }
-
-        .modal-body {
-          padding: 2rem;
-        }
-
-        .modal-title {
-          font-size: 1.5rem;
-          margin-bottom: 0.8rem;
+        .modal-close-btn:hover {
+          background: rgba(0, 0, 0, 0.05);
           color: #0f172a;
+        }
+
+        .modal-project-title {
+          font-size: 1.4rem;
+          font-weight: 800;
+          color: #0f172a;
+          margin-bottom: 1.2rem;
+          padding-right: 2.5rem;
+        }
+
+        .modal-img {
+          width: 100%;
+          height: 260px;
+          object-fit: cover;
+          border-radius: var(--radius-md);
+          margin-bottom: 1.2rem;
         }
 
         .modal-desc {
-          color: var(--text-muted);
+          font-size: 0.95rem;
+          color: #475569;
           line-height: 1.7;
           margin-bottom: 1.5rem;
         }
 
-        .modal-section-title {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
+        .modal-highlights h4 {
+          font-size: 1.05rem;
           font-weight: 700;
-          color: var(--color-primary);
+          color: #0f172a;
           margin-bottom: 0.8rem;
+        }
+
+        .modal-highlights ul {
+          list-style: none;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 0.6rem;
+        }
+
+        .modal-highlights li {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.6rem;
+          font-size: 0.9rem;
+          color: #334155;
         }
 
         .highlight-icon {
           color: var(--color-primary);
+          flex-shrink: 0;
+          margin-top: 0.15rem;
         }
 
-        .modal-highlights {
-          list-style: none;
-          margin-bottom: 1.5rem;
-        }
-
-        .modal-highlights li {
-          position: relative;
-          padding-left: 1.4rem;
-          margin-bottom: 0.5rem;
-          color: var(--text-main);
-          font-size: 0.95rem;
-        }
-
-        .modal-highlights li::before {
-          content: "▹";
-          position: absolute;
-          left: 0;
-          color: var(--color-primary);
-          font-weight: bold;
-        }
-
-        .modal-tags {
+        .modal-footer {
           display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-          margin-bottom: 2rem;
-        }
-
-        .modal-actions {
-          display: flex;
+          align-items: center;
+          justify-content: flex-end;
           gap: 1rem;
-          flex-wrap: wrap;
-        }
-
-        @media (max-width: 600px) {
-          .projects-grid {
-            grid-template-columns: 1fr;
-          }
+          margin-top: 1.8rem;
+          padding-top: 1.2rem;
+          border-top: 1px solid rgba(0, 0, 0, 0.08);
         }
       `}</style>
     </section>

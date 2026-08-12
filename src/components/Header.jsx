@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Code2, Sparkles, FileText, Send, Layers, User, ShieldCheck } from 'lucide-react';
+import { Menu, X, Code2, Sparkles, FileText, Send, Layers, ShieldCheck, Globe } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Header = ({ onOpenResume, onOpenDashboard }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, setLanguage, toggleLanguage, t, getLocalized, portfolioData } = useLanguage();
+  const { personalInfo } = portfolioData;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,25 +21,15 @@ export const Header = ({ onOpenResume, onOpenDashboard }) => {
   }, []);
 
   const navLinks = [
-    { name: 'Giới thiệu', href: '#hero', icon: User },
-    { name: 'Kỹ năng', href: '#skills', icon: Sparkles },
-    { name: 'Dự án', href: '#projects', icon: Layers },
-    { name: 'Lộ trình', href: '#timeline', icon: Code2 },
-    { name: 'Liên hệ', href: '#contact', icon: Send }
+    { name: t('nav_skills'), href: '#skills', icon: Sparkles },
+    { name: t('nav_projects'), href: '#projects', icon: Layers },
+    { name: t('nav_timeline'), href: '#timeline', icon: Code2 },
+    { name: t('nav_contact'), href: '#contact', icon: Send }
   ];
 
   return (
     <header className={`header ${scrolled ? 'header-scrolled' : ''}`}>
       <div className="container header-container">
-        <a href="#hero" className="logo">
-          <div className="logo-icon">
-            <Code2 size={22} className="logo-svg" />
-          </div>
-          <div className="logo-text">
-            <span className="logo-name">Nguyễn Vũ Duy Quang</span>
-            <span className="logo-badge">Thạc sĩ • ĐH Lạc Hồng</span>
-          </div>
-        </a>
 
         {/* Desktop Nav */}
         <nav className="desktop-nav">
@@ -50,14 +43,34 @@ export const Header = ({ onOpenResume, onOpenDashboard }) => {
             );
           })}
 
+          {/* Language Selector Toggle */}
+          <div className="lang-switcher-pill" title="Chuyển đổi ngôn ngữ / Switch Language">
+            <button
+              className={`lang-btn ${language === 'vi' ? 'active' : ''}`}
+              onClick={() => setLanguage('vi')}
+              aria-label="Tiếng Việt"
+            >
+              <span className="flag-icon">🇻🇳</span>
+              <span className="lang-label">VI</span>
+            </button>
+            <button
+              className={`lang-btn ${language === 'en' ? 'active' : ''}`}
+              onClick={() => setLanguage('en')}
+              aria-label="English"
+            >
+              <span className="flag-icon">🇬🇧</span>
+              <span className="lang-label">EN</span>
+            </button>
+          </div>
+
           <button onClick={onOpenResume} className="btn btn-secondary resume-btn">
             <FileText size={16} />
-            <span>Hồ sơ CV</span>
+            <span>{t('btn_cv')}</span>
           </button>
 
           <button onClick={onOpenDashboard} className="btn btn-primary dash-nav-btn">
             <ShieldCheck size={16} />
-            <span>Dashboard</span>
+            <span>{t('btn_dashboard')}</span>
           </button>
         </nav>
 
@@ -74,6 +87,26 @@ export const Header = ({ onOpenResume, onOpenDashboard }) => {
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
         <div className="mobile-drawer">
+          <div className="mobile-lang-row">
+            <span className="mobile-lang-label">
+              <Globe size={16} /> Ngôn ngữ / Language:
+            </span>
+            <div className="lang-switcher-pill">
+              <button
+                className={`lang-btn ${language === 'vi' ? 'active' : ''}`}
+                onClick={() => setLanguage('vi')}
+              >
+                <span className="flag-icon">🇻🇳</span> VI
+              </button>
+              <button
+                className={`lang-btn ${language === 'en' ? 'active' : ''}`}
+                onClick={() => setLanguage('en')}
+              >
+                <span className="flag-icon">🇬🇧</span> EN
+              </button>
+            </div>
+          </div>
+
           {navLinks.map((link) => {
             const Icon = link.icon;
             return (
@@ -96,7 +129,7 @@ export const Header = ({ onOpenResume, onOpenDashboard }) => {
             className="btn btn-secondary mobile-cv-btn"
           >
             <FileText size={18} />
-            <span>Xem Hồ sơ CV (PDF)</span>
+            <span>{t('btn_cv_mobile')}</span>
           </button>
           <button
             onClick={() => {
@@ -106,7 +139,7 @@ export const Header = ({ onOpenResume, onOpenDashboard }) => {
             className="btn btn-primary mobile-cv-btn"
           >
             <ShieldCheck size={18} />
-            <span>Quản trị Dashboard</span>
+            <span>{t('btn_dashboard_admin')}</span>
           </button>
         </div>
       )}
@@ -134,7 +167,7 @@ export const Header = ({ onOpenResume, onOpenDashboard }) => {
         .header-container {
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: flex-end;
         }
 
         .logo {
@@ -179,7 +212,7 @@ export const Header = ({ onOpenResume, onOpenDashboard }) => {
         .desktop-nav {
           display: flex;
           align-items: center;
-          gap: 1.4rem;
+          gap: 1rem;
         }
 
         .nav-link {
@@ -198,6 +231,47 @@ export const Header = ({ onOpenResume, onOpenDashboard }) => {
         .nav-link:hover {
           color: var(--color-primary);
           background: rgba(0, 56, 130, 0.06);
+        }
+
+        .lang-switcher-pill {
+          display: flex;
+          align-items: center;
+          background: rgba(0, 56, 130, 0.06);
+          border: 1px solid rgba(0, 56, 130, 0.15);
+          border-radius: var(--radius-full);
+          padding: 3px;
+          gap: 2px;
+        }
+
+        .lang-btn {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          border: none;
+          background: transparent;
+          padding: 4px 10px;
+          border-radius: var(--radius-full);
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: #64748b;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .lang-btn.active {
+          background: var(--color-primary);
+          color: #ffffff;
+          box-shadow: 0 2px 8px rgba(0, 56, 130, 0.25);
+        }
+
+        .lang-btn:hover:not(.active) {
+          color: var(--color-primary);
+          background: rgba(0, 56, 130, 0.1);
+        }
+
+        .flag-icon {
+          font-size: 0.95rem;
+          line-height: 1;
         }
 
         .resume-btn {
@@ -228,6 +302,24 @@ export const Header = ({ onOpenResume, onOpenDashboard }) => {
           backdrop-filter: blur(20px);
           border-bottom: 1px solid var(--glass-border);
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-lang-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-bottom: 0.75rem;
+          border-bottom: 1px solid rgba(0, 56, 130, 0.08);
+          margin-bottom: 0.2rem;
+        }
+
+        .mobile-lang-label {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-size: 0.88rem;
+          font-weight: 600;
+          color: var(--color-primary);
         }
 
         .mobile-nav-link {

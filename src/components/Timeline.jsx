@@ -1,9 +1,10 @@
 import React from 'react';
 import { Briefcase, GraduationCap, Clock, Calendar } from 'lucide-react';
-import { portfolioData } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Timeline = () => {
-  const { timeline } = portfolioData;
+  const { language, t, getLocalized, portfolioData } = useLanguage();
+  const { timeline = [] } = portfolioData;
 
   return (
     <section id="timeline" className="section">
@@ -11,11 +12,11 @@ export const Timeline = () => {
         <div className="section-header">
           <div className="section-tag">
             <Clock size={14} />
-            <span>Hành trình sự nghiệp</span>
+            <span>{t('timeline_tag')}</span>
           </div>
-          <h2 className="section-title">Quá trình Đào tạo & Kinh nghiệm</h2>
+          <h2 className="section-title">{t('timeline_title')}</h2>
           <p className="section-subtitle">
-            Cột mốc quá trình học tập nâng cao trình độ chuyên môn Thạc sĩ và quá trình công tác tại Đại học Lạc Hồng.
+            {t('timeline_subtitle')}
           </p>
         </div>
 
@@ -35,16 +36,16 @@ export const Timeline = () => {
                 <div className="timeline-content glass-card">
                   <div className="timeline-header">
                     <span className="timeline-year">
-                      <Calendar size={13} /> {item.year}
+                      <Calendar size={13} /> {getLocalized(item, 'year')}
                     </span>
                     <span className={`badge ${isWork ? 'badge-work' : 'badge-edu'}`}>
-                      {isWork ? 'Công tác & Giảng dạy' : 'Đào tạo học vị'}
+                      {isWork ? t('timeline_badge_work') : t('timeline_badge_edu')}
                     </span>
                   </div>
 
-                  <h3 className="timeline-item-title">{item.title}</h3>
-                  <h4 className="timeline-org">{item.organization}</h4>
-                  <p className="timeline-desc">{item.description}</p>
+                  <h3 className="timeline-item-title">{getLocalized(item, 'title')}</h3>
+                  <h4 className="timeline-org">{getLocalized(item, 'organization')}</h4>
+                  <p className="timeline-desc">{getLocalized(item, 'description')}</p>
                 </div>
               </div>
             );
@@ -104,8 +105,6 @@ export const Timeline = () => {
           align-items: center;
           justify-content: space-between;
           margin-bottom: 0.8rem;
-          flex-wrap: wrap;
-          gap: 0.6rem;
         }
 
         .timeline-year {
@@ -113,53 +112,52 @@ export const Timeline = () => {
           align-items: center;
           gap: 0.4rem;
           font-family: var(--font-mono);
-          font-size: 0.85rem;
-          color: var(--color-primary);
           font-weight: 700;
+          font-size: 0.88rem;
+          color: var(--color-primary);
         }
 
         .badge-work {
           background: rgba(0, 56, 130, 0.08);
           color: var(--color-primary);
-          border-color: rgba(0, 56, 130, 0.2);
         }
 
         .badge-edu {
-          background: rgba(217, 119, 6, 0.1);
+          background: rgba(217, 119, 6, 0.12);
           color: var(--color-accent);
-          border-color: rgba(217, 119, 6, 0.25);
         }
 
         .timeline-item-title {
-          font-size: 1.25rem;
-          margin-bottom: 0.3rem;
+          font-size: 1.15rem;
+          font-weight: 800;
           color: #0f172a;
+          margin-bottom: 0.3rem;
         }
 
         .timeline-org {
-          color: var(--color-primary);
-          font-size: 0.95rem;
-          font-weight: 600;
+          font-size: 0.9rem;
+          font-weight: 700;
+          color: var(--color-accent);
           margin-bottom: 0.8rem;
         }
 
         .timeline-desc {
-          color: var(--text-muted);
-          font-size: 0.94rem;
+          font-size: 0.92rem;
+          color: #64748b;
           line-height: 1.65;
         }
 
-        @media (max-width: 600px) {
-          .timeline-item {
-            padding-left: 55px;
-          }
+        @media (max-width: 640px) {
           .timeline-line {
-            left: 20px;
+            left: 18px;
           }
           .timeline-dot {
             left: 0;
             width: 36px;
             height: 36px;
+          }
+          .timeline-item {
+            padding-left: 52px;
           }
         }
       `}</style>
