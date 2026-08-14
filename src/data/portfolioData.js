@@ -25,25 +25,85 @@ export const initialPortfolioData = {
     "bioLongEn": "I am Nguyen Vu Duy Quang, Master of Computer Science (graduated from University of Information Technology - VNU-HCM). I have over 15 years of experience at Faculty of Information Technology - Lac Hong University (LHU), having served as Head of Computer Networks & Data Administration Department and R&D Manager. I have led and participated in 11 provincial and university-level research projects, served as Lead Developer & Network Infrastructure Engineer for Outpatient Healthcare Systems at Dong Nai General Hospital, ITO Hospital, and Maternal & Child Health Care Center. I am honored to receive the Cisco Instructor Excellence Advanced Level Award and participated in ABET (USA) and AUN-QA international accreditation programs.",
     "avatarUrl": "/QuangNVD.jpg",
     "stats": [
-      { "label": "Đề tài NCKH", "labelEn": "R&D Projects", "value": "11 Đề tài", "valueEn": "11 Projects" },
-      { "label": "Bài báo & Tạp chí", "labelEn": "Publications & Journals", "value": "5+", "valueEn": "5+" },
-      { "label": "Kiểm định Quốc tế", "labelEn": "Intl Accreditation", "value": "ABET & AUN-QA", "valueEn": "ABET & AUN-QA" },
-      { "label": "Chứng chỉ & Giải thưởng", "labelEn": "Certificates & Awards", "value": "6+ Quốc tế & Tỉnh", "valueEn": "6+ Intl & Provincial" }
+      {
+        "label": "Đề tài NCKH",
+        "labelEn": "R&D Projects",
+        "value": "11 Đề tài",
+        "valueEn": "11 Projects"
+      },
+      {
+        "label": "Bài báo & Tạp chí",
+        "labelEn": "Publications & Journals",
+        "value": "5+",
+        "valueEn": "5+"
+      },
+      {
+        "label": "Kiểm định Quốc tế",
+        "labelEn": "Intl Accreditation",
+        "value": "ABET & AUN-QA",
+        "valueEn": "ABET & AUN-QA"
+      },
+      {
+        "label": "Chứng chỉ & Giải thưởng",
+        "labelEn": "Certificates & Awards",
+        "value": "6+ Quốc tế & Tỉnh",
+        "valueEn": "6+ Intl & Provincial"
+      }
     ]
   },
   "skillCategories": [
-    { "id": "all", "name": "Tất cả kỹ năng", "nameEn": "All Skills" },
-    { "id": "software", "name": "Mạng & Bảo mật", "nameEn": "Network & Security" },
-    { "id": "ai", "name": "AI & Y tế", "nameEn": "AI & Healthcare" },
-    { "id": "architecture", "name": "IoT & Hạ tầng", "nameEn": "IoT & Infrastructure" },
-    { "id": "academic", "name": "Giảng dạy & NCKH", "nameEn": "Teaching & R&D" }
+    {
+      "id": "all",
+      "name": "Tất cả kỹ năng",
+      "nameEn": "All Skills"
+    },
+    {
+      "id": "software",
+      "name": "Mạng & Bảo mật",
+      "nameEn": "Network & Security"
+    },
+    {
+      "id": "ai",
+      "name": "AI & Y tế",
+      "nameEn": "AI & Healthcare"
+    },
+    {
+      "id": "architecture",
+      "name": "IoT & Hạ tầng",
+      "nameEn": "IoT & Infrastructure"
+    },
+    {
+      "id": "academic",
+      "name": "Giảng dạy & NCKH",
+      "nameEn": "Teaching & R&D"
+    }
   ],
   "projectCategories": [
-    { "id": "all", "name": "Tất cả", "nameEn": "All Projects" },
-    { "id": "featured", "name": "⭐ Nổi bật", "nameEn": "⭐ Featured" },
-    { "id": "software", "name": "Phần mềm & Y tế (HIS)", "nameEn": "Healthcare & Software (HIS)" },
-    { "id": "ai", "name": "AI & Y tế Quốc tế", "nameEn": "AI & Intl Healthcare" },
-    { "id": "architecture", "name": "Mạng & Hạ tầng SDN", "nameEn": "Networking & SDN" }
+    {
+      "id": "all",
+      "name": "Tất cả",
+      "nameEn": "All Projects"
+    },
+    {
+      "id": "featured",
+      "name": "⭐ Nổi bật",
+      "nameEn": "⭐ Featured"
+    },
+    {
+      "id": "software",
+      "name": "Phần mềm & Y tế (HIS)",
+      "nameEn": "Healthcare & Software (HIS)"
+    },
+    {
+      "id": "ai",
+      "name": "AI & Y tế Quốc tế",
+      "nameEn": "AI & Intl Healthcare"
+    },
+    {
+      "id": "architecture",
+      "name": "Mạng & Hạ tầng SDN",
+      "nameEn": "Networking & SDN"
+    }
   ],
   "researchFields": [
     "Mạng máy tính và Bảo mật (Network Architecture, Cisco CCNA, MCSA/MCSE, SDN, CSRF & Cybersecurity)",
@@ -265,12 +325,48 @@ export const initialPortfolioData = {
     }
   ],
   "skills": [
-    { "name": "Mạng máy tính & Bảo mật (Cisco CCNA, MCSA/MCSE, IPv6, SDN, CSRF)", "nameEn": "Computer Networks & Security (Cisco CCNA, MCSA/MCSE, IPv6, SDN, CSRF)", "level": 95, "category": "software", "icon": "Shield" },
-    { "name": "Trí tuệ Nhân tạo & Y tế (AI, CDSS, Neural Networks, Prompt Injection Defense)", "nameEn": "Artificial Intelligence & Healthcare (AI, CDSS, Neural Networks, Prompt Injection Defense)", "level": 92, "category": "ai", "icon": "Brain" },
-    { "name": "Lập trình C/C++, VB.NET & SQL Server", "nameEn": "C/C++, VB.NET & SQL Server Programming", "level": 92, "category": "software", "icon": "Code" },
-    { "name": "Lập trình IoT & Thiết bị Định vị", "nameEn": "IoT & GPS Positioning Systems", "level": 90, "category": "architecture", "icon": "Cpu" },
-    { "name": "Giảng dạy Chuyên ngành (CCNA, MCSA, SQL Server, C/C++)", "nameEn": "Specialized Higher Education Teaching (CCNA, MCSA, SQL Server, C/C++)", "level": 95, "category": "academic", "icon": "BookOpen" },
-    { "name": "Kiểm định Chất lượng Giáo dục (ABET, AUN-QA)", "nameEn": "Higher Education Quality Accreditation (ABET, AUN-QA)", "level": 95, "category": "academic", "icon": "Award" }
+    {
+      "name": "Mạng máy tính & Bảo mật (Cisco CCNA, MCSA/MCSE, IPv6, SDN, CSRF)",
+      "nameEn": "Computer Networks & Security (Cisco CCNA, MCSA/MCSE, IPv6, SDN, CSRF)",
+      "level": 95,
+      "category": "software",
+      "icon": "Shield"
+    },
+    {
+      "name": "Trí tuệ Nhân tạo & Y tế (AI, CDSS, Neural Networks, Prompt Injection Defense)",
+      "nameEn": "Artificial Intelligence & Healthcare (AI, CDSS, Neural Networks, Prompt Injection Defense)",
+      "level": 92,
+      "category": "ai",
+      "icon": "Brain"
+    },
+    {
+      "name": "Lập trình C/C++, VB.NET & SQL Server",
+      "nameEn": "C/C++, VB.NET & SQL Server Programming",
+      "level": 92,
+      "category": "software",
+      "icon": "Code"
+    },
+    {
+      "name": "Lập trình IoT & Thiết bị Định vị",
+      "nameEn": "IoT & GPS Positioning Systems",
+      "level": 90,
+      "category": "architecture",
+      "icon": "Cpu"
+    },
+    {
+      "name": "Giảng dạy Chuyên ngành (CCNA, MCSA, SQL Server, C/C++)",
+      "nameEn": "Specialized Higher Education Teaching (CCNA, MCSA, SQL Server, C/C++)",
+      "level": 95,
+      "category": "academic",
+      "icon": "BookOpen"
+    },
+    {
+      "name": "Kiểm định Chất lượng Giáo dục (ABET, AUN-QA)",
+      "nameEn": "Higher Education Quality Accreditation (ABET, AUN-QA)",
+      "level": 100,
+      "category": "academic",
+      "icon": "Award"
+    }
   ],
   "projects": [
     {
@@ -280,8 +376,22 @@ export const initialPortfolioData = {
       "description": "Lập trình viên chính thiết kế, xây dựng ứng dụng Khám chữa bệnh ngoại trú và thiết kế hệ thống mạng tại Bệnh viện Đa khoa Đồng Nai (2009). Dự án được mở rộng triển khai thành công tại Bệnh viện ITO và Trung tâm CSKH Bà mẹ & Trẻ em (2012).",
       "descriptionEn": "Lead developer designing, building outpatient clinic management software and network infrastructure at Dong Nai General Hospital (2009). Successfully scaled to ITO Hospital and Dong Nai Maternal & Child Healthcare Center (2012).",
       "category": "software",
-      "tags": ["Y tế (HIS)", "SQL Server", "VB.NET", "Hạ tầng Mạng", "BV ĐK Đồng Nai", "BV ITO"],
-      "tagsEn": ["Healthcare (HIS)", "SQL Server", "VB.NET", "Network Infrastructure", "Dong Nai Hospital", "ITO Hospital"],
+      "tags": [
+        "Y tế (HIS)",
+        "SQL Server",
+        "VB.NET",
+        "Hạ tầng Mạng",
+        "BV ĐK Đồng Nai",
+        "BV ITO"
+      ],
+      "tagsEn": [
+        "Healthcare (HIS)",
+        "SQL Server",
+        "VB.NET",
+        "Network Infrastructure",
+        "Dong Nai Hospital",
+        "ITO Hospital"
+      ],
       "githubUrl": "https://github.com/nvdquang",
       "demoUrl": "https://lhu.edu.vn",
       "featured": true,
@@ -304,8 +414,20 @@ export const initialPortfolioData = {
       "description": "Dự án NCKH quốc tế thuộc Chương trình Cintana Research hợp tác cùng Đại học Indonesia: Design and Construction of a Web-Based Clinical Decision Support System Prototype Using Molecular Network Visualization for Drug Interaction Detection. Đã xây dựng & triển khai trực tuyến.",
       "descriptionEn": "International R&D project under Cintana Research Program in collaboration with Universitas Indonesia: Design and Construction of a Web-Based Clinical Decision Support System Prototype Using Molecular Network Visualization for Drug Interaction Detection. Officially deployed online.",
       "category": "ai",
-      "tags": ["Cintana Research", "Indonesia", "AI/ML", "Drug Interaction", "Molecular Network"],
-      "tagsEn": ["Cintana Research", "Indonesia", "AI/ML", "Drug Interaction", "Molecular Network"],
+      "tags": [
+        "Cintana Research",
+        "Indonesia",
+        "AI/ML",
+        "Drug Interaction",
+        "Molecular Network"
+      ],
+      "tagsEn": [
+        "Cintana Research",
+        "Indonesia",
+        "AI/ML",
+        "Drug Interaction",
+        "Molecular Network"
+      ],
       "githubUrl": "https://github.com/nvdquang",
       "demoUrl": "http://cdss.cloud",
       "featured": true,
@@ -328,8 +450,20 @@ export const initialPortfolioData = {
       "description": "Đề tài NCKH cấp Tỉnh (Chủ nhiệm, 2022) và Đạt Giải Ba Cuộc thi Đổi mới sáng tạo ngành Thuỷ sản Tỉnh Bà Rịa - Vũng Tàu (2022). Giúp giám sát vị trí thuyền viên và hỗ trợ cứu nạn khẩn cấp trên biển.",
       "descriptionEn": "Provincial R&D Project (Principal Investigator, 2022) & 3rd Prize Winner in Ba Ria - Vung Tau Fisheries Innovation Contest (2022). Enables real-time vessel monitoring and emergency SOS rescue assistance at sea.",
       "category": "ai",
-      "tags": ["IoT", "GPS", "Định vị", "Bảo mật", "Cấp Tỉnh"],
-      "tagsEn": ["IoT", "GPS", "Positioning", "Security", "Provincial Level"],
+      "tags": [
+        "IoT",
+        "GPS",
+        "Định vị",
+        "Bảo mật",
+        "Cấp Tỉnh"
+      ],
+      "tagsEn": [
+        "IoT",
+        "GPS",
+        "Positioning",
+        "Security",
+        "Provincial Level"
+      ],
       "githubUrl": "https://github.com/nvdquang",
       "demoUrl": "https://lhu.edu.vn",
       "featured": true,
@@ -352,8 +486,18 @@ export const initialPortfolioData = {
       "description": "Đề tài NCKH cấp Tỉnh (Chủ nhiệm, 2022) & Đạt Giải Khuyến khích Cuộc thi Phát huy sáng kiến, sáng tạo lao động tỉnh Đồng Nai (2020). Tự động hóa quá trình tạo đề thi trắc nghiệm phục vụ giảng dạy E-Learning.",
       "descriptionEn": "Provincial R&D Project (Principal Investigator, 2022) & Incentive Award in Dong Nai Innovation Competition (2020). Automates quiz creation for E-Learning courses.",
       "category": "software",
-      "tags": ["E-Learning", "Tự động hóa", "Cấp Tỉnh", "Đồng Nai"],
-      "tagsEn": ["E-Learning", "Automation", "Provincial Level", "Dong Nai"],
+      "tags": [
+        "E-Learning",
+        "Tự động hóa",
+        "Cấp Tỉnh",
+        "Đồng Nai"
+      ],
+      "tagsEn": [
+        "E-Learning",
+        "Automation",
+        "Provincial Level",
+        "Dong Nai"
+      ],
       "githubUrl": "https://github.com/nvdquang",
       "demoUrl": "https://lhu.edu.vn",
       "featured": true,
@@ -376,8 +520,18 @@ export const initialPortfolioData = {
       "description": "Giải Ba Cuộc thi Phát huy sáng kiến, sáng tạo trong lao động và học tập tỉnh Đồng Nai (2023). Ứng dụng mô hình mạng SDN quản trị tự động.",
       "descriptionEn": "3rd Prize Winner in Dong Nai Innovation Competition (2023). Applies SDN network paradigm for centralized administration.",
       "category": "architecture",
-      "tags": ["SDN", "Network", "Bảo mật", "Đồng Nai 2023"],
-      "tagsEn": ["SDN", "Networking", "Security", "Dong Nai 2023"],
+      "tags": [
+        "SDN",
+        "Network",
+        "Bảo mật",
+        "Đồng Nai 2023"
+      ],
+      "tagsEn": [
+        "SDN",
+        "Networking",
+        "Security",
+        "Dong Nai 2023"
+      ],
       "githubUrl": "https://github.com/nvdquang",
       "demoUrl": "https://lhu.edu.vn",
       "featured": true,
@@ -400,8 +554,16 @@ export const initialPortfolioData = {
       "description": "Công trình nghiên cứu công bố trên Tạp chí Khoa học Lạc Hồng (2026). Phân tích toàn diện nguy cơ an ninh bảo mật khi phát triển các hệ thống AI Agent thông minh.",
       "descriptionEn": "Research published in Lac Hong Journal of Science (2026). Comprehensive security analysis when building autonomous AI Agent systems.",
       "category": "ai",
-      "tags": ["AI Security", "Prompt Injection", "Tạp chí Lạc Hồng 2026"],
-      "tagsEn": ["AI Security", "Prompt Injection", "Lac Hong Journal 2026"],
+      "tags": [
+        "AI Security",
+        "Prompt Injection",
+        "Tạp chí Lạc Hồng 2026"
+      ],
+      "tagsEn": [
+        "AI Security",
+        "Prompt Injection",
+        "Lac Hong Journal 2026"
+      ],
       "githubUrl": "https://github.com/nvdquang",
       "demoUrl": "https://lhu.edu.vn",
       "featured": true,
@@ -704,41 +866,13 @@ export const initialPortfolioData = {
   }
 };
 
-const STORAGE_KEYS = [
-  'nvdquang_portfolio_data_v10',
-  'nvdquang_portfolio_data_v9',
-  'nvdquang_portfolio_data_v8',
-  'nvdquang_portfolio_data_v7',
-  'nvdquang_portfolio_data_v6',
-  'nvdquang_portfolio_data_v5',
-  'nvdquang_portfolio_data_v4',
-  'nvdquang_portfolio_data_v3',
-  'nvdquang_portfolio_data_v2',
-  'nvdquang_portfolio_data_v1'
-];
+const STORAGE_KEY = 'nvdquang_portfolio_data_v1';
 
 export const getStoredPortfolioData = () => {
   try {
-    for (const key of STORAGE_KEYS) {
-      const dataStr = localStorage.getItem(key);
-      if (dataStr) {
-        const parsed = JSON.parse(dataStr);
-        return {
-          ...initialPortfolioData,
-          ...parsed,
-          personalInfo: { ...initialPortfolioData.personalInfo, ...(parsed.personalInfo || {}) },
-          skillCategories: (parsed.skillCategories && parsed.skillCategories.length) ? parsed.skillCategories : initialPortfolioData.skillCategories,
-          projectCategories: (parsed.projectCategories && parsed.projectCategories.length) ? parsed.projectCategories : initialPortfolioData.projectCategories,
-          certificates: parsed.certificates || initialPortfolioData.certificates,
-          scientificPublications: parsed.scientificPublications || initialPortfolioData.scientificPublications,
-          textbooks: parsed.textbooks || initialPortfolioData.textbooks,
-          awards: parsed.awards || initialPortfolioData.awards,
-          nckhProjects: parsed.nckhProjects || initialPortfolioData.nckhProjects,
-          teachingCourses: parsed.teachingCourses || initialPortfolioData.teachingCourses,
-          teachingCoursesEn: parsed.teachingCoursesEn || initialPortfolioData.teachingCoursesEn,
-          researchFieldsEn: parsed.researchFieldsEn || initialPortfolioData.researchFieldsEn,
-        };
-      }
+    const dataStr = localStorage.getItem(STORAGE_KEY);
+    if (dataStr) {
+      return JSON.parse(dataStr);
     }
   } catch (e) {
     console.error("Failed to load custom data from localStorage", e);
@@ -748,7 +882,7 @@ export const getStoredPortfolioData = () => {
 
 export const savePortfolioDataToStorage = (data) => {
   try {
-    localStorage.setItem(STORAGE_KEYS[0], JSON.stringify(data));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   } catch (e) {
     console.error("Failed to save data to localStorage", e);
   }
@@ -756,7 +890,7 @@ export const savePortfolioDataToStorage = (data) => {
 
 export const resetPortfolioDataToStorage = () => {
   try {
-    STORAGE_KEYS.forEach(k => localStorage.removeItem(k));
+    localStorage.removeItem(STORAGE_KEY);
   } catch (e) {
     console.error("Failed to reset localStorage data", e);
   }
