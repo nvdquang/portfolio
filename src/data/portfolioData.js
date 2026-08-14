@@ -592,7 +592,7 @@ export const initialPortfolioData = {
       "type": "work"
     },
     {
-      "year": "2025 – Nay",
+      "year": "2006 – Nay",
       "yearEn": "2025 – Present",
       "title": "Giảng viên Khoa Công nghệ Thông tin",
       "titleEn": "Lecturer, Faculty of Information Technology",
